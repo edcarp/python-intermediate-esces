@@ -3,6 +3,7 @@ title: Indexing, Slicing and Subsetting DataFrames in Python
 teaching: 30
 exercises: 30
 questions:
+    - "How do I deal with dates?"
     - "How can I access specific data within my data set?"
     - "How can Python and Pandas help me to analyse my data?"
 objectives:
@@ -52,6 +53,13 @@ waves_df = pd.read_csv("data/waves.csv")
 ~~~
 {: .language-python}
 
+
+## LInterpreting dates
+
+We might not have dates in a 'clean' year month day format....
+**Chris add section on dealing with dd/mm/yyyy
+
+
 ## Indexing and Slicing in Python
 
 We often want to work with subsets of a **DataFrame** object. There are
@@ -68,10 +76,10 @@ DataFrame by name. There are two ways to do this:
 ~~~
 # TIP: use the .head() method we saw earlier to make output shorter
 # Method 1: select a 'subset' of the data using the column name
-wavess_df['Country']
+waves_df['Country']
 
 # Method 2: use the column name as an 'attribute'; gives the same output
-wavess_df.Country
+waves_df.Country
 ~~~
 {: .language-python}
 
@@ -211,7 +219,7 @@ Let's start with an example:
 true_copy_waves_df = waves_df.copy()
 
 # Using the '=' operator
-ref_waves_df = wavess_df
+ref_waves_df = waves_df
 ~~~
 {: .language-python}
 
@@ -401,6 +409,10 @@ directly indexing column names.
 
 ## Subsetting Data using Criteria
 
+
+*** NB we need to have a new column of data representing the 'year' for this secion
+
+
 We can also select a subset of our data using criteria. For example, we can
 select all rows that have a year value of 2002:
 
@@ -468,12 +480,12 @@ Experiment with selecting various subsets of the "surveys" data.
 >   list of values as follows:
 >
 >    ~~~
->    waves_df[waves_df['species_id'].isin([listGoesHere])]
+>    waves_df[waves_df[Country'].isin([listGoesHere])]
 >    ~~~
 >    {: .language-python }
 >
 >   Use the `isin` function to find all plots that contain particular species
->   in the "surveys" DataFrame. How many records contain these values?
+>   in the "waves" DataFrame. How many records contain these values?
 >
 > 3. Experiment with other queries. Create a query that finds all rows with a
 >   weight value > or equal to 0.
@@ -550,33 +562,33 @@ waves_df[pd.isnull(waves_df).any(axis=1)]
 ~~~
 {: .language-python}
 
-Note that the `weight` column of our DataFrame contains many `null` or `NaN`
+Note that some cells of our DataFrame contain `NaN`
 values. We will explore ways of dealing with this in the next episode on [Data Types and Formats]({{ page.root }}{% link _episodes/04-data-types-and-format.md %}).
 
 We can run `isnull` on a particular column too. What does the code below do?
 
 ~~~
 # What does this do?
-empty_weights = waves_df[pd.isnull(waves_df['weight'])]['weight']
-print(empty_weights)
+empty_temperatures = waves_df[pd.isnull(waves_df['Temperature'])]['Temperature']
+print(empty_temperatures)
 ~~~
 {: .language-python}
 
 Let's take a minute to look at the statement above. We are using the Boolean
-object `pd.isnull(waves_df['weight'])` as an index to `waves_df`. We are
-asking Python to select rows that have a `NaN` value of weight.
+object `pd.isnull(waves_df['Temperature'])` as an index to `waves_df`. We are
+asking Python to select rows that have a `NaN` value of Temperature.
 
 
 > ## Challenge - Putting it all together
 >
-> 1. Create a new DataFrame that only contains observations with sex values that
->   are **not** female or male. Print the number of rows in this new DataFrame.
+> 1. Create a new DataFrame that only contains complete observations with no missing or NaN data values.
+>   Print the number of rows in this new DataFrame.
 >   Verify the result by comparing the number of rows in the new DataFrame with
->   the number of rows in the surveys DataFrame where sex is null.
+>   the number of rows in the surveys DataFrame where values are missing.
 >
-> 2. Create a new DataFrame that contains only observations that are of sex male
->   or female and where weight values are greater than 0. Create a stacked bar
->   plot of average weight by plot with male vs female values stacked for each
+> 2. Create a new DataFrame that contains only observations that are from England
+>   and where temperature values are greater than 10. Create a stacked bar
+>   plot of average temperature by country with coastal vs offshore values stacked for each
 >   plot.
 {: .challenge}
 
