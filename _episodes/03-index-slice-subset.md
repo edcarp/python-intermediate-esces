@@ -48,7 +48,7 @@ episode. Let's reopen and read in the data again:
 import pandas as pd
 
 # Read in the survey CSV
-surveys_df = pd.read_csv("data/surveys.csv")
+waves_df = pd.read_csv("data/waves.csv")
 ~~~
 {: .language-python}
 
@@ -62,25 +62,25 @@ numeric ranges, or specific x,y index locations.
 ## Selecting data using Labels (Column Headings)
 
 We use square brackets `[]` to select a subset of a Python object. For example,
-we can select all data from a column named `species_id` from the `surveys_df`
+we can select all data from a column named `Country` from the `waves_df`
 DataFrame by name. There are two ways to do this:
 
 ~~~
 # TIP: use the .head() method we saw earlier to make output shorter
 # Method 1: select a 'subset' of the data using the column name
-surveys_df['species_id']
+wavess_df['Country']
 
 # Method 2: use the column name as an 'attribute'; gives the same output
-surveys_df.species_id
+wavess_df.Country
 ~~~
 {: .language-python}
 
 We can also create a new object that contains only the data within the
-`species_id` column as follows:
+`Country` column as follows:
 
 ~~~
-# Creates an object, surveys_species, that only contains the `species_id` column
-surveys_species = surveys_df['species_id']
+# Creates an object, surveys_countries, that only contains the `Country` column
+surveys_countries = waves_df['Country']
 ~~~
 {: .language-python}
 
@@ -91,19 +91,19 @@ order. This is useful when we need to reorganize our data.
 (error) will be raised.
 
 ~~~
-# Select the species and plot columns from the DataFrame
-surveys_df[['species_id', 'plot_id']]
+# Select the countries and plot columns from the DataFrame
+waves_df[['Country', 'Provider']]
 
 # What happens when you flip the order?
-surveys_df[['plot_id', 'species_id']]
+waves_df[['Provider', 'Country']]
 
 # What happens if you ask for a column that doesn't exist?
-surveys_df['speciess']
+waves_df['Cntry']
 ~~~
 {: .language-python}
 
 Python tells us what type of error it is in the traceback, at the bottom it says
-`KeyError: 'speciess'` which means that `speciess` is not a valid column name (nor a valid key in
+`KeyError: 'Cntry'` which means that `Cntry` is not a valid column name (nor a valid key in
 the related Python data type dictionary).
 
 > ## Reminder
@@ -180,7 +180,7 @@ want to select rows 0, 1 and 2 your code would look like this:
 
 ~~~
 # Select rows 0, 1, 2 (row 3 is not selected)
-surveys_df[0:3]
+waves_df[0:3]
 ~~~
 {: .language-python}
 
@@ -189,11 +189,11 @@ languages like Matlab and R.
 
 ~~~
 # Select the first 5 rows (rows 0, 1, 2, 3, 4)
-surveys_df[:5]
+waves_df[:5]
 
 # Select the last element in the list
 # (the slice starts at the last element, and ends at the end of the list)
-surveys_df[-1:]
+waves_df[-1:]
 ~~~
 {: .language-python}
 
@@ -208,15 +208,15 @@ Let's start with an example:
 
 ~~~
 # Using the 'copy() method'
-true_copy_surveys_df = surveys_df.copy()
+true_copy_waves_df = waves_df.copy()
 
 # Using the '=' operator
-ref_surveys_df = surveys_df
+ref_waves_df = wavess_df
 ~~~
 {: .language-python}
 
-You might think that the code `ref_surveys_df = surveys_df` creates a fresh
-distinct copy of the `surveys_df` DataFrame object. However, using the `=`
+You might think that the code `ref_waves_df = waves_df` creates a fresh
+distinct copy of the `waves_df` DataFrame object. However, using the `=`
 operator in the simple statement `y = x` does **not** create a copy of our
 DataFrame. Instead, `y = x` creates a new variable `y` that references the
 **same** object that `x` refers to. To state this another way, there is only
@@ -230,34 +230,34 @@ DataFrame that references another DataFrame object:
 
 ~~~
 # Assign the value `0` to the first three rows of data in the DataFrame
-ref_surveys_df[0:3] = 0
+ref_waves_df[0:3] = 0
 ~~~
 {: .language-python}
 
 Let's try the following code:
 
 ~~~
-# ref_surveys_df was created using the '=' operator
-ref_surveys_df.head()
+# ref_waves_df was created using the '=' operator
+ref_waves_df.head()
 
-# true_copy_surveys_df was created using the copy() function
-true_copy_surveys_df.head()
+# true_copy_waves_df was created using the copy() function
+true_copy_waves_df.head()
 
-# surveys_df is the original dataframe
-surveys_df.head()
+# waves_df is the original dataframe
+waves_df.head()
 ~~~
 {: .language-python}
 
 What is the difference between these three dataframes?
 
 When we assigned the first 3 rows the value of `0` using the
-`ref_surveys_df` DataFrame, the `surveys_df` DataFrame is modified too.
-Remember we created the reference `ref_surveys_df` object above when we did
-`ref_surveys_df = surveys_df`. Remember `surveys_df` and `ref_surveys_df`
+`ref_waves_df` DataFrame, the `waves_df` DataFrame is modified too.
+Remember we created the reference `ref_waves_df` object above when we did
+`ref_waves_df = waves_df`. Remember `waves_df` and `ref_waves_df`
 refer to the same exact DataFrame object. If either one changes the object,
 the other will see the same changes to the reference object.
 
-However - `true_copy_surveys_df` was created via the `copy()` function.
+However - `true_copy_waves_df` was created via the `copy()` function.
 It retains the original values for the first three rows.
 
 **To review and recap**:
@@ -265,13 +265,13 @@ It retains the original values for the first three rows.
 - **Copy** uses the dataframe's `copy()` method
 
   ~~~
-  true_copy_surveys_df = surveys_df.copy()
+  true_copy_waves_df = waves_df.copy()
   ~~~
   {: .language-python }
 - A **Reference** is created using the `=` operator
 
   ~~~
-  ref_surveys_df = surveys_df
+  ref_waves_df = waves_df
   ~~~
   {: .language-python }
 
@@ -279,7 +279,7 @@ Okay, that's enough of that. Let's create a brand new clean dataframe from
 the original data CSV file.
 
 ~~~
-surveys_df = pd.read_csv("data/surveys.csv")
+waves_df = pd.read_csv("data/waves.csv")
 ~~~
 {: .language-python}
 
@@ -298,7 +298,7 @@ and 4 if we start counting at 1), like this:
 
 ~~~
 # iloc[row slicing, column slicing]
-surveys_df.iloc[0:3, 1:4]
+waves_df.iloc[0:3, 1:4]
 ~~~
 {: .language-python}
 
@@ -320,13 +320,13 @@ Let's explore some other ways to index and select subsets of data:
 
 ~~~
 # Select all columns for rows of index values 0 and 10
-surveys_df.loc[[0, 10], :]
+waves_df.loc[[0, 10], :]
 
 # What does this do?
-surveys_df.loc[0, ['species_id', 'plot_id', 'weight']]
+waves_df.loc[0, ['Country', 'Provider', 'weight']]
 
 # What happens when you type the code below?
-surveys_df.loc[[0, 10, 35549], :]
+waves_df.loc[[0, 10, 35549], :]
 ~~~
 {: .language-python}
 
@@ -350,7 +350,7 @@ dat.iloc[row, column]
 In this `iloc` example,
 
 ~~~
-surveys_df.iloc[2, 6]
+waves_df.iloc[2, 6]
 ~~~
 {: .language-python}
 
@@ -367,8 +367,8 @@ selects the element that is 3 rows down and 7 columns over in the DataFrame.
 It is worth noting that rows are selected when using `loc` with a single list of
 labels (or `iloc` with a single list of integers). However, unlike `loc` or `iloc`,
 indexing a data frame directly with labels will select columns (e.g. 
-`surveys_df['species_id', 'plot_id', 'weight']`), while ranges of integers will
-select rows (e.g. surveys_df[0:13]). Direct indexing of rows is redundant with
+`waves_df['Country', 'Provider', 'Site Type']`), while ranges of integers will
+select rows (e.g. waves_df[0:13]). Direct indexing of rows is redundant with
 using `iloc`, and will raise a `KeyError` if a single integer or list is used; the
 error will also occur if index labels are used without `loc` (or column labels used
 with it).
@@ -382,18 +382,18 @@ directly indexing column names.
 >
 > 1. What happens when you execute:
 >
->    - `surveys_df[0:1]`
->    - `surveys_df[0]`
->    - `surveys_df[:4]`
->    - `surveys_df[:-1]`
+>    - `waves_df[0:1]`
+>    - `waves_df[0]`
+>    - `waves_df[:4]`
+>    - `waves_df[:-1]`
 >
 > 2. What happens when you call:
 >
->    - `surveys_df.iloc[0:1]`
->    - `surveys_df.iloc[0]`
->    - `surveys_df.iloc[:4, :]`
->    - `surveys_df.iloc[0:4, 1:4]`
->    - `surveys_df.loc[0:4, 1:4]`
+>    - `waves_df.iloc[0:1]`
+>    - `waves_df.iloc[0]`
+>    - `waves_df.iloc[:4, :]`
+>    - `waves_df.iloc[0:4, 1:4]`
+>    - `waves_df.loc[0:4, 1:4]`
 >
 > - How are the last two commands different?
 {: .challenge}
@@ -405,7 +405,7 @@ We can also select a subset of our data using criteria. For example, we can
 select all rows that have a year value of 2002:
 
 ~~~
-surveys_df[surveys_df.year == 2002]
+waves_df[waves_df.year == 2002]
 ~~~
 {: .language-python}
 
@@ -429,17 +429,20 @@ record_id  month  day  year  plot_id species_id  sex  hindfoot_length  weight
 ~~~
 {: .language-python}
 
+*** CHRIS - what did we decide about handling the date format? Shall we include this? Shall I add year/month/day in as extra columns??? - LMB
+
+
 Or we can select all rows that do not contain the year 2002:
 
 ~~~
-surveys_df[surveys_df.year != 2002]
+waves_df[waves_df.year != 2002]
 ~~~
 {: .language-python}
 
 We can define sets of criteria too:
 
 ~~~
-surveys_df[(surveys_df.year >= 1980) & (surveys_df.year <= 1985)]
+waves_df[(waves_df.year >= 1980) & (waves_df.year <= 1985)]
 ~~~
 {: .language-python}
 
@@ -457,7 +460,7 @@ Experiment with selecting various subsets of the "surveys" data.
 
 > ## Challenge - Queries
 >
-> 1. Select a subset of rows in the `surveys_df` DataFrame that contain data from
+> 1. Select a subset of rows in the `waves_df` DataFrame that contain data from
 >   the year 1999 and that contain weight values less than or equal to 8. How
 >   many rows did you end up with? What did your neighbor get?
 >
@@ -465,7 +468,7 @@ Experiment with selecting various subsets of the "surveys" data.
 >   list of values as follows:
 >
 >    ~~~
->    surveys_df[surveys_df['species_id'].isin([listGoesHere])]
+>    waves_df[waves_df['species_id'].isin([listGoesHere])]
 >    ~~~
 >    {: .language-python }
 >
@@ -520,7 +523,7 @@ The `isnull` method will compare each cell with a null value. If an element
 has a null value, it will be assigned a value of  `True` in the output object.
 
 ~~~
-pd.isnull(surveys_df)
+pd.isnull(waves_df)
 ~~~
 {: .language-python}
 
@@ -543,7 +546,7 @@ the mask as an index to subset our data as follows:
 
 ~~~
 # To select just the rows with NaN values, we can use the 'any()' method
-surveys_df[pd.isnull(surveys_df).any(axis=1)]
+waves_df[pd.isnull(waves_df).any(axis=1)]
 ~~~
 {: .language-python}
 
@@ -554,13 +557,13 @@ We can run `isnull` on a particular column too. What does the code below do?
 
 ~~~
 # What does this do?
-empty_weights = surveys_df[pd.isnull(surveys_df['weight'])]['weight']
+empty_weights = waves_df[pd.isnull(waves_df['weight'])]['weight']
 print(empty_weights)
 ~~~
 {: .language-python}
 
 Let's take a minute to look at the statement above. We are using the Boolean
-object `pd.isnull(surveys_df['weight'])` as an index to `surveys_df`. We are
+object `pd.isnull(waves_df['weight'])` as an index to `waves_df`. We are
 asking Python to select rows that have a `NaN` value of weight.
 
 
