@@ -1,3 +1,7 @@
+
+***** NOTE this chapter will be replaced with Functions, which we skipped in the 'basic' section of the course
+
+
 ---
 title: Data Workflows and Automation
 teaching: 40
