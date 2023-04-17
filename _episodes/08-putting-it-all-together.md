@@ -15,6 +15,15 @@ keypoints:
 ---
 
 
+**** Chris we will replace this now with a geopandas episode
+where we load in some base data of land/sea or country outlines???
+Then plot the lat/lon of our wave buoy data over the top.
+or even scatter some real data - like coloured by temperature???
+
+possible source material here:
+https://geopandas.org/en/stable/docs/user_guide/mapping.html
+
+
 ## Putting it all together
 
 Up to this point, we have walked through tasks that are often
