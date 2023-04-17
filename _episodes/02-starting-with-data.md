@@ -131,7 +131,7 @@ an element in the data structure.
 
 ~~~
 # Note that pd.read_csv is used because we imported pandas as pd
-pd.read_csv("data/surveys.csv")
+pd.read_csv("data/waves.csv")
 ~~~
 {: .language-python}
 
