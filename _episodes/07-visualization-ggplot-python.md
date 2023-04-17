@@ -20,6 +20,17 @@ keypoints:
     - "With the `+` operator, additional `scale_*`, `theme_*`, `xlab/ylab` and `facet_*` elements are added"
 ---
 
+
+*** Chris - what are we adding here that wasn't in basic lessons.
+We don't want to do plot nine - instead change it to matplotlib, using the new waves data set consitent with the rest of the course
+no repeats - we've already covered a lot in the first course.
+
+**** What do we want in here??
+e.g. could do a 'rose' diagram or polor plot to show directional spread
+https://jwalton.info/Matplotlib-rose-plots/
+ as a possibility
+
+
 ## Disclaimer
 
 Python has powerful built-in plotting capabilities such as `matplotlib`, but for
