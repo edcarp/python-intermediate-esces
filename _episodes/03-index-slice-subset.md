@@ -1,3 +1,5 @@
+*** NB CHris - change the order, so it's 04 (formats) first, then 03 (slicing and subetting)
+
 ---
 title: Indexing, Slicing and Subsetting DataFrames in Python
 teaching: 30
