@@ -45,49 +45,38 @@ directory structure, however, that is not our focus today.
 
 ### Our Data
 
-For this lesson, we will be using the Portal Teaching data, a subset of the data
-from Ernst et al
-[Long-term monitoring and experimental manipulation of a Chihuahuan Desert ecosystem near Portal,
-Arizona, USA][ernst].
+### Our Data
 
-We will be using files from the [Portal Project Teaching Database][pptd].
-This section will use the `surveys.csv` file that can be downloaded here:
-[https://ndownloader.figshare.com/files/2292172][figshare-ndownloader]
+For this lesson we will be using a subset of data from Centre for Environment Fisheries and Aquaculture Science (Cefas). 
+WaveNet, Cefas’ strategic wave monitoring network for the United Kingdom, provides a single source of real-time wave data from a network of wave buoys located in areas at risk from flooding.
+https://wavenet.cefas.co.uk/
 
-We are studying the **species** and **weight** of animals caught in sites in our study
-area. The dataset is stored as a `.csv` file: each row holds information for a
-single animal, and the columns represent:
+We are studying the wave height and temperature in the seas around the UK. 
+The dataset is stored as a `.csv` file: each row holds information for a
+single wave buoy, and the columns represent:
 
 | Column           | Description                        |
 |------------------|------------------------------------|
-| record_id        | Unique id for the observation      |
-| month            | month of observation               |
-| day              | day of observation                 |
-| year             | year of observation                |
-| plot_id          | ID of a particular site            |
-| species_id       | 2-letter code                      |
-| sex              | sex of animal ("M", "F")           |
-| hindfoot_length  | length of the hindfoot in mm       |
-| weight           | weight of the animal in grams      |
-
+|Name              | Unique id for the observation      |
+|Provider          | Company operating the wave buoy    |
+|Last Transmission | Date                               |
+|Wave Height	     | Significan wave height in metres   |
+|Tpeak	           | Dominant wave period               |
+|Tz	               | The average wave period            |
+|Peak Direction	   | The direction at Tpeak.            |
+|Spread	           |The directional spread at Tpeak.    |
+|Temperature       | Water temperature in degrees C     |
 
 The first few rows of our first file look like this:
-
 ~~~
-record_id,month,day,year,plot_id,species_id,sex,hindfoot_length,weight
-1,7,16,1977,2,NL,M,32,
-2,7,16,1977,3,NL,M,33,
-3,7,16,1977,2,DM,F,37,
-4,7,16,1977,7,DM,M,36,
-5,7,16,1977,3,DM,M,35,
-6,7,16,1977,1,PF,M,14,
-7,7,16,1977,2,PE,F,,
-8,7,16,1977,1,DM,M,37,
-9,7,16,1977,1,DM,F,34,
+Name,Provider,Country,Site Type,latitude,longitude,Last Transmission,Wave Height,Tpeak,Tz,Peak Direction,Spread,Temperature
+SW Isles of Scilly WaveNet Site,Cefas,England,Offshore,49.82,-6.54,17/04/2023,1.8,10,7.2,263,26,10.8
+Hayling Island Waverider,Cefas,England,Coastal,50.73,-0.96,17/04/2023,0.2,11.1,4,193,14,10.2
+Firth of Forth WaveNet Site,Cefas,Scotland,Offshore,56.19,-2.50,17/04/2023,0.6,4.5,3.7,115,28,7.8
 ~~~
 {: .output}
 
----
+---   
 
 ## About Libraries
 A library in Python contains a set of tools (called functions) that perform
