@@ -45,7 +45,6 @@ directory structure, however, that is not our focus today.
 
 ### Our Data
 
-### Our Data
 
 For this lesson we will be using a subset of data from Centre for Environment Fisheries and Aquaculture Science (Cefas). 
 WaveNet, Cefas’ strategic wave monitoring network for the United Kingdom, provides a single source of real-time wave data from a network of wave buoys located in areas at risk from flooding.
