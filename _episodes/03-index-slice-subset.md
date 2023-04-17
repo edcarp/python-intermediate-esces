@@ -3,7 +3,6 @@ title: Indexing, Slicing and Subsetting DataFrames in Python
 teaching: 30
 exercises: 30
 questions:
-    - "How do I deal with dates?"
     - "How can I access specific data within my data set?"
     - "How can Python and Pandas help me to analyse my data?"
 objectives:
@@ -52,12 +51,6 @@ import pandas as pd
 waves_df = pd.read_csv("data/waves.csv")
 ~~~
 {: .language-python}
-
-
-## LInterpreting dates
-
-We might not have dates in a 'clean' year month day format....
-**Chris add section on dealing with dd/mm/yyyy
 
 
 ## Indexing and Slicing in Python
@@ -408,16 +401,13 @@ directly indexing column names.
 
 
 ## Subsetting Data using Criteria
-
-
-*** NB we need to have a new column of data representing the 'year' for this secion
-
+ 
 
 We can also select a subset of our data using criteria. For example, we can
-select all rows that have a year value of 2002:
+select all rows that have a year value of 2022:
 
 ~~~
-waves_df[waves_df.year == 2002]
+waves_df[waves_df.year == 2022]
 ~~~
 {: .language-python}
 
@@ -447,14 +437,14 @@ record_id  month  day  year  plot_id species_id  sex  hindfoot_length  weight
 Or we can select all rows that do not contain the year 2002:
 
 ~~~
-waves_df[waves_df.year != 2002]
+waves_df[waves_df.year != 2022]
 ~~~
 {: .language-python}
 
 We can define sets of criteria too:
 
 ~~~
-waves_df[(waves_df.year >= 1980) & (waves_df.year <= 1985)]
+waves_df[(waves_df.year >= 2020) & (waves_df.year <= 2022)]
 ~~~
 {: .language-python}
 
@@ -473,7 +463,7 @@ Experiment with selecting various subsets of the "surveys" data.
 > ## Challenge - Queries
 >
 > 1. Select a subset of rows in the `waves_df` DataFrame that contain data from
->   the year 1999 and that contain weight values less than or equal to 8. How
+>   the year 2023 and that contain temperature values less than or equal to 10. How
 >   many rows did you end up with? What did your neighbor get?
 >
 > 2. You can use the `isin` command in Python to query a DataFrame based upon a
