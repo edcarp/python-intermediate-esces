@@ -56,22 +56,32 @@ single wave buoy, and the columns represent:
 
 | Column           | Description                        |
 |------------------|------------------------------------|
-|Name              | Unique id for the observation      |
-|Provider          | Company operating the wave buoy    |
-|Last Transmission | Date                               |
-|Wave Height	     | Significan wave height in metres   |
-|Tpeak	           | Dominant wave period               |
+|record_id         | Unique id for the observation      |
+|buoy_id           | Unique id for the wave buoy        |
+|Name              | Name of buoy                       |
+|latitude          | latitude of buoy  (degrees)        |
+|longitude         | longitude of buoy (degrees)        |
+|Country           | Country operating the wave buoy    |
+| Date             | Date in day/month/year             |
 |Tz	               | The average wave period            |
-|Peak Direction	   | The direction at Tpeak.            |
-|Spread	           |The directional spread at Tpeak.    |
+|Peak Direction	   | The direction at Tpeak             |
+|Tpeak	           | Dominant wave period               |
+|Wave Height	     | Significan wave height in metres   |
 |Temperature       | Water temperature in degrees C     |
+|Spread	           | The directional spread at Tpeak    |
+|------------------|------------------------------------|
+
 
 The first few rows of our first file look like this:
 ~~~
-Name,Provider,Country,Site Type,latitude,longitude,Last Transmission,Wave Height,Tpeak,Tz,Peak Direction,Spread,Temperature
-SW Isles of Scilly WaveNet Site,Cefas,England,Offshore,49.82,-6.54,17/04/2023,1.8,10,7.2,263,26,10.8
-Hayling Island Waverider,Cefas,England,Coastal,50.73,-0.96,17/04/2023,0.2,11.1,4,193,14,10.2
-Firth of Forth WaveNet Site,Cefas,Scotland,Offshore,56.19,-2.50,17/04/2023,0.6,4.5,3.7,115,28,7.8
+record_id	buoy_id	Name	Country	Site Type	latitude	longitude	Date	Tz	Peak Direction	Tpeak	Wave Height	Temperature	Spread
+1	14	SW Isles of Scilly WaveNet Site	England	Ocean	49.82	-6.54	17/04/2023	7.2	263	10	1.8	10.8	26
+2	7	Hayling Island Waverider	England	Coastal	50.73	-0.96	17/04/2023	4	193	11.1	0.2	10.2	14
+3	5	Firth of Forth WaveNet Site	Scotland	Ocean	56.19	-2.5	17/04/2023	3.7	115	4.5	0.6	7.8	28
+4	3	Chesil Waverider	England	Coastal	50.6	-2.52	17/04/2023	5.5	225	8.3	0.5	10.2	48
+5	10	M6 Buoy	Ireland	Ocean	53.06	-15.93	17/04/2023	7.6	240	11.7	4.5	11.5	89
+6	9	Lomond	Scotland	Ocean	57.2	2.2	17/04/2023	4	NaN	NaN	0.5	NaN	NaN
+7	2	Cardigan Bay	Wales	Coastal	52.433333	-4.8	17/04/2023	5.9	239	10.5	0.69	9.9	18
 ~~~
 {: .output}
 
