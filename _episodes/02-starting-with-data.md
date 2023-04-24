@@ -131,7 +131,7 @@ an element in the data structure.
 
 ~~~
 # Note that pd.read_csv is used because we imported pandas as pd
-pd.read_csv("data/surveys.csv")
+pd.read_csv("data/waves.csv")
 ~~~
 {: .language-python}
 
@@ -163,19 +163,19 @@ we haven't saved any data to memory so we can work with it. We need to assign th
 DataFrame to a variable. Remember that a variable is a name for a value, such as `x`,
 or  `data`. We can create a new  object with a variable name by assigning a value to it using `=`.
 
-Let's call the imported survey data `surveys_df`:
+Let's call the imported survey data `waves_df`:
 
 ~~~
-surveys_df = pd.read_csv("data/surveys.csv")
+waves_df = pd.read_csv("data/waves.csv")
 ~~~
 {: .language-python}
 
 Notice when you assign the imported DataFrame to a variable, Python does not
-produce any output on the screen. We can view the value of the `surveys_df`
+produce any output on the screen. We can view the value of the `waves_df`
 object by typing its name into the Python command prompt.
 
 ~~~
-surveys_df
+waves_df
 ~~~
 {: .language-python}
 
@@ -239,7 +239,7 @@ easier to fit on one window, you can see that pandas has neatly formatted the da
 our screen:
 
 ~~~
-surveys_df.head() # The head() method displays the first several lines of a file. It
+waves_df.head() # The head() method displays the first several lines of a file. It
                   # is discussed below.
 ~~~
 {: .language-python}
@@ -260,12 +260,12 @@ surveys_df.head() # The head() method displays the first several lines of a file
 ~~~
 {: .output}
 
-## Exploring Our Species Survey Data
+## Exploring Our Wave Buoy Data
 
-Again, we can use the `type` function to see what kind of thing `surveys_df` is:
+Again, we can use the `type` function to see what kind of thing `waves_df` is:
 
 ~~~
-type(surveys_df)
+type(waves_df)
 ~~~
 {: .language-python}
 ~~~
@@ -276,7 +276,7 @@ type(surveys_df)
 As expected, it's a DataFrame (or, to use the full name that Python uses to refer
 to it internally, a `pandas.core.frame.DataFrame`).
 
-What kind of things does `surveys_df` contain? DataFrames have an attribute
+What kind of things does `waves_df` contain? DataFrames have an attribute
 called `dtypes` that answers this:
 
 ~~~
@@ -301,7 +301,7 @@ All the values in a column have the same type. For example, months have type
 `int64`, which is a kind of integer. Cells in the month column cannot have
 fractional values, but the weight and hindfoot_length columns can, because they
 have type `float64`. The `object` type doesn't have a very helpful name, but in
-this case it represents strings (such as 'M' and 'F' in the case of sex).
+this case it represents strings (such as 'Coastal' and 'Offshore' in the case of Site Type).
 
 We'll talk a bit more about what the different formats mean in a different lesson.
 
@@ -311,29 +311,29 @@ There are many ways to summarize and access the data stored in DataFrames,
 using **attributes** and **methods** provided by the DataFrame object.
 
 To access an attribute, use the DataFrame object name followed by the attribute
-name `df_object.attribute`. Using the DataFrame `surveys_df` and attribute
+name `df_object.attribute`. Using the DataFrame `waves_df` and attribute
 `columns`, an index of all the column names in the DataFrame can be accessed
-with `surveys_df.columns`.
+with `waves_df.columns`.
 
 Methods are called in a similar fashion using the syntax `df_object.method()`.
-As an example, `surveys_df.head()` gets the first few rows in the DataFrame
-`surveys_df` using the `head()` method. With a method we can supply extra
+As an example, `waves_df.head()` gets the first few rows in the DataFrame
+`waves_df` using the `head()` method. With a method we can supply extra
 information in the parens to control behaviour.
 
 Let's look at the data using these.
 
 > ## Challenge - DataFrames
 >
-> Using our DataFrame `surveys_df`, try out the **attributes** & **methods** below to see
+> Using our DataFrame `waves_df`, try out the **attributes** & **methods** below to see
 > what they return.
 >
-> 1. `surveys_df.columns`
-> 2. `surveys_df.shape` Take note of the output of `shape` - what format does it
+> 1. `waves_df.columns`
+> 2. `waves_df.shape` Take note of the output of `shape` - what format does it
 >    return the shape of the DataFrame in?
 >
 >    HINT: [More on tuples, here][python-datastructures].
-> 3. `surveys_df.head()` Also, what does `surveys_df.head(15)` do?
-> 4. `surveys_df.tail()`
+> 3. `waves_df.head()` Also, what does `waves_df.head(15)` do?
+> 4. `waves_df.tail()`
 {: .challenge}
 
 
@@ -341,15 +341,14 @@ Let's look at the data using these.
 
 We've read our data into Python. Next, let's perform some quick summary
 statistics to learn more about the data that we're working with. We might want
-to know how many animals were collected in each site, or how many of each
-species were caught. We can perform summary stats quickly using groups. But
-first we need to figure out what we want to group by.
+to know how many wave observations were collected at each buoy, or how many buoys are operated by a single company.
+We can perform summary stats quickly using groups. But first we need to figure out what we want to group by.
 
 Let's begin by exploring our data:
 
 ~~~
 # Look at the column names
-surveys_df.columns
+waves_df.columns
 ~~~
 {: .language-python}
 
@@ -362,11 +361,11 @@ Index(['record_id', 'month', 'day', 'year', 'plot_id', 'species_id', 'sex',
 ~~~
 {: .output}
 
-Let's get a list of all the species. The `pd.unique` function tells us all of
-the unique values in the `species_id` column.
+Let's get a list of all the different contries covered. The `pd.unique` function tells us all of
+the unique values in the `Country` column.
 
-~~~
-pd.unique(surveys_df['species_id'])
+pd.unique(waves_df['Country'])
+
 ~~~
 {: .language-python}
 
@@ -381,26 +380,30 @@ array(['NL', 'DM', 'PF', 'PE', 'DS', 'PP', 'SH', 'OT', 'DO', 'OX', 'SS',
 ~~~
 {: .output}
 
+
 > ## Challenge - Statistics
 >
-> 1. Create a list of unique site ID's ("plot_id") found in the surveys data. Call it
->   `site_names`. How many unique sites are there in the data? How many unique
+> 1. Create a list of unique data providers ("Provider") found in the WaveNet data. Call it
+>   `providers`. How many wave data providers are there in the data? How many unique
 >   species are in the data?
 >
-> 2. What is the difference between `len(site_names)` and `surveys_df['plot_id'].nunique()`?
+> 2. What is the difference between `len(providers)` and `waves_df['Provider'].nunique()`?
 {: .challenge}
+
+
 
 # Groups in Pandas
 
 We often want to calculate summary statistics grouped by subsets or attributes
 within fields of our data. For example, we might want to calculate the average
-weight of all individuals per site.
+sea temperature at all wave buoys per Country.
 
 We can calculate basic statistics for all records in a single column using the
 syntax below:
 
+ 
 ~~~
-surveys_df['weight'].describe()
+waves_df['Temperature'].describe()
 ~~~
 {: .language-python}
 gives **output**
@@ -421,21 +424,21 @@ Name: weight, dtype: float64
 We can also extract one specific metric if we wish:
 
 ~~~
-surveys_df['weight'].min()
-surveys_df['weight'].max()
-surveys_df['weight'].mean()
-surveys_df['weight'].std()
-surveys_df['weight'].count()
+surveys_df['Temperature'].min()
+surveys_df['Temperature'].max()
+surveys_df['Temperature'].mean()
+surveys_df['Temperature'].std()
+surveys_df['Temperature'].count()
 ~~~
 {: .language-python}
 
-But if we want to summarize by one or more variables, for example sex, we can
+But if we want to summarize by one or more variables, for example Country, we can
 use **Pandas' `.groupby` method**. Once we've created a groupby DataFrame, we
 can quickly calculate summary statistics by a group of our choice.
 
 ~~~
-# Group data by sex
-grouped_data = surveys_df.groupby('sex')
+# Group data by country
+countries = waves_df.groupby('Country')
 ~~~
 {: .language-python}
 
@@ -445,10 +448,10 @@ median, max, min, std and count for a particular column in the data. Pandas'
 numeric data.
 
 ~~~
-# Summary statistics for all numeric columns by sex
-grouped_data.describe()
-# Provide the mean for each numeric column by sex
-grouped_data.mean()
+# Summary statistics for all numeric columns by country
+countries.describe()
+# Provide the mean for each numeric column by country
+countries.mean()
 ~~~
 {: .language-python}
 
@@ -473,14 +476,14 @@ summary stats.
 
 > ## Challenge - Summary Data
 >
-> 1. How many recorded individuals are female `F` and how many male `M`?
+> 1. How many wave buoys are nearshore `Coastal` and how many offshore `Ocean`?
 > 2. What happens when you group by two columns using the following syntax and
 >    then calculate mean values?
->   - `grouped_data2 = surveys_df.groupby(['plot_id', 'sex'])`
->   - `grouped_data2.mean()`
-> 3. Summarize weight values for each site in your data. HINT: you can use the
+>   - `types = waves_df.groupby(['Site Type', 'Country'])`
+>   - `types.mean()`
+> 3. Summarize site type values for each country in your data. HINT: you can use the
 >   following syntax to only create summary statistics for one column in your data.
->   `by_site['weight'].describe()`
+>  `countries["Temperature"].describe`
 >
 >
 >> ## Did you get #3 right?
@@ -510,7 +513,7 @@ ways, but we'll use `groupby` combined with **a `count()` method**.
 
 ~~~
 # Count the number of samples by country
-country_counts = surveys_df.groupby('Country')['Name'].count()
+country_counts = waves_df.groupby('Country')['Name'].count()
 print(country_counts)
 ~~~
 {: .language-python}
@@ -550,17 +553,17 @@ We can plot our summary stats using Pandas, too.
 # Make sure figures appear inline in Ipython Notebook
 %matplotlib inline
 # Create a quick bar chart
-species_counts.plot(kind='bar');
+country_counts.plot(kind='bar');
 ~~~
 {: .language-python}
 
 ![Weight by Species Site](../fig/countPerSpecies.png)
 Count per species site
 
-We can also look at how many observations were made in each site:
+We can also look at how many wave observations were captured in each site:
 
 ~~~
-total_count = waves_df.groupby('Name')['record_id'].nunique()
+total_count = waves_df.groupby('Country')['Name'].nunique()
 # Let's plot that too
 total_count.plot(kind='bar');
 ~~~
