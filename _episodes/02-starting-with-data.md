@@ -504,27 +504,27 @@ summary stats.
 
 ## Quickly Creating Summary Counts in Pandas
 
-Let's next count the number of samples for each species. We can do this in a few
+Let's next count the number of samples for each country. We can do this in a few
 ways, but we'll use `groupby` combined with **a `count()` method**.
 
 
 ~~~
-# Count the number of samples by species
-species_counts = surveys_df.groupby('species_id')['record_id'].count()
-print(species_counts)
+# Count the number of samples by country
+country_counts = surveys_df.groupby('Country')['Name'].count()
+print(country_counts)
 ~~~
 {: .language-python}
 
-Or, we can also count just the rows that have the species "DO":
+Or, we can also count just the rows that have the country "DO":
 
 ~~~
-surveys_df.groupby('species_id')['record_id'].count()['DO']
+waves_df.groupby('Country')['Name'].count()['DO']
 ~~~
 {: .language-python}
 
 > ## Challenge - Make a list
 >
->  What's another way to create a list of species and associated `count` of the
+>  What's another way to create a list of countries and associated `count` of the
 >  records in the data? Hint: you can perform `count`, `min`, etc. functions on
 >  groupby DataFrames in the same way you can perform them on regular DataFrames.
 {: .challenge}
@@ -537,8 +537,8 @@ be to normalize the data according to a mean, area, or some other value
 calculated from our data.
 
 ~~~
-# Multiply all weight values by 2
-surveys_df['weight']*2
+# Multiply all temperature values by 2
+waves_df['Temperature']*2
 ~~~
 {: .language-python}
 
@@ -557,10 +557,10 @@ species_counts.plot(kind='bar');
 ![Weight by Species Site](../fig/countPerSpecies.png)
 Count per species site
 
-We can also look at how many animals were captured in each site:
+We can also look at how many observations were made in each site:
 
 ~~~
-total_count = surveys_df.groupby('plot_id')['record_id'].nunique()
+total_count = waves_df.groupby('Name')['record_id'].nunique()
 # Let's plot that too
 total_count.plot(kind='bar');
 ~~~
@@ -568,14 +568,14 @@ total_count.plot(kind='bar');
 
 > ## Challenge - Plots
 >
-> 1. Create a plot of average weight across all species per site.
-> 2. Create a plot of total males versus total females for the entire dataset.
+> 1. Create a plot of average Temperature across all buoys per provider.
+> 2. Create a plot of total coastal versus total ocean observations for the entire dataset.
 {: .challenge}
 
 > ## Summary Plotting Challenge
 >
 > Create a stacked bar plot, with weight on the Y axis, and the stacked variable
-> being sex. The plot should show total weight by sex for each site. Some
+> being site type. The plot should show average temperature by site type for each site. Some
 > tips are below to help you solve this challenge:
 >
 > * For more information on pandas plots, see [pandas' documentation page on visualization][pandas-plot].
