@@ -50,7 +50,6 @@ episode. Let's reopen and read in the data again:
 # Make sure pandas is loaded
 import pandas as pd
 
-
 # Read in the wave CSV
 waves_df = pd.read_csv("data/waves.csv")
 ~~~
