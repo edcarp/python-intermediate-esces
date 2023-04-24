@@ -1,0 +1,735 @@
+﻿record_id,buoy_id,Name,Country,Site Type,latitude,longitude,Date,Tz,Peak Direction,Tpeak,Wave Height,Temperature,Spread
+1,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,17/04/2023,7.2,263,10,1.8,10.8,26
+2,7,Hayling Island Waverider,England,Coastal,50.73,-0.96,17/04/2023,4,193,11.1,0.2,10.2,14
+3,5,Firth of Forth WaveNet Site,Scotland,null,56.19,-2.5,17/04/2023,3.7,115,4.5,0.6,7.8,28
+4,3,Chesil Waverider,England,Coastal,50.6,-2.52,17/04/2023,5.5,225,8.3,0.5,10.2,48
+5,10,M6 Buoy,Ireland,Ocean,53.06,-15.93,17/04/2023,7.6,240,11.7,4.5,11.5,89
+6,9,Lomond,Scotland,Ocean,57.2,2.2,17/04/2023,4,NaN,NaN,0.5,NaN,NaN
+7,2,Cardigan Bay,Wales,Coastal,52.433333,-4.8,17/04/2023,5.9,239,10.5,0.69,9.9,18
+8,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,15/04/2023,7.2,277,12.5,2.23,10.95,18
+9,7,Hayling Island Waverider,England,Coastal,50.73,-0.96,15/04/2023,3.7,55,5.1,0.55,9.65,31
+10,5,Firth of Forth WaveNet Site,Scotland,null,56.19,-2.5,15/04/2023,3.2,124,3.9,0.71,7.35,23
+11,3,Chesil Waverider,England,Coastal,50.6,-2.52,15/04/2023,3.2,260,3.4,0.21,8.95,67
+12,10,M6 Buoy,Ireland,Ocean,53.06,-15.93,15/04/2023,6.6,224,8.3,2.7,11.4,NaN
+13,9,Lomond,Scotland,Ocean,57.2,2.2,15/04/2023,5,NaN,NaN,0.7,NaN,NaN
+14,2,Cardigan Bay,Wales,Coastal,52.433333,-4.8,15/04/2023,4.9,233,9.5,0.75,9.9,14
+15,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,01/01/2022,6.6,267,12.5,3.06,10.25,49
+16,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,02/01/2022,8.2,269,12.5,5.56,10.2,28
+17,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,03/01/2022,8.5,280,12.5,5.27,10.15,41
+18,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,04/01/2022,8.3,335,12.5,5.37,10,49
+19,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,05/01/2022,8,13,12.5,4.74,10,23
+20,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,06/01/2022,6,273,15.4,2.42,9.9,45
+21,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,07/01/2022,10.6,300,16.7,6.5,9.9,18
+22,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,08/01/2022,10.6,304,18.2,6.72,9.85,23
+23,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,09/01/2022,11.5,302,16.7,8.82,9.8,23
+24,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,10/01/2022,9.4,307,15.4,5.27,9.8,38
+25,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,11/01/2022,8.5,277,12.5,5.96,9.75,23
+26,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,12/01/2022,9.3,278,15.4,6.5,9.75,23
+27,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,13/01/2022,8.6,293,15.4,5.96,9.75,28
+28,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,14/01/2022,8.6,284,14.3,4.83,9.75,35
+29,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,15/01/2022,8.4,321,13.3,3.36,9.7,28
+30,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,16/01/2022,5.8,283,8.7,2.83,9.65,28
+31,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,17/01/2022,7,305,10.5,3.96,9.65,31
+32,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,18/01/2022,6.7,322,11.8,3.11,9.65,23
+33,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,19/01/2022,7.5,297,15.4,4.26,9.4,38
+34,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,20/01/2022,7.3,294,11.1,3.62,9.5,34
+35,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,21/01/2022,7.3,294,10.5,2.62,9.5,58
+36,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,22/01/2022,6.2,290,9.1,2.83,9.3,34
+37,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,23/01/2022,7.6,314,14.3,4.18,9.35,31
+38,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,24/01/2022,8.1,287,12.5,5.27,9.45,28
+39,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,25/01/2022,8.3,304,12.5,4.04,9.45,23
+40,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,26/01/2022,6.8,294,11.1,2.94,9.4,31
+41,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,27/01/2022,8.3,321,12.5,5.66,9.4,28
+42,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,28/01/2022,7.3,288,10,3.36,9.4,34
+43,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,29/01/2022,7.5,277,11.1,5.09,9.5,34
+44,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,30/01/2022,9.1,297,13.3,5.37,9.45,23
+45,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,31/01/2022,7.9,309,10.5,6.17,9.4,41
+46,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,01/02/2022,7.9,290,10,5.56,9.4,34
+47,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,02/02/2022,8.9,321,13.3,5.18,9.25,28
+48,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,03/02/2022,7.4,290,10,3.82,9.3,49
+49,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,04/02/2022,8,277,11.8,5.66,9.25,23
+50,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,05/02/2022,8.2,284,11.1,5.27,9.25,41
+51,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,06/02/2022,9.4,280,14.3,7.08,9.15,32
+52,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,07/02/2022,10.3,276,12.5,6.96,9.1,18
+53,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,08/02/2022,9.6,311,13.3,7.71,9.1,23
+54,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,09/02/2022,11.3,287,20,10.08,8.95,38
+55,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,10/02/2022,10.1,295,16.7,7.84,8.95,34
+56,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,11/02/2022,8.9,294,14.3,4.18,8.35,38
+57,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,12/02/2022,7.8,219,11.1,5.18,8.6,29
+58,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,13/02/2022,7.7,253,12.5,4.58,9.15,28
+59,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,14/02/2022,7.1,335,11.1,3.55,9.15,53
+60,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,15/02/2022,5.1,302,10,2.23,9,62
+61,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,16/02/2022,8.4,293,12.5,4.18,9.05,28
+62,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,17/02/2022,8.4,264,13.3,5.66,8.9,23
+63,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,18/02/2022,9.6,263,15.4,5,8.85,31
+64,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,19/02/2022,8.6,281,13.3,5.56,8.85,34
+65,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,20/02/2022,6.9,276,13.3,3.96,8.85,28
+66,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,21/02/2022,12.3,270,18.2,12.09,8.75,28
+67,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,22/02/2022,8.8,285,15.4,5.86,8.8,30
+68,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,23/02/2022,10.3,300,16.7,9.12,8.8,34
+69,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,24/02/2022,11.6,284,20,10.95,8.8,29
+70,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,25/02/2022,9.7,276,15.4,7.71,8.75,31
+71,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,26/02/2022,7.5,277,12.5,5.27,8.8,28
+72,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,27/02/2022,9.6,300,16.7,7.97,8.9,23
+73,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,28/02/2022,7.9,288,14.3,5.46,8.9,31
+74,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,01/03/2022,10.9,271,15.4,7.84,8.95,34
+75,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,02/03/2022,8.2,294,13.3,3.62,9.05,34
+76,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,03/03/2022,6.9,278,13.3,3.75,9.1,23
+77,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,04/03/2022,9.5,264,16.7,4.34,9,28
+78,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,05/03/2022,10.2,281,14.3,4.26,9,29
+79,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,06/03/2022,9.1,255,14.3,2.62,8.95,38
+80,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,07/03/2022,6.6,273,10,3.29,9.1,28
+81,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,08/03/2022,7.1,246,11.1,4.42,8.9,28
+82,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,09/03/2022,7.4,232,14.3,4.66,8.75,45
+83,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,10/03/2022,8.6,298,13.3,4.11,8.75,28
+84,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,11/03/2022,8.1,248,14.3,5.37,8.75,26
+85,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,12/03/2022,10.8,262,16.7,4.74,8.7,23
+86,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,13/03/2022,8,273,13.3,3.11,8.7,28
+87,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,14/03/2022,7.3,295,14.3,3.23,8.7,29
+88,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,15/03/2022,7.2,287,14.3,4.04,8.7,28
+89,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,16/03/2022,12.3,307,18.2,8.25,8.6,23
+90,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,17/03/2022,10.2,299,16.7,5.37,8.6,28
+91,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,18/03/2022,9,290,14.3,5.96,8.6,38
+92,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,19/03/2022,7.9,280,14.3,4.42,8.6,35
+93,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,20/03/2022,8.5,255,13.3,4.26,8.6,23
+94,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,21/03/2022,6.4,259,12.5,2.52,8.5,18
+95,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,22/03/2022,5.4,253,18.2,1.82,8.5,23
+96,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,23/03/2022,7.1,260,13.3,2.42,8.55,28
+97,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,24/03/2022,6.5,249,10.5,1.43,8.7,38
+98,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,25/03/2022,5.7,333,11.1,1.21,8.85,46
+99,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,26/03/2022,6.4,266,8,1.18,9,34
+100,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,27/03/2022,9.5,302,13.3,1.78,9,49
+101,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,28/03/2022,9.1,267,12.5,1.49,9.2,28
+102,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,29/03/2022,9.4,329,12.5,2.23,9.25,41
+103,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,30/03/2022,5.1,336,10,1.98,8.8,45
+104,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,31/03/2022,5,357,10,1.9,8.5,36
+105,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,01/04/2022,5.7,326,10,1.33,8.5,49
+106,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,02/04/2022,5.2,353,8.7,1.9,8.5,29
+107,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,03/04/2022,5.9,271,16.7,0.97,8.6,28
+108,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,04/04/2022,6,288,7.4,3.11,8.6,28
+109,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,05/04/2022,6.4,269,9.1,2.89,8.6,34
+110,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,06/04/2022,6.4,262,8.3,3.42,8.65,34
+111,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,07/04/2022,7.4,255,12.5,4.04,8.65,23
+112,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,08/04/2022,6.9,346,11.1,3.42,8.6,32
+113,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,09/04/2022,6.4,359,11.1,2.42,8.55,31
+114,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,10/04/2022,7.6,267,12.5,1.86,8.6,34
+115,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,11/04/2022,7.6,236,16.7,3.48,8.5,23
+116,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,12/04/2022,6,257,11.8,2.47,8.45,41
+117,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,13/04/2022,7.7,274,10.5,1.49,8.6,57
+118,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,14/04/2022,5.2,343,10,0.94,8.75,49
+119,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,15/04/2022,5.1,239,8.3,1.56,8.65,28
+120,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,16/04/2022,7.8,262,11.8,2.19,8.8,21
+121,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,17/04/2022,7.9,278,13.3,3.48,8.7,23
+122,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,18/04/2022,7,259,10.5,1.94,8.7,28
+123,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,19/04/2022,7.3,256,10.5,3.29,8.8,35
+124,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,20/04/2022,7.5,273,9.5,2.37,8.95,23
+125,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,21/04/2022,6.2,269,8.3,1.82,8.75,18
+126,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,22/04/2022,7.9,255,15.4,2.52,8.8,28
+127,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,23/04/2022,5,277,11.8,1.74,9,38
+128,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,24/04/2022,4.6,6,7.4,1.21,9.05,23
+129,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,25/04/2022,4.2,357,6.5,1.18,9.05,18
+130,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,26/04/2022,4,20,6.3,1.04,9.05,18
+131,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,27/04/2022,4.1,359,5.4,0.53,9.45,31
+132,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,28/04/2022,4.1,195,4.5,0.55,9.6,38
+133,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,29/04/2022,6.6,0,10,0.67,9.5,26
+134,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,30/04/2022,3.8,267,11.8,0.63,9.95,53
+135,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,01/05/2022,7,249,8.7,2.28,9.7,18
+136,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,02/05/2022,6.1,239,11.8,1.63,9.7,31
+137,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,03/05/2022,6.6,245,10.5,1.49,9.95,41
+138,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,04/05/2022,5.4,273,9.5,1.43,9.8,41
+139,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,05/05/2022,6.4,329,8.7,2.23,10,23
+140,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,06/05/2022,5.3,256,7.1,2.23,9.95,34
+141,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,07/05/2022,6.2,271,10,1.63,10.15,38
+142,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,08/05/2022,5.4,297,8.7,1.36,10.85,41
+143,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,09/05/2022,5.8,250,9.5,2.1,10.55,18
+144,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,10/05/2022,6,266,9.1,2.78,10.5,23
+145,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,11/05/2022,7.7,264,12.5,4.11,10.45,23
+146,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,12/05/2022,6.7,266,11.1,3.17,10.4,41
+147,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,13/05/2022,6.4,281,8.3,3.23,10.15,28
+148,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,14/05/2022,6.9,259,10,3.06,10.25,35
+149,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,15/05/2022,7,287,9.5,2.15,10.75,49
+150,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,16/05/2022,6.4,281,10.5,1.7,11,38
+151,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,17/05/2022,4.3,276,10,1.1,10.75,45
+152,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,18/05/2022,9.4,232,15.4,4.26,10.75,31
+153,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,19/05/2022,7.1,243,11.8,3.23,10.8,26
+154,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,20/05/2022,6.9,236,11.1,3.75,10.9,26
+155,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,21/05/2022,5.8,240,10,2.23,11.25,28
+156,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,22/05/2022,5.4,243,6.3,2.42,11.4,28
+157,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,23/05/2022,4.9,249,7.7,1.36,11.2,28
+158,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,24/05/2022,5.4,250,8.3,1.24,11.55,34
+159,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,25/05/2022,4.7,264,6.3,1.94,11.3,28
+160,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,26/05/2022,6.7,267,10.5,3.36,11.45,23
+161,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,27/05/2022,7.9,271,10.5,5.18,10.75,26
+162,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,28/05/2022,6.6,311,9.5,2.42,10.8,23
+163,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,29/05/2022,5,326,8.3,1.6,10.85,34
+164,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,30/05/2022,5.6,349,7.7,2.37,10.8,26
+165,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,31/05/2022,6.2,330,9.5,1.7,11.25,41
+166,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,01/06/2022,5.5,330,8.7,1.15,11.55,41
+167,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,02/06/2022,6.2,294,8,0.61,12.05,49
+168,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,03/06/2022,3.7,7,4.9,0.84,11.65,18
+169,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,04/06/2022,5.1,290,8.7,0.87,11.95,67
+170,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,05/06/2022,3.3,269,8.3,0.71,12.15,41
+171,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,06/06/2022,4.2,305,8.7,0.75,12.3,28
+172,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,07/06/2022,6.9,259,9.5,0.94,12.6,28
+173,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,08/06/2022,4.6,257,11.1,1.07,12.5,34
+174,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,09/06/2022,6.4,252,9.5,1.33,13.1,49
+175,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,10/06/2022,5.7,252,8.7,2.89,12.45,28
+176,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,11/06/2022,9.1,249,14.3,6.5,12.05,23
+177,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,12/06/2022,7.4,253,11.8,4.34,11.7,26
+178,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,13/06/2022,6.6,291,10.5,3,11.75,31
+179,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,14/06/2022,5.9,273,10,2.33,11.95,31
+180,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,15/06/2022,6.9,273,11.8,2.94,12.1,23
+181,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,16/06/2022,6.9,267,10.5,2.57,12,31
+182,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,17/06/2022,5.5,287,11.8,2.42,12,28
+183,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,18/06/2022,7.9,281,10.5,5.09,12.05,35
+184,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,19/06/2022,7.8,285,11.8,4.18,12.05,28
+185,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,20/06/2022,6.4,329,9.5,2.15,12.15,41
+186,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,21/06/2022,5.3,297,7.4,1.78,12,31
+187,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,22/06/2022,6.4,287,10.5,1.98,12.45,31
+188,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,23/06/2022,6.1,302,9.5,2.47,12.3,23
+189,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,24/06/2022,6.5,304,10.5,2.06,12.5,29
+190,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,25/06/2022,6.6,318,10,1.63,12.45,45
+191,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,26/06/2022,6.8,336,10.5,3.29,12.15,35
+192,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,27/06/2022,5.8,349,10.5,2.1,12.4,38
+193,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,28/06/2022,5.4,224,8,2.72,12.4,21
+194,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,29/06/2022,6.7,259,10.5,2.89,12.2,23
+195,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,30/06/2022,7.4,262,10,1.78,12.75,26
+196,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,01/07/2022,5.3,293,8.3,1.33,12.5,23
+197,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,02/07/2022,5.4,253,7.4,0.97,12.75,23
+198,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,03/07/2022,4.9,259,10,1.46,12.95,28
+199,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,04/07/2022,6,288,8.3,3,12.75,34
+200,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,05/07/2022,6.1,321,9.5,2.78,12.7,28
+201,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,06/07/2022,4.8,283,7.1,1.78,12.85,38
+202,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,07/07/2022,6.5,287,10,2.78,12.8,26
+203,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,08/07/2022,5.2,283,9.1,1.86,12.95,34
+204,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,09/07/2022,6,288,9.5,2.06,13,28
+205,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,10/07/2022,5.3,276,7.4,1.74,13.25,34
+206,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,11/07/2022,6,287,10,2.15,13.1,23
+207,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,12/07/2022,7.1,274,10.5,3.89,13.1,23
+208,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,13/07/2022,6.8,273,11.1,3.48,13.1,34
+209,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,14/07/2022,6.3,295,9.5,2.28,13.2,28
+210,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,15/07/2022,6,333,9.5,1.56,13.45,41
+211,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,16/07/2022,5.4,291,8.3,1.18,13.75,41
+212,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,17/07/2022,5.3,278,7.7,1.56,13.5,23
+213,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,18/07/2022,9.2,284,12.5,2.72,13.75,18
+214,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,19/07/2022,6.4,285,10,1.24,14.2,38
+215,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,20/07/2022,4.5,274,6.1,1.18,14.2,21
+216,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,21/07/2022,6,294,9.5,2.06,13.95,28
+217,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,22/07/2022,5.8,304,7.4,1.13,14.15,38
+218,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,23/07/2022,7.2,248,10,1.07,14.2,21
+219,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,24/07/2022,5,246,6.7,1.21,14.15,28
+220,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,25/07/2022,4.6,257,8.7,1.24,14.1,49
+221,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,26/07/2022,5.4,263,10,1.43,13.9,29
+222,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,27/07/2022,5.2,326,9.5,0.97,13.8,57
+223,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,28/07/2022,4.6,292,8.3,0.75,14.2,57
+224,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,29/07/2022,6.4,252,7.7,1.02,14.45,31
+225,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,30/07/2022,5,250,6.5,1.86,14.2,23
+226,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,31/07/2022,6.3,284,7.7,2.02,14.35,41
+227,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,01/08/2022,6.2,335,8.3,1.67,14.5,34
+228,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,02/08/2022,5,214,7.1,1.9,14.5,28
+229,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,03/08/2022,6,228,8.7,2.89,14.1,23
+230,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,04/08/2022,6.2,249,11.1,2.1,14.3,31
+231,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,05/08/2022,5.7,305,8.3,2.06,14.25,28
+232,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,06/08/2022,4.9,297,6.3,1.67,14.25,34
+233,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,07/08/2022,6.5,290,9.1,3.42,14.3,18
+234,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,08/08/2022,5.2,304,8.7,2.06,14.45,23
+235,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,09/08/2022,5.2,287,8.3,1.86,14.05,28
+236,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,10/08/2022,6.7,291,10.5,3.55,13.95,26
+237,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,11/08/2022,6.3,283,10,2.57,14.15,35
+238,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,12/08/2022,6,270,9.5,1.63,14.25,28
+239,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,13/08/2022,7.2,316,9.5,1.15,14.35,23
+240,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,14/08/2022,7.4,297,10,1.24,15.1,26
+241,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,15/08/2022,6,288,8.7,0.89,15.1,23
+242,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,16/08/2022,4.3,346,5,1.36,14.4,35
+243,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,17/08/2022,4.6,315,6.9,1.3,14.45,41
+244,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,18/08/2022,4.9,248,6.5,2.15,13.9,14
+245,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,19/08/2022,8.4,315,13.3,5.09,13.8,18
+246,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,20/08/2022,6.5,280,12.5,3.17,13.9,18
+247,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,21/08/2022,6.6,285,10,3.42,14.15,26
+248,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,22/08/2022,5.7,308,8.7,1.46,14.15,34
+249,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,23/08/2022,4.8,6,8.7,1.24,14.25,41
+250,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,24/08/2022,5.3,267,8.7,1.46,14.2,18
+251,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,25/08/2022,5.7,271,9.1,2.23,14.2,28
+252,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,26/08/2022,6,274,8.3,1.86,14.25,23
+253,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,27/08/2022,6.2,354,9.1,1.7,14.35,23
+254,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,28/08/2022,7.4,253,10.5,2.02,14.3,14
+255,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,29/08/2022,6.9,246,10,1.07,14.65,26
+256,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,30/08/2022,4.6,288,8,0.65,15,57
+257,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,31/08/2022,4.5,264,7.4,0.59,15.15,53
+258,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,01/09/2022,6.1,315,8,0.42,16.25,49
+259,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,02/09/2022,5.6,297,10,1.3,15.15,21
+260,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,03/09/2022,4.2,302,9.5,1.21,14.65,28
+261,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,04/09/2022,4.8,302,8.3,1.02,14.75,41
+262,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,05/09/2022,4.1,254,6.3,0.94,14.6,41
+263,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,06/09/2022,3.9,201,5.1,0.75,15,49
+264,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,07/09/2022,5.2,221,11.1,0.73,15.2,38
+265,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,08/09/2022,4.1,270,7.7,0.51,15.4,67
+266,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,09/09/2022,4.6,255,14.3,1.1,15.05,30
+267,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,10/09/2022,11.5,271,16.7,1.36,15.7,14
+268,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,11/09/2022,7.9,253,13.3,1.94,15.7,18
+269,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,12/09/2022,4.6,246,10,1.15,15.25,35
+270,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,13/09/2022,6,352,9.5,2.67,14.8,28
+271,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,14/09/2022,5.8,255,15.4,1.82,14.7,31
+272,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,15/09/2022,6,278,13.3,1.86,14.65,23
+273,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,16/09/2022,5.2,332,7.1,1.86,14.55,34
+274,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,17/09/2022,5.4,340,10,1.43,14.45,53
+275,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,18/09/2022,5.2,307,10.5,1.39,14.25,57
+276,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,19/09/2022,6.6,279,9.5,1.33,14.25,49
+277,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,20/09/2022,4.9,286,9.5,1.7,14.2,41
+278,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,21/09/2022,5,229,7.4,2.06,14.7,28
+279,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,22/09/2022,6,248,8.3,2.47,14.7,23
+280,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,23/09/2022,6.7,276,11.1,2.52,14.5,26
+281,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,24/09/2022,6.3,271,10,2.15,14.45,26
+282,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,25/09/2022,6,302,10,1.98,14.35,41
+283,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,26/09/2022,9.4,316,15.4,7.32,14.15,28
+284,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,27/09/2022,9.5,1,13.3,6.17,14.15,23
+285,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,28/09/2022,8,8,12.5,3.36,14.05,23
+286,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,29/09/2022,6.5,311,9.5,2.02,13.95,41
+287,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,30/09/2022,5.6,235,6.9,3,14,23
+288,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,01/10/2022,8.4,277,11.8,6.06,13.75,26
+289,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,02/10/2022,8,302,12.5,5,13.5,18
+290,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,03/10/2022,7.3,290,11.1,3.06,13.35,41
+291,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,04/10/2022,6.5,235,10,3.96,13.45,32
+292,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,05/10/2022,8.3,321,12.5,4.83,13.45,18
+293,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,06/10/2022,7.5,305,9.1,5.09,13.4,23
+294,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,07/10/2022,7.6,305,13.3,5,13.35,28
+295,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,08/10/2022,7.4,304,13.3,3.96,13.3,23
+296,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,09/10/2022,6,311,10.5,3.55,13.25,34
+297,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,10/10/2022,7.6,273,10.5,5,13.15,31
+298,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,11/10/2022,8.3,321,12.5,4.42,13.1,28
+299,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,12/10/2022,6.6,274,9.5,3.89,13.1,28
+300,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,13/10/2022,6.4,257,10,2.67,13.05,53
+301,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,14/10/2022,6,293,9.5,3.06,12.95,23
+302,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,15/10/2022,7.9,291,15.4,4.42,12.9,26
+303,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,16/10/2022,7.1,297,11.8,3.11,12.75,35
+304,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,17/10/2022,6.6,325,10.5,2.67,12.75,41
+305,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,18/10/2022,6.9,10,12.5,2.23,12.7,34
+306,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,19/10/2022,5.2,21,9.1,1.3,12.65,28
+307,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,20/10/2022,4.5,240,12.5,1.02,12.6,28
+308,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,21/10/2022,5.4,231,11.1,1.02,12.5,35
+309,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,22/10/2022,4.7,290,13.3,1.04,12.55,34
+310,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,23/10/2022,6,314,10.5,1.46,12.55,41
+311,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,24/10/2022,5.4,6,8.3,1.04,12.5,41
+312,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,25/10/2022,5.1,252,6.3,2.1,12.45,23
+313,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,26/10/2022,4.6,211,5.9,1.74,12.6,26
+314,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,27/10/2022,6.7,219,10,4.11,12.7,35
+315,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,28/10/2022,5.4,262,10.5,2.19,12.7,38
+316,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,29/10/2022,6.2,235,8.3,2.23,12.7,34
+317,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,30/10/2022,5.4,200,6.9,2.67,12.75,18
+318,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,31/10/2022,5,242,6.9,2.28,12.9,23
+319,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,01/11/2022,6.8,281,12.5,2.28,12.75,18
+320,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,02/11/2022,7.5,259,11.1,4.18,12.8,23
+321,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,03/11/2022,7.7,273,10.5,5.66,12.65,35
+322,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,04/11/2022,8.1,252,14.3,3.75,12.65,26
+323,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,05/11/2022,6.6,278,10.5,2.28,12.6,38
+324,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,06/11/2022,8.5,283,16.7,5,12.55,23
+325,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,07/11/2022,7.7,250,14.3,4.42,12.65,28
+326,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,08/11/2022,6,248,11.8,2.89,12.65,34
+327,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,09/11/2022,6.4,267,13.3,2.89,12.65,28
+328,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,10/11/2022,6.9,281,9.5,4.26,12.65,28
+329,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,11/11/2022,8.2,236,13.3,4.34,12.65,23
+330,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,12/11/2022,8,249,14.3,3.75,12.6,26
+331,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,13/11/2022,6.2,273,11.1,2.83,12.6,41
+332,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,14/11/2022,7.9,232,11.1,2.83,12.65,31
+333,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,15/11/2022,6.2,187,8,3.68,12.65,28
+334,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,16/11/2022,7.4,253,11.8,3.06,12.6,35
+335,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,17/11/2022,6.5,267,11.8,2.72,12.5,41
+336,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,18/11/2022,7.9,278,10.5,2.62,12.45,26
+337,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,19/11/2022,7.4,293,12.5,4.11,12.45,28
+338,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,20/11/2022,7.3,249,11.8,3.68,12.4,31
+339,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,21/11/2022,9.5,300,12.5,5.18,12.35,23
+340,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,22/11/2022,9.7,273,15.4,3.55,12.3,28
+341,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,23/11/2022,8.5,280,14.3,3.17,12.3,26
+342,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,24/11/2022,9.7,277,18.2,5,12.2,23
+343,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,25/11/2022,8.2,243,11.1,5.86,12.25,31
+344,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,26/11/2022,8,255,13.3,4.66,12.2,28
+345,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,27/11/2022,7.5,240,13.3,4.74,12.2,34
+346,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,28/11/2022,8.5,240,13.3,4.74,12.2,23
+347,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,29/11/2022,9.2,243,14.3,3.62,12,26
+348,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,30/11/2022,5.1,238,10,2.15,12,45
+349,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,01/12/2022,6.9,255,16.7,3.23,12,28
+350,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,02/12/2022,8,288,16.7,4.74,12,28
+351,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,03/12/2022,8.9,287,12.5,3.68,11.9,28
+352,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,04/12/2022,6.8,300,12.5,2.57,11.9,28
+353,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,05/12/2022,4.5,311,9.1,1.33,11.85,34
+354,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,06/12/2022,4.8,284,11.1,1.33,11.85,38
+355,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,07/12/2022,5.2,356,8,1.78,11.8,23
+356,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,08/12/2022,6.1,353,14.3,2.72,11.75,29
+357,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,09/12/2022,6.4,353,13.3,2.67,11.65,23
+358,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,10/12/2022,7,346,11.8,2.94,11.55,23
+359,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,11/12/2022,6.1,352,10.5,2.23,11.5,26
+360,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,12/12/2022,6.4,11,8.7,1.7,11.45,23
+361,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,13/12/2022,6.8,256,16.7,2.67,11.45,23
+362,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,14/12/2022,5.7,3,8,2.47,11.35,16
+363,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,15/12/2022,7.4,352,14.3,3.42,11.3,28
+364,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,16/12/2022,7.5,359,11.1,1.7,11.25,31
+365,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,17/12/2022,5,273,6.5,2.15,11.2,28
+366,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,18/12/2022,5.8,359,10.5,2.33,10.95,23
+367,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,19/12/2022,6.1,214,9.1,3.42,11.1,28
+368,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,20/12/2022,6.8,215,10,4.42,10.95,38
+369,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,21/12/2022,8.3,250,11.8,6.5,10.9,31
+370,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,22/12/2022,7.8,284,11.8,3.68,10.7,49
+371,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,23/12/2022,7.2,343,10.5,3.11,10.75,32
+372,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,24/12/2022,5.5,352,11.8,3,10.75,48
+373,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,25/12/2022,7.4,245,13.3,3.62,10.95,49
+374,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,26/12/2022,6.9,352,11.8,3.62,10.85,49
+375,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,27/12/2022,9.1,343,16.7,5.27,10.75,23
+376,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,28/12/2022,6.4,231,10,3.36,10.55,45
+377,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,29/12/2022,6.9,267,11.8,2.37,10.55,45
+378,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,30/12/2022,8.9,297,11.8,4.91,10.5,45
+379,16,West of Hebrides,Scotland,Ocean,57.292167,-7.914167,31/12/2022,7.6,353,11.8,4.83,10.55,38
+380,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,15/04/2023,2.23,12.5,7.2,277,18,10.95
+381,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,12/10/2015,0.93,NaN,5.3,NaN,NaN,
+382,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,13/10/2015,1.34,NaN,4.2,NaN,NaN,
+383,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,14/10/2015,1.65,NaN,5.3,NaN,NaN,
+384,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,15/10/2015,1.64,NaN,4.5,NaN,NaN,
+385,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,16/10/2015,4.35,NaN,9.3,NaN,NaN,
+386,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,17/10/2015,3.94,NaN,8.2,NaN,NaN,
+387,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,18/10/2015,4.58,NaN,7.5,NaN,NaN,
+388,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,19/10/2015,4.07,NaN,7.8,NaN,NaN,
+389,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,20/10/2015,3.15,NaN,7,NaN,NaN,
+390,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,21/10/2015,3.13,NaN,5.7,NaN,NaN,
+391,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,22/10/2015,3.84,NaN,7.7,NaN,NaN,
+392,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,23/10/2015,2.47,NaN,6.7,NaN,NaN,
+393,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,24/10/2015,2.57,NaN,7.4,NaN,NaN,
+394,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,25/10/2015,2.75,NaN,8,NaN,NaN,
+395,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,26/10/2015,3.05,NaN,8.2,NaN,NaN,
+396,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,27/10/2015,3.7,NaN,7.7,NaN,NaN,
+397,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,28/10/2015,2.42,NaN,6.5,NaN,NaN,
+398,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,29/10/2015,2.23,NaN,7.7,NaN,NaN,
+399,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,30/10/2015,1.37,NaN,5.4,NaN,NaN,
+400,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,31/10/2015,1.59,NaN,4.7,NaN,NaN,
+401,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,01/11/2015,2.31,NaN,6,NaN,NaN,
+402,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,02/11/2015,4.87,NaN,7.8,NaN,NaN,
+403,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,03/11/2015,4.13,NaN,6.9,NaN,NaN,
+404,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,04/11/2015,3.83,NaN,8,NaN,NaN,
+405,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,05/11/2015,3.86,NaN,7.3,NaN,NaN,
+406,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,06/11/2015,1.69,NaN,6,NaN,NaN,
+407,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,07/11/2015,3.38,NaN,6.5,NaN,NaN,
+408,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,08/11/2015,5.42,NaN,9.3,NaN,NaN,
+409,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,09/11/2015,3.64,NaN,7.8,NaN,NaN,
+410,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,10/11/2015,3.04,NaN,8,NaN,NaN,
+411,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,11/11/2015,3.07,NaN,6.8,NaN,NaN,
+412,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,12/11/2015,4.24,NaN,8.5,NaN,NaN,
+413,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,13/11/2015,3.7,NaN,7.7,NaN,NaN,
+414,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,14/11/2015,5.66,NaN,8,NaN,NaN,
+415,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,15/11/2015,3.55,NaN,8.3,NaN,NaN,
+416,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,16/11/2015,3.55,NaN,8.7,NaN,NaN,
+417,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,17/11/2015,2.93,NaN,7.3,NaN,NaN,
+418,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,18/11/2015,2.32,NaN,5.8,NaN,NaN,
+419,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,19/11/2015,1.93,NaN,4.5,NaN,NaN,
+420,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,20/11/2015,2.97,NaN,8,NaN,NaN,
+421,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,21/11/2015,2.31,NaN,5.2,NaN,NaN,
+422,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,22/11/2015,1.45,NaN,4.4,NaN,NaN,
+423,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,23/11/2015,3.12,NaN,8,NaN,NaN,
+424,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,24/11/2015,2.39,NaN,8.7,NaN,NaN,
+425,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,25/11/2015,2.84,NaN,9.1,NaN,NaN,
+426,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,26/11/2015,2.69,NaN,8.5,NaN,NaN,
+427,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,27/11/2015,2.24,NaN,9.3,NaN,NaN,
+428,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,28/11/2015,3.46,NaN,6,NaN,NaN,
+429,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,29/11/2015,3.45,NaN,7.3,NaN,NaN,
+430,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,30/11/2015,3.2,NaN,9.3,NaN,NaN,
+431,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,01/12/2015,1.53,NaN,6.8,NaN,NaN,
+432,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,02/12/2015,2.35,NaN,5.3,NaN,NaN,
+433,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,03/12/2015,3.17,NaN,6.6,NaN,NaN,
+434,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,04/12/2015,2.63,NaN,7.1,NaN,NaN,
+435,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,05/12/2015,2.28,NaN,8.5,NaN,NaN,
+436,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,06/12/2015,3.77,NaN,8.3,NaN,NaN,
+437,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,07/12/2015,2.56,NaN,6.8,NaN,NaN,
+438,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,08/12/2015,3.82,NaN,7.8,NaN,NaN,
+439,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,09/12/2015,3.56,NaN,8.9,NaN,NaN,
+440,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,10/12/2015,4.36,NaN,7.4,NaN,NaN,
+441,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,11/12/2015,7.67,NaN,10,NaN,NaN,
+442,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,12/12/2015,6.13,NaN,8.7,NaN,NaN,
+443,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,13/12/2015,3.83,NaN,8.3,NaN,NaN,
+444,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,14/12/2015,2.54,NaN,7,NaN,NaN,
+445,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,15/12/2015,3.08,NaN,6.7,NaN,NaN,
+446,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,16/12/2015,2.48,NaN,7.3,NaN,NaN,
+447,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,17/12/2015,2.79,NaN,5.6,NaN,NaN,
+448,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,18/12/2015,4.11,NaN,6.8,NaN,NaN,
+449,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,19/12/2015,5.33,NaN,7.8,NaN,NaN,
+450,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,20/12/2015,3.84,NaN,8.2,NaN,NaN,
+451,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,21/12/2015,2.83,NaN,7.3,NaN,NaN,
+452,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,22/12/2015,2.79,NaN,5.9,NaN,NaN,
+453,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,23/12/2015,4.36,NaN,8.3,NaN,NaN,
+454,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,24/12/2015,3.83,NaN,7.3,NaN,NaN,
+455,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,25/12/2015,2.48,NaN,7.4,NaN,NaN,
+456,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,26/12/2015,1.71,NaN,7.4,NaN,NaN,
+457,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,27/12/2015,4.66,NaN,7.3,NaN,NaN,
+458,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,28/12/2015,3.45,NaN,6,NaN,NaN,
+459,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,29/12/2015,1.41,NaN,5.1,NaN,NaN,
+460,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,30/12/2015,1.01,NaN,4,NaN,NaN,
+461,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,31/12/2015,2.79,NaN,5.7,NaN,NaN,
+462,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,01/01/2016,3.01,NaN,6.2,NaN,NaN,
+463,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,02/01/2016,4.14,NaN,6.8,NaN,NaN,
+464,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,03/01/2016,3.38,NaN,7.3,NaN,NaN,
+465,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,04/01/2016,3.09,NaN,7.4,NaN,NaN,
+466,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,05/01/2016,2.09,NaN,6.1,NaN,NaN,
+467,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,06/01/2016,2.92,NaN,7,NaN,NaN,
+468,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,07/01/2016,3.65,NaN,8.2,NaN,NaN,
+469,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,08/01/2016,4.7,NaN,8.3,NaN,NaN,
+470,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,09/01/2016,5.44,NaN,8.5,NaN,NaN,
+471,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,10/01/2016,5.81,NaN,8.3,NaN,NaN,
+472,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,11/01/2016,5.19,NaN,8.2,NaN,NaN,
+473,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,12/01/2016,5.88,NaN,8.5,NaN,NaN,
+474,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,13/01/2016,5.44,NaN,9.3,NaN,NaN,
+475,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,14/01/2016,6.28,NaN,9.3,NaN,NaN,
+476,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,15/01/2016,8.5,NaN,9.5,NaN,NaN,
+477,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,16/01/2016,7.17,NaN,9.8,NaN,NaN,
+478,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,17/01/2016,3.88,NaN,8.9,NaN,NaN,
+479,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,18/01/2016,2.62,NaN,7.1,NaN,NaN,
+480,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,19/01/2016,3.1,NaN,6.5,NaN,NaN,
+481,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,20/01/2016,1.87,NaN,4.9,NaN,NaN,
+482,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,21/01/2016,5.09,NaN,9.5,NaN,NaN,
+483,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,22/01/2016,3.63,NaN,8.5,NaN,NaN,
+484,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,23/01/2016,2.04,NaN,8.5,NaN,NaN,
+485,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,24/01/2016,1.9,NaN,5.2,NaN,NaN,
+486,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,25/01/2016,2.48,NaN,9.1,NaN,NaN,
+487,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,26/01/2016,1.92,NaN,5.6,NaN,NaN,
+488,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,27/01/2016,2.62,NaN,7.3,NaN,NaN,
+489,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,28/01/2016,2.56,NaN,6.3,NaN,NaN,
+490,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,29/01/2016,5.06,NaN,7.7,NaN,NaN,
+491,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,30/01/2016,5.72,NaN,8.3,NaN,NaN,
+492,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,31/01/2016,3.78,NaN,6.9,NaN,NaN,
+493,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,01/02/2016,4.68,NaN,7.3,NaN,NaN,
+494,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,02/02/2016,1.98,NaN,6.9,NaN,NaN,
+495,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,03/02/2016,2.18,NaN,7.7,NaN,NaN,
+496,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,04/02/2016,2.66,NaN,5.9,NaN,NaN,
+497,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,05/02/2016,1.74,NaN,4.9,NaN,NaN,
+498,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,06/02/2016,2.31,NaN,5.2,NaN,NaN,
+499,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,07/02/2016,2.51,NaN,5.3,NaN,NaN,
+500,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,08/02/2016,2.09,NaN,5.3,NaN,NaN,
+501,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,09/02/2016,1.24,NaN,6.1,NaN,NaN,
+502,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,10/02/2016,1.08,NaN,3.8,NaN,NaN,
+503,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,11/02/2016,1.5,NaN,4.7,NaN,NaN,
+504,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,12/02/2016,0.98,NaN,7.1,NaN,NaN,
+505,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,13/02/2016,1.59,NaN,4.4,NaN,NaN,
+506,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,14/02/2016,6.92,NaN,9.3,NaN,NaN,
+507,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,15/02/2016,2.68,NaN,7.8,NaN,NaN,
+508,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,16/02/2016,4.88,NaN,10.5,NaN,NaN,
+509,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,17/02/2016,4.42,NaN,8.2,NaN,NaN,
+510,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,18/02/2016,2.83,NaN,8.3,NaN,NaN,
+511,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,19/02/2016,3,NaN,6.1,NaN,NaN,
+512,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,20/02/2016,4.16,NaN,10,NaN,NaN,
+513,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,21/02/2016,3.24,NaN,7.7,NaN,NaN,
+514,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,22/02/2016,3.07,NaN,7.8,NaN,NaN,
+515,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,23/02/2016,4.2,NaN,7.1,NaN,NaN,
+516,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,24/02/2016,9.16,NaN,10.8,NaN,NaN,
+517,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,25/02/2016,4.31,NaN,8.5,NaN,NaN,
+518,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,26/02/2016,3.7,NaN,7.3,NaN,NaN,
+519,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,27/02/2016,4.6,NaN,8.2,NaN,NaN,
+520,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,28/02/2016,4.4,NaN,8.7,NaN,NaN,
+521,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,29/02/2016,4.32,NaN,7.3,NaN,NaN,
+522,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,01/03/2016,4.68,NaN,7.8,NaN,NaN,
+523,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,02/03/2016,4.62,NaN,8,NaN,NaN,
+524,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,03/03/2016,4.38,NaN,8,NaN,NaN,
+525,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,04/03/2016,2.56,NaN,7.8,NaN,NaN,
+526,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,05/03/2016,3.87,NaN,9.3,NaN,NaN,
+527,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,06/03/2016,3.64,NaN,7.5,NaN,NaN,
+528,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,07/03/2016,4.53,NaN,9.3,NaN,NaN,
+529,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,08/03/2016,3.68,NaN,10,NaN,NaN,
+530,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,09/03/2016,4.21,NaN,10,NaN,NaN,
+531,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,10/03/2016,2.44,NaN,6.5,NaN,NaN,
+532,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,11/03/2016,1.91,NaN,6.8,NaN,NaN,
+533,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,12/03/2016,2.84,NaN,7.5,NaN,NaN,
+534,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,13/03/2016,3.65,NaN,7.5,NaN,NaN,
+535,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,14/03/2016,3.47,NaN,9.3,NaN,NaN,
+536,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,15/03/2016,2.99,NaN,8,NaN,NaN,
+537,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,16/03/2016,1.91,NaN,7.1,NaN,NaN,
+538,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,17/03/2016,1.61,NaN,6.8,NaN,NaN,
+539,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,18/03/2016,1.51,NaN,5.3,NaN,NaN,
+540,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,19/03/2016,1.83,NaN,6.8,NaN,NaN,
+541,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,20/03/2016,1.83,NaN,7.4,NaN,NaN,
+542,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,21/03/2016,1.53,NaN,5.3,NaN,NaN,
+543,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,22/03/2016,1.88,NaN,9.3,NaN,NaN,
+544,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,23/03/2016,2.04,NaN,5.8,NaN,NaN,
+545,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,24/03/2016,2.59,NaN,5.6,NaN,NaN,
+546,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,25/03/2016,2.29,NaN,5.4,NaN,NaN,
+547,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,26/03/2016,2.76,NaN,7.1,NaN,NaN,
+548,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,27/03/2016,2.44,NaN,6,NaN,NaN,
+549,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,28/03/2016,4.55,NaN,7.3,NaN,NaN,
+550,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,29/03/2016,4.94,NaN,8.2,NaN,NaN,
+551,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,30/03/2016,5.16,NaN,7.4,NaN,NaN,
+552,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,31/03/2016,4.22,NaN,7.7,NaN,NaN,
+553,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,01/04/2016,3.43,NaN,7.1,NaN,NaN,
+554,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,02/04/2016,1.79,NaN,5.6,NaN,NaN,
+555,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,03/04/2016,2.56,NaN,6.3,NaN,NaN,
+556,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,04/04/2016,1.57,NaN,6.6,NaN,NaN,
+557,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,05/04/2016,0.83,NaN,4.2,NaN,NaN,
+558,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,06/04/2016,1.26,NaN,5.9,NaN,NaN,
+559,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,07/04/2016,1.31,NaN,4.9,NaN,NaN,
+560,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,08/04/2016,2.53,NaN,7.8,NaN,NaN,
+561,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,09/04/2016,1.79,NaN,6.3,NaN,NaN,
+562,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,10/04/2016,1.65,NaN,5.4,NaN,NaN,
+563,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,11/04/2016,2.95,NaN,7.3,NaN,NaN,
+564,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,12/04/2016,2.47,NaN,7.3,NaN,NaN,
+565,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,13/04/2016,1.95,NaN,7.8,NaN,NaN,
+566,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,14/04/2016,2.28,NaN,9.5,NaN,NaN,
+567,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,15/04/2016,1.87,NaN,6.5,NaN,NaN,
+568,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,16/04/2016,1.47,NaN,6.6,NaN,NaN,
+569,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,17/04/2016,1.73,NaN,5,NaN,NaN,
+570,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,18/04/2016,2.47,NaN,5.3,NaN,NaN,
+571,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,19/04/2016,2.1,NaN,8.3,NaN,NaN,
+572,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,20/04/2016,1.54,NaN,5.5,NaN,NaN,
+573,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,21/04/2016,1.48,NaN,4.5,NaN,NaN,
+574,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,22/04/2016,2.84,NaN,5.6,NaN,NaN,
+575,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,23/04/2016,1.7,NaN,8.3,NaN,NaN,
+576,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,24/04/2016,1.64,NaN,6.5,NaN,NaN,
+577,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,25/04/2016,1.29,NaN,6,NaN,NaN,
+578,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,26/04/2016,1.68,NaN,5,NaN,NaN,
+579,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,27/04/2016,2.03,NaN,4.9,NaN,NaN,
+580,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,28/04/2016,1.66,NaN,4.4,NaN,NaN,
+581,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,29/04/2016,1.55,NaN,5,NaN,NaN,
+582,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,30/04/2016,1.01,NaN,3.8,NaN,NaN,
+583,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,01/05/2016,2.03,NaN,5.7,NaN,NaN,
+584,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,02/05/2016,1.63,NaN,5.5,NaN,NaN,
+585,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,03/05/2016,2.53,NaN,6.2,NaN,NaN,
+586,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,04/05/2016,2.11,NaN,7.3,NaN,NaN,
+587,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,05/05/2016,4.29,NaN,7.8,NaN,NaN,
+588,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,06/05/2016,2.69,NaN,6.7,NaN,NaN,
+589,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,07/05/2016,1.13,NaN,4.1,NaN,NaN,
+590,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,08/05/2016,2.38,NaN,5.9,NaN,NaN,
+591,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,09/05/2016,1.77,NaN,5.9,NaN,NaN,
+592,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,10/05/2016,3.06,NaN,7,NaN,NaN,
+593,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,11/05/2016,3.3,NaN,8,NaN,NaN,
+594,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,12/05/2016,2.49,NaN,7.4,NaN,NaN,
+595,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,13/05/2016,1.05,NaN,3.9,NaN,NaN,
+596,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,14/05/2016,4.39,NaN,9.1,NaN,NaN,
+597,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,15/05/2016,2.19,NaN,6,NaN,NaN,
+598,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,16/05/2016,2.44,NaN,7.5,NaN,NaN,
+599,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,17/05/2016,2.49,NaN,6.3,NaN,NaN,
+600,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,18/05/2016,4.22,NaN,7.4,NaN,NaN,
+601,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,19/05/2016,3.02,NaN,7,NaN,NaN,
+602,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,20/05/2016,1.71,NaN,5.8,NaN,NaN,
+603,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,21/05/2016,1.4,NaN,5.7,NaN,NaN,
+604,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,22/05/2016,1.25,NaN,5.5,NaN,NaN,
+605,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,23/05/2016,0.97,NaN,5.6,NaN,NaN,
+606,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,24/05/2016,0.9,NaN,4,NaN,NaN,
+607,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,25/05/2016,1.77,NaN,6.9,NaN,NaN,
+608,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,26/05/2016,1.24,NaN,5.9,NaN,NaN,
+609,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,27/05/2016,1.65,NaN,4.8,NaN,NaN,
+610,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,28/05/2016,1.74,NaN,5,NaN,NaN,
+611,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,29/05/2016,1.76,NaN,5.3,NaN,NaN,
+612,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,30/05/2016,1.88,NaN,4.5,NaN,NaN,
+613,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,31/05/2016,2.76,NaN,6.3,NaN,NaN,
+614,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,01/06/2016,5.11,NaN,7.8,NaN,NaN,
+615,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,02/06/2016,3.32,NaN,6.9,NaN,NaN,
+616,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,03/06/2016,2.79,NaN,8.7,NaN,NaN,
+617,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,04/06/2016,1.31,NaN,6.3,NaN,NaN,
+618,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,05/06/2016,3.12,NaN,7.3,NaN,NaN,
+619,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,06/06/2016,1.78,NaN,6.3,NaN,NaN,
+620,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,07/06/2016,1.27,NaN,4,NaN,NaN,
+621,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,08/06/2016,1.84,NaN,4.6,NaN,NaN,
+622,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,09/06/2016,1.53,NaN,4.4,NaN,NaN,
+623,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,10/06/2016,1.69,NaN,4.8,NaN,NaN,
+624,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,11/06/2016,0.94,NaN,4.5,NaN,NaN,
+625,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,12/06/2016,0.6,NaN,4.2,NaN,NaN,
+626,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,13/06/2016,0.97,NaN,5.1,NaN,NaN,
+627,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,14/06/2016,0.71,NaN,4.2,NaN,NaN,
+628,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,15/06/2016,0.43,NaN,4.3,NaN,NaN,
+629,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,16/06/2016,0.91,NaN,5.4,NaN,NaN,
+630,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,17/06/2016,1.82,NaN,6.3,NaN,NaN,
+631,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,18/06/2016,1.8,NaN,7.5,NaN,NaN,
+632,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,19/06/2016,1.3,NaN,5.6,NaN,NaN,
+633,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,20/06/2016,1.16,NaN,4.3,NaN,NaN,
+634,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,21/06/2016,2.34,NaN,7.5,NaN,NaN,
+635,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,22/06/2016,1.26,NaN,5.5,NaN,NaN,
+636,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,23/06/2016,0.78,NaN,6,NaN,NaN,
+637,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,24/06/2016,1.61,NaN,8,NaN,NaN,
+638,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,25/06/2016,1.39,NaN,4.7,NaN,NaN,
+639,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,26/06/2016,2.27,NaN,6.6,NaN,NaN,
+640,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,27/06/2016,2.29,NaN,6.1,NaN,NaN,
+641,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,28/06/2016,2.39,NaN,6.9,NaN,NaN,
+642,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,29/06/2016,1.74,NaN,6.5,NaN,NaN,
+643,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,30/06/2016,2.92,NaN,8.9,NaN,NaN,
+644,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,01/07/2016,1.96,NaN,6.5,NaN,NaN,
+645,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,02/07/2016,1.23,NaN,5.6,NaN,NaN,
+646,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,03/07/2016,1.47,NaN,4.7,NaN,NaN,
+647,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,04/07/2016,2.41,NaN,6.8,NaN,NaN,
+648,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,05/07/2016,1.98,NaN,6.1,NaN,NaN,
+649,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,06/07/2016,2.94,NaN,7.3,NaN,NaN,
+650,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,07/07/2016,3.58,NaN,6.5,NaN,NaN,
+651,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,08/07/2016,2.1,NaN,5.7,NaN,NaN,
+652,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,09/07/2016,0.97,NaN,5.8,NaN,NaN,
+653,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,10/07/2016,1.48,NaN,4.8,NaN,NaN,
+654,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,11/07/2016,2.73,NaN,5.9,NaN,NaN,
+655,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,12/07/2016,2.03,NaN,5.4,NaN,NaN,
+656,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,13/07/2016,2.12,NaN,5.7,NaN,NaN,
+657,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,14/07/2016,1.48,NaN,5.5,NaN,NaN,
+658,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,15/07/2016,0.95,NaN,4.1,NaN,NaN,
+659,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,16/07/2016,1.74,NaN,4.9,NaN,NaN,
+660,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,17/07/2016,1.7,NaN,6,NaN,NaN,
+661,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,18/07/2016,1.03,NaN,4.4,NaN,NaN,
+662,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,19/07/2016,0.91,NaN,4.5,NaN,NaN,
+663,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,20/07/2016,1.53,NaN,4.9,NaN,NaN,
+664,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,21/07/2016,2.09,NaN,6.5,NaN,NaN,
+665,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,22/07/2016,1.26,NaN,5.2,NaN,NaN,
+666,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,23/07/2016,1.22,NaN,4.3,NaN,NaN,
+667,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,24/07/2016,2.05,NaN,5.1,NaN,NaN,
+668,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,25/07/2016,1.41,NaN,4.1,NaN,NaN,
+669,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,26/07/2016,3.36,NaN,6,NaN,NaN,
+670,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,27/07/2016,4.06,NaN,7.3,NaN,NaN,
+671,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,28/07/2016,2.27,NaN,5.5,NaN,NaN,
+672,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,29/07/2016,1.44,NaN,5.1,NaN,NaN,
+673,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,30/07/2016,0.75,NaN,5,NaN,NaN,
+674,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,31/07/2016,1.49,NaN,6.5,NaN,NaN,
+675,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,01/08/2016,1.28,NaN,5.3,NaN,NaN,
+676,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,02/08/2016,3.1,NaN,6.8,NaN,NaN,
+677,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,03/08/2016,4.45,NaN,8.2,NaN,NaN,
+678,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,04/08/2016,3.07,NaN,7.5,NaN,NaN,
+679,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,05/08/2016,2.64,NaN,5.7,NaN,NaN,
+680,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,06/08/2016,1.35,NaN,6.3,NaN,NaN,
+681,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,07/08/2016,1.1,NaN,4.4,NaN,NaN,
+682,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,08/08/2016,1.33,NaN,4.1,NaN,NaN,
+683,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,09/08/2016,2.27,NaN,6.1,NaN,NaN,
+684,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,10/08/2016,1.71,NaN,6.3,NaN,NaN,
+685,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,11/08/2016,1.29,NaN,5.5,NaN,NaN,
+686,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,12/08/2016,1.34,NaN,4.8,NaN,NaN,
+687,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,13/08/2016,1.58,NaN,5.1,NaN,NaN,
+688,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,14/08/2016,2.74,NaN,6.9,NaN,NaN,
+689,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,15/08/2016,1.66,NaN,7.5,NaN,NaN,
+690,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,16/08/2016,1.03,NaN,5.9,NaN,NaN,
+691,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,17/08/2016,0.81,NaN,6.3,NaN,NaN,
+692,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,18/08/2016,0.83,NaN,4.4,NaN,NaN,
+693,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,19/08/2016,1.56,NaN,5.7,NaN,NaN,
+694,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,20/08/2016,2.05,NaN,5.4,NaN,NaN,
+695,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,21/08/2016,2.27,NaN,6.9,NaN,NaN,
+696,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,22/08/2016,2.51,NaN,8.7,NaN,NaN,
+697,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,23/08/2016,1.67,NaN,6.8,NaN,NaN,
+698,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,24/08/2016,1.61,NaN,5,NaN,NaN,
+699,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,25/08/2016,2.77,NaN,5.6,NaN,NaN,
+700,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,26/08/2016,2.69,NaN,6.1,NaN,NaN,
+701,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,27/08/2016,1.82,NaN,5.6,NaN,NaN,
+702,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,28/08/2016,1.97,NaN,6,NaN,NaN,
+703,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,29/08/2016,1.42,NaN,7.4,NaN,NaN,
+704,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,30/08/2016,0.76,NaN,4.8,NaN,NaN,
+705,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,31/08/2016,0.8,NaN,4.3,NaN,NaN,
+706,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,01/09/2016,0.83,NaN,3.8,NaN,NaN,
+707,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,02/09/2016,0.96,NaN,3.8,NaN,NaN,
+708,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,03/09/2016,1.16,NaN,4,NaN,NaN,
+709,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,04/09/2016,1.15,NaN,4,NaN,NaN,
+710,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,05/09/2016,1.37,NaN,4.3,NaN,NaN,
+711,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,06/09/2016,0.7,NaN,3.5,NaN,NaN,
+712,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,07/09/2016,0.48,NaN,3,NaN,NaN,
+713,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,08/09/2016,1.83,NaN,4.6,NaN,NaN,
+714,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,09/09/2016,2.83,NaN,7.3,NaN,NaN,
+715,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,10/09/2016,1.64,NaN,5.7,NaN,NaN,
+716,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,11/09/2016,2.81,NaN,6,NaN,NaN,
+717,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,12/09/2016,1.78,NaN,4.9,NaN,NaN,
+718,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,13/09/2016,1.95,NaN,6.2,NaN,NaN,
+719,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,14/09/2016,3.1,NaN,6.5,NaN,NaN,
+720,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,15/09/2016,1.51,NaN,5.5,NaN,NaN,
+721,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,16/09/2016,1.64,NaN,5.3,NaN,NaN,
+722,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,17/09/2016,2.51,NaN,6.9,NaN,NaN,
+723,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,18/09/2016,1.34,NaN,5.4,NaN,NaN,
+724,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,19/09/2016,0.67,NaN,5,NaN,NaN,
+725,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,20/09/2016,1.94,NaN,5.8,NaN,NaN,
+726,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,21/09/2016,2.83,NaN,6,NaN,NaN,
+727,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,22/09/2016,2.43,NaN,6.5,NaN,NaN,
+728,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,23/09/2016,1.99,NaN,5.1,NaN,NaN,
+729,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,24/09/2016,3.07,NaN,8.2,NaN,NaN,
+730,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,25/09/2016,1.99,NaN,8.3,NaN,NaN,
+731,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,26/09/2016,0.9,NaN,3.9,NaN,NaN,
+732,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,27/09/2016,1.42,NaN,4.5,NaN,NaN,
+733,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,28/09/2016,1.87,NaN,4.5,NaN,NaN,
+734,14,SW Isles of Scilly WaveNet Site,England,Ocean,49.82,-6.54,29/09/2016,1.69,NaN,4.8,NaN,NaN,

@@ -79,22 +79,22 @@ is in the table below:
 ## Checking the format of our data
 
 Now that we're armed with a basic understanding of numeric and text data
-types, let's explore the format of our survey data. We'll be working with the
-same `surveys.csv` dataset that we've used in previous lessons.
+types, let's explore the format of our wave data. We'll be working with the
+same `waves.csv` dataset that we've used in previous lessons.
 
 ~~~
 # Make sure pandas is loaded
 import pandas as pd
 
 # Note that pd.read_csv is used because we imported pandas as pd
-surveys_df = pd.read_csv("data/surveys.csv")
+waves_df = pd.read_csv("data/waves.csv")
 ~~~
 {: .language-python}
 
 Remember that we can check the type of an object like this:
 
 ~~~
-type(surveys_df)
+type(waves_df)
 ~~~
 {: .language-python}
 
@@ -103,12 +103,12 @@ pandas.core.frame.DataFrame
 ~~~
 {: .output}
 
-Next, let's look at the structure of our surveys data. In pandas, we can check
+Next, let's look at the structure of our waves data. In pandas, we can check
 the type of one column in a DataFrame using the syntax
 `dataFrameName[column_name].dtype`:
 
 ~~~
-surveys_df['sex'].dtype
+waves_df['Country'].dtype
 ~~~
 {: .language-python}
 
@@ -121,7 +121,7 @@ A type 'O' just stands for "object" which in Pandas' world is a string
 (text).
 
 ~~~
-surveys_df['record_id'].dtype
+waves_df['record_id'].dtype
 ~~~
 {: .language-python}
 
@@ -135,7 +135,7 @@ as a 64 bit integer. We can use the `dat.dtypes` command to view the data type
 for each column in a DataFrame (all at once).
 
 ~~~
-surveys_df.dtypes
+waves_df.dtypes
 ~~~
 {: .language-python}
 
@@ -155,9 +155,9 @@ dtype: object
 ~~~
 {: .language-python }
 
-Note that most of the columns in our Survey data are of type `int64`. This means
-that they are 64 bit integers. But the weight column is a floating point value
-which means it contains decimals. The `species_id` and `sex` columns are objects which
+Note that some of the columns in our wave data are of type `int64`. This means
+that they are 64 bit integers. While others are floating point value
+which means it contains decimals. The `Country` and `Site Type` columns are objects which
 means they contain strings.
 
 ## Working With Integers and Floats
@@ -241,7 +241,7 @@ float(b)
 {: .output}
 
 
-## Working With Our Survey Data
+## Working With Our Wave Data
 
 Getting back to our data, we can modify the format of values within our data, if
 we want. For instance, we could convert the `record_id` field to floating point
@@ -249,8 +249,8 @@ values.
 
 ~~~
 # Convert the record_id field from an integer to a float
-surveys_df['record_id'] = surveys_df['record_id'].astype('float64')
-surveys_df['record_id'].dtype
+waves_df['record_id'] = waves_df['record_id'].astype('float64')
+waves_df['record_id'].dtype
 ~~~
 {: .language-python}
 
@@ -264,26 +264,26 @@ dtype('float64')
 > Try converting the column `plot_id` to floats using
 >
 > ~~~
-> surveys_df.plot_id.astype("float")
+> waves_df.plot_id.astype("float")
 > ~~~
 > {: .language-python}
 >
-> Next try converting `weight` to an integer. What goes wrong here? What is Pandas telling you?
+> Next try converting `Temperature` to an integer. What goes wrong here? What is Pandas telling you?
 > We will talk about some solutions to this later.
 {: .challenge}
 
 ## Missing Data Values - NaN
 
 What happened in the last challenge activity? Notice that this throws a value error:
-`ValueError: Cannot convert NA to integer`. If we look at the `weight` column in the surveys
+`ValueError: Cannot convert NA to integer`. If we look at the `Temperature` column in the waves
 data we notice that there are NaN (**N**ot **a** **N**umber) values. **NaN** values are undefined
 values that cannot be represented mathematically. Pandas, for example, will read
 an empty cell in a CSV or Excel sheet as a NaN. NaNs have some desirable properties: if we
-were to average the `weight` column without replacing our NaNs, Python would know to skip
+were to average the `Temperature` column without replacing our NaNs, Python would know to skip
 over those cells.
 
 ~~~
-surveys_df['weight'].mean()
+waves_df['Temperature'].mean()
 ~~~
 {: .language-python}
 
@@ -311,13 +311,13 @@ in the future when you (or someone else) explores your data.
 
 Let's explore the NaN values in our data a bit further. Using the tools we
 learned in lesson 02, we can figure out how many rows contain NaN values for
-weight. We can also create a new subset from our data that only contains rows
-with weight values > 0 (i.e., select meaningful weight values):
+Temperature. We can also create a new subset from our data that only contains rows
+with Temperature values > -50 (i.e., select meaningful seawater temperature values):
 
 ~~~
-len(surveys_df[pd.isnull(surveys_df.weight)])
-# How many rows have weight values?
-len(surveys_df[surveys_df.weight > 0])
+len(waves_df[pd.isnull(waves_df.Temperature)])
+# How many rows have Temperature values?
+len(waves_df[waves_df.Temperature > 0])
 ~~~
 {: .language-python}
 
@@ -325,9 +325,9 @@ We can replace all NaN values with zeroes using the `.fillna()` method (after
 making a copy of the data so we don't lose our work):
 
 ~~~
-df1 = surveys_df.copy()
+df1 = waves_df.copy()
 # Fill all NaN values with 0
-df1['weight'] = df1['weight'].fillna(0)
+df1['Temperature'] = df1['Temperature'].fillna(0)
 ~~~
 {: .language-python}
 
@@ -336,7 +336,7 @@ values are replaced with 0 is different from when NaN values are simply thrown
 out or ignored.
 
 ~~~
-df1['weight'].mean()
+df1['Temperature'].mean()
 ~~~
 {: .language-python}
 
@@ -346,10 +346,10 @@ df1['weight'].mean()
 {: .output}
 
 We can fill NaN values with any value that we chose. The code below fills all
-NaN values with a mean for all weight values.
+NaN values with a mean for all Temperature values.
 
 ~~~
-df1['weight'] = surveys_df['weight'].fillna(surveys_df['weight'].mean())
+df1['Temperature'] = waves_df['Temperature'].fillna(waves_df['Temperature'].mean())
 ~~~
 {: .language-python}
 
@@ -381,14 +381,14 @@ in doing is working with only the columns that have full data. First, let's relo
 we're not mixing up all of our previous manipulations.
 
 ~~~
-surveys_df = pd.read_csv("data/surveys.csv")
+waves_df = pd.read_csv("data/waves.csv")
 ~~~
 {: .language-python}
 Next, let's drop all the rows that contain missing values. We will use the command `dropna`.
 By default, dropna removes rows that contain missing data for even just one column.
 
 ~~~
-df_na = surveys_df.dropna()
+df_na = waves_df.dropna()
 ~~~
 {: .language-python}
 
@@ -403,7 +403,7 @@ pandas doesn't include the index number for each line.
 
 ~~~
 # Write DataFrame to CSV
-df_na.to_csv('data_output/surveys_complete.csv', index=False)
+df_na.to_csv('data_output/waves_complete.csv', index=False)
 ~~~
 {: .language-python}
 
