@@ -56,22 +56,32 @@ single wave buoy, and the columns represent:
 
 | Column           | Description                        |
 |------------------|------------------------------------|
-|Name              | Unique id for the observation      |
-|Provider          | Company operating the wave buoy    |
-|Last Transmission | Date                               |
-|Wave Height	     | Significan wave height in metres   |
-|Tpeak	           | Dominant wave period               |
+|record_id         | Unique id for the observation      |
+|buoy_id           | Unique id for the wave buoy        |
+|Name              | Name of buoy                       |
+|latitude          | latitude of buoy  (degrees)        |
+|longitude         | longitude of buoy (degrees)        |
+|Country           | Country operating the wave buoy    |
+| Date             | Date in day/month/year             |
 |Tz	               | The average wave period            |
-|Peak Direction	   | The direction at Tpeak.            |
-|Spread	           |The directional spread at Tpeak.    |
+|Peak Direction	   | The direction at Tpeak             |
+|Tpeak	           | Dominant wave period               |
+|Wave Height	     | Significan wave height in metres   |
 |Temperature       | Water temperature in degrees C     |
+|Spread	           | The directional spread at Tpeak    |
+|------------------|------------------------------------|
+
 
 The first few rows of our first file look like this:
 ~~~
-Name,Provider,Country,Site Type,latitude,longitude,Last Transmission,Wave Height,Tpeak,Tz,Peak Direction,Spread,Temperature
-SW Isles of Scilly WaveNet Site,Cefas,England,Offshore,49.82,-6.54,17/04/2023,1.8,10,7.2,263,26,10.8
-Hayling Island Waverider,Cefas,England,Coastal,50.73,-0.96,17/04/2023,0.2,11.1,4,193,14,10.2
-Firth of Forth WaveNet Site,Cefas,Scotland,Offshore,56.19,-2.50,17/04/2023,0.6,4.5,3.7,115,28,7.8
+record_id	buoy_id	Name	Country	Site Type	latitude	longitude	Date	Tz	Peak Direction	Tpeak	Wave Height	Temperature	Spread
+1	14	SW Isles of Scilly WaveNet Site	England	Ocean	49.82	-6.54	17/04/2023	7.2	263	10	1.8	10.8	26
+2	7	Hayling Island Waverider	England	Coastal	50.73	-0.96	17/04/2023	4	193	11.1	0.2	10.2	14
+3	5	Firth of Forth WaveNet Site	Scotland	Ocean	56.19	-2.5	17/04/2023	3.7	115	4.5	0.6	7.8	28
+4	3	Chesil Waverider	England	Coastal	50.6	-2.52	17/04/2023	5.5	225	8.3	0.5	10.2	48
+5	10	M6 Buoy	Ireland	Ocean	53.06	-15.93	17/04/2023	7.6	240	11.7	4.5	11.5	89
+6	9	Lomond	Scotland	Ocean	57.2	2.2	17/04/2023	4	NaN	NaN	0.5	NaN	NaN
+7	2	Cardigan Bay	Wales	Coastal	52.433333	-4.8	17/04/2023	5.9	239	10.5	0.69	9.9	18
 ~~~
 {: .output}
 
@@ -112,7 +122,7 @@ time we call a Pandas function.
 
 # Reading CSV Data Using Pandas
 
-We will begin by locating and reading our survey data which are in CSV format. CSV stands for
+We will begin by locating and reading our wave data which are in CSV format. CSV stands for
 Comma-Separated Values and is a common way to store formatted data. Other symbols may also be used, so
 you might see tab-separated, colon-separated or space separated files. It is quite easy to replace
 one separator with another, to match your application. The first line in the file often has headers
@@ -163,7 +173,7 @@ we haven't saved any data to memory so we can work with it. We need to assign th
 DataFrame to a variable. Remember that a variable is a name for a value, such as `x`,
 or  `data`. We can create a new  object with a variable name by assigning a value to it using `=`.
 
-Let's call the imported survey data `waves_df`:
+Let's call the imported wave data `waves_df`:
 
 ~~~
 waves_df = pd.read_csv("data/waves.csv")
@@ -280,7 +290,7 @@ What kind of things does `waves_df` contain? DataFrames have an attribute
 called `dtypes` that answers this:
 
 ~~~
-surveys_df.dtypes
+waves_df.dtypes
 ~~~
 {: .language-python}
 ~~~
@@ -297,11 +307,11 @@ dtype: object
 ~~~
 {: .output}
 
-All the values in a column have the same type. For example, months have type
+All the values in a column have the same type. For example, buoy_id have type
 `int64`, which is a kind of integer. Cells in the month column cannot have
-fractional values, but the weight and hindfoot_length columns can, because they
+fractional values, but the TPeak and Wave Height columns can, because they
 have type `float64`. The `object` type doesn't have a very helpful name, but in
-this case it represents strings (such as 'Coastal' and 'Offshore' in the case of Site Type).
+this case it represents strings (such as 'Coastal' and 'Ocean' in the case of Site Type).
 
 We'll talk a bit more about what the different formats mean in a different lesson.
 
@@ -341,8 +351,9 @@ Let's look at the data using these.
 
 We've read our data into Python. Next, let's perform some quick summary
 statistics to learn more about the data that we're working with. We might want
-to know how many wave observations were collected at each buoy, or how many buoys are operated by a single company.
-We can perform summary stats quickly using groups. But first we need to figure out what we want to group by.
+to know how many observations were collected in each site, or how many observations
+were made in each country. We can perform summary stats quickly using groups. But
+first we need to figure out what we want to group by.
 
 Let's begin by exploring our data:
 
@@ -361,11 +372,11 @@ Index(['record_id', 'month', 'day', 'year', 'plot_id', 'species_id', 'sex',
 ~~~
 {: .output}
 
-Let's get a list of all the different contries covered. The `pd.unique` function tells us all of
-the unique values in the `Country` column.
+Let's get a list of all the buoys. The `pd.unique` function tells us all of
+the unique values in the `Name` column.
 
-pd.unique(waves_df['Country'])
-
+~~~
+pd.unique(waves_df['Name'])
 ~~~
 {: .language-python}
 
@@ -380,28 +391,24 @@ array(['NL', 'DM', 'PF', 'PE', 'DS', 'PP', 'SH', 'OT', 'DO', 'OX', 'SS',
 ~~~
 {: .output}
 
-
 > ## Challenge - Statistics
 >
-> 1. Create a list of unique data providers ("Provider") found in the WaveNet data. Call it
->   `providers`. How many wave data providers are there in the data? How many unique
->   species are in the data?
+> 1. Create a list of unique site ID's ("buoy_id") found in the waves data. Call it
+>   `site_names`. How many unique sites are there in the data? How many unique
+>   buoys are in the data?
 >
-> 2. What is the difference between `len(providers)` and `waves_df['Provider'].nunique()`?
+> 2. What is the difference between `len(site_names)` and `waves_df['buoy_id'].nunique()`?
 {: .challenge}
-
-
 
 # Groups in Pandas
 
 We often want to calculate summary statistics grouped by subsets or attributes
 within fields of our data. For example, we might want to calculate the average
-sea temperature at all wave buoys per Country.
+temperature at all buoys per Site Type.
 
 We can calculate basic statistics for all records in a single column using the
 syntax below:
 
- 
 ~~~
 waves_df['Temperature'].describe()
 ~~~
@@ -417,28 +424,28 @@ min          4.000000
 50%         37.000000
 75%         48.000000
 max        280.000000
-Name: weight, dtype: float64
+Name: Temperature, dtype: float64
 ~~~
 {: .language-python}
 
 We can also extract one specific metric if we wish:
 
 ~~~
-surveys_df['Temperature'].min()
-surveys_df['Temperature'].max()
-surveys_df['Temperature'].mean()
-surveys_df['Temperature'].std()
-surveys_df['Temperature'].count()
+waves_df['Temperature'].min()
+waves_df['Temperature'].max()
+waves_df['Temperature'].mean()
+waves_df['Temperature'].std()
+waves_df['Temperature'].count()
 ~~~
 {: .language-python}
 
-But if we want to summarize by one or more variables, for example Country, we can
+But if we want to summarize by one or more variables, for example Site Type, we can
 use **Pandas' `.groupby` method**. Once we've created a groupby DataFrame, we
 can quickly calculate summary statistics by a group of our choice.
 
 ~~~
-# Group data by country
-countries = waves_df.groupby('Country')
+# Group data by Site Type
+grouped_data = waves_df.groupby('Site Type')
 ~~~
 {: .language-python}
 
@@ -448,10 +455,10 @@ median, max, min, std and count for a particular column in the data. Pandas'
 numeric data.
 
 ~~~
-# Summary statistics for all numeric columns by country
-countries.describe()
-# Provide the mean for each numeric column by country
-countries.mean()
+# Summary statistics for all numeric columns by Site Type
+grouped_data.describe()
+# Provide the mean for each numeric column by Site Type
+grouped_data.mean()
 ~~~
 {: .language-python}
 
@@ -476,14 +483,14 @@ summary stats.
 
 > ## Challenge - Summary Data
 >
-> 1. How many wave buoys are nearshore `Coastal` and how many offshore `Ocean`?
+> 1. How many buoys are 'Coastal' and how many `Ocean`?
 > 2. What happens when you group by two columns using the following syntax and
 >    then calculate mean values?
->   - `types = waves_df.groupby(['Site Type', 'Country'])`
->   - `types.mean()`
-> 3. Summarize site type values for each country in your data. HINT: you can use the
+>   - `grouped_data2 = waves_df.groupby(['buoy_id', 'Site Type'])`
+>   - `grouped_data2.mean()`
+> 3. Summarize Temperature values for each site in your data. HINT: you can use the
 >   following syntax to only create summary statistics for one column in your data.
->  `countries["Temperature"].describe`
+>   `by_site['Temperature'].describe()`
 >
 >
 >> ## Did you get #3 right?
@@ -507,21 +514,21 @@ summary stats.
 
 ## Quickly Creating Summary Counts in Pandas
 
-Let's next count the number of samples for each country. We can do this in a few
+Let's next count the number of samples for each Country. We can do this in a few
 ways, but we'll use `groupby` combined with **a `count()` method**.
 
 
 ~~~
-# Count the number of samples by country
-country_counts = waves_df.groupby('Country')['Name'].count()
+# Count the number of samples by Country
+country_counts = waves_df.groupby('Country')['record_id'].count()
 print(country_counts)
 ~~~
 {: .language-python}
 
-Or, we can also count just the rows that have the country "DO":
+Or, we can also count just the rows that have the Country "Wales":
 
 ~~~
-waves_df.groupby('Country')['Name'].count()['DO']
+waves_df.groupby('Country')['record_id'].count()['Wales']
 ~~~
 {: .language-python}
 
@@ -535,12 +542,12 @@ waves_df.groupby('Country')['Name'].count()['DO']
 ## Basic Math Functions
 
 If we wanted to, we could perform math on an entire column of our data. For
-example let's multiply all weight values by 2. A more practical use of this might
+example let's multiply all Temperature values by 2. A more practical use of this might
 be to normalize the data according to a mean, area, or some other value
 calculated from our data.
 
 ~~~
-# Multiply all temperature values by 2
+# Multiply all Temperature values by 2
 waves_df['Temperature']*2
 ~~~
 {: .language-python}
@@ -560,10 +567,10 @@ country_counts.plot(kind='bar');
 ![Weight by Species Site](../fig/countPerSpecies.png)
 Count per species site
 
-We can also look at how many wave observations were captured in each site:
+We can also look at how many observations were made at each site:
 
 ~~~
-total_count = waves_df.groupby('Country')['Name'].nunique()
+total_count = waves_df.groupby('buoy_id')['record_id'].nunique()
 # Let's plot that too
 total_count.plot(kind='bar');
 ~~~
@@ -571,14 +578,14 @@ total_count.plot(kind='bar');
 
 > ## Challenge - Plots
 >
-> 1. Create a plot of average Temperature across all buoys per provider.
-> 2. Create a plot of total coastal versus total ocean observations for the entire dataset.
+> 1. Create a plot of average Temperature across all buoy_id per Site Type.
+> 2. Create a plot of total Coastal versus total Ocean sites for the entire dataset.
 {: .challenge}
 
 > ## Summary Plotting Challenge
 >
-> Create a stacked bar plot, with weight on the Y axis, and the stacked variable
-> being site type. The plot should show average temperature by site type for each site. Some
+> Create a stacked bar plot, with Temperature on the Y axis, and the stacked variable
+> being Site Type. The plot should show average Temperature by Site Type for each site. Some
 > tips are below to help you solve this challenge:
 >
 > * For more information on pandas plots, see [pandas' documentation page on visualization][pandas-plot].
@@ -618,25 +625,25 @@ total_count.plot(kind='bar');
 > for each plotting.  Try running `.unstack()` on some DataFrames above and see
 > what it yields.
 >
-> Start by transforming the grouped data (by site and sex) into an unstacked layout, then create
+> Start by transforming the grouped data (by site and country) into an unstacked layout, then create
 > a stacked plot.
 >
 >
 >> ## Solution to Summary Challenge
 >>
->> First we group data by site and by sex, and then calculate a total for each site.
+>> First we group data by site and by country, and then calculate a total for each site.
 >>
 >> ~~~
->> by_site_sex = surveys_df.groupby(['plot_id', 'sex'])
->> site_sex_count = by_site_sex['weight'].sum()
+>> by_site_country = waves_df.groupby(['buoy_id', 'Country'])
+>> site_country_count = by_site_country['Temperature'].sum()
 >> ~~~
 >> {: .language-python}
 >>
->> This calculates the sums of weights for each sex within each site as a table
+>> This calculates the sums of Temperature for each country within each site as a table
 >>
 >> ~~~
->> site  sex
->> plot_id  sex
+>> site  country
+>> buoy_id  sex
 >> 1        F      38253
 >>          M      59979
 >> 2        F      50144
@@ -649,12 +656,12 @@ total_count.plot(kind='bar');
 >> ~~~
 >> {: .output}
 >>
->> Below we'll use `.unstack()` on our grouped data to figure out the total weight that each sex contributed to each site.
+>> Below we'll use `.unstack()` on our grouped data to figure out the total Temperature that each country contributed to each site.
 >>
 >> ~~~
->> by_site_sex = surveys_df.groupby(['plot_id', 'sex'])
->> site_sex_count = by_site_sex['weight'].sum()
->> site_sex_count.unstack()
+>> by_site_country = waves_df.groupby(['buoy_id', 'Country'])
+>> site_country_count = by_site_country['Temperature'].sum()
+>> site_country_count.unstack()
 >> ~~~
 >> {: .language-python }
 >>
@@ -662,7 +669,7 @@ total_count.plot(kind='bar');
 >>
 >> ~~~
 >> sex          F      M
->> plot_id
+>> buoy_id
 >> 1        38253  59979
 >> 2        50144  57250
 >> 3        27251  28253
@@ -671,16 +678,16 @@ total_count.plot(kind='bar');
 >> ~~~
 >> {: .output}
 >>
->> Now, create a stacked bar plot with that data where the weights for each sex are stacked by site.
+>> Now, create a stacked bar plot with that data where the temperatures for each Country are stacked by site.
 >>
->> Rather than display it as a table, we can plot the above data by stacking the values of each sex as follows:
+>> Rather than display it as a table, we can plot the above data by stacking the values of each country as follows:
 >>
 >> ~~~
->> by_site_sex = surveys_df.groupby(['plot_id', 'sex'])
->> site_sex_count = by_site_sex['weight'].sum()
->> spc = site_sex_count.unstack()
->> s_plot = spc.plot(kind='bar', stacked=True, title="Total weight by site and sex")
->> s_plot.set_ylabel("Weight")
+>> by_site_country= waves_df.groupby(['buoy_id', 'Country'])
+>> site_country_count = by_site_country['Temperature'].sum()
+>> spc = site_country_count.unstack()
+>> s_plot = spc.plot(kind='bar', stacked=True, title="Total Temperature by site and country")
+>> s_plot.set_ylabel("Temperature")
 >> s_plot.set_xlabel("Plot")
 >> ~~~
 >> {: .language-python}
