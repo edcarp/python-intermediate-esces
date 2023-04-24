@@ -50,6 +50,7 @@ episode. Let's reopen and read in the data again:
 # Make sure pandas is loaded
 import pandas as pd
 
+
 # Read in the wave CSV
 waves_df = pd.read_csv("data/waves.csv")
 ~~~
@@ -435,6 +436,9 @@ record_id  month  day  year  plot_id buoy_id  sex  hindfoot_length  Country
 [2229 rows x 9 columns]
 ~~~
 {: .language-python}
+
+*** CHRIS - what did we decide about handling the date format? Shall we include this? Shall I add year/month/day in as extra columns??? - LMB
+
 
 Or we can select all rows that do not contain the year 2002:
 
