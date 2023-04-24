@@ -540,7 +540,7 @@ be to normalize the data according to a mean, area, or some other value
 calculated from our data.
 
 ~~~
-# Multiply all weight values by 2
+# Multiply all temperature values by 2
 waves_df['Temperature']*2
 ~~~
 {: .language-python}
@@ -571,14 +571,14 @@ total_count.plot(kind='bar');
 
 > ## Challenge - Plots
 >
-> 1. Create a plot of average weight across all species per site.
-> 2. Create a plot of total males versus total females for the entire dataset.
+> 1. Create a plot of average Temperature across all buoys per provider.
+> 2. Create a plot of total coastal versus total ocean observations for the entire dataset.
 {: .challenge}
 
 > ## Summary Plotting Challenge
 >
 > Create a stacked bar plot, with weight on the Y axis, and the stacked variable
-> being sex. The plot should show total weight by sex for each site. Some
+> being site type. The plot should show average temperature by site type for each site. Some
 > tips are below to help you solve this challenge:
 >
 > * For more information on pandas plots, see [pandas' documentation page on visualization][pandas-plot].
