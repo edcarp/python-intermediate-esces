@@ -23,12 +23,12 @@ the data. The pandas package provides [various methods for combining
 DataFrames](https://pandas.pydata.org/pandas-docs/stable/user_guide/merging.html) including
 `merge` and `concat`.
 
-To work through the examples below, we first need to load the species and
-surveys files into pandas DataFrames. In iPython:
+To work through the examples below, we first need to load the waves and
+look-up table files into pandas DataFrames. In iPython:
 
 ~~~
 import pandas as pd
-surveys_df = pd.read_csv("data/surveys.csv",
+waves = pd.read_csv("data/waves.csv",
                          keep_default_na=False, na_values=[""])
 surveys_df
 
@@ -47,10 +47,10 @@ surveys_df
 
 [35549 rows x 9 columns]
 
-species_df = pd.read_csv("data/species.csv",
+LookUpTable_df = pd.read_csv("data/waves_LUT.csv",
                          keep_default_na=False, na_values=[""])
 species_df
-  species_id             genus          species     taxa
+  buoy_id             genus          species     taxa
 0          AB        Amphispiza        bilineata     Bird
 1          AH  Ammospermophilus          harrisi   Rodent
 2          AS        Ammodramus       savannarum     Bird
@@ -82,12 +82,12 @@ one DataFrame to another.  Let's grab two subsets of our data to see how this
 works.
 
 ~~~
-# Read in first 10 lines of surveys table
-survey_sub = surveys_df.head(10)
+# Read in first 10 lines of waves table
+waves_sub = waves_df.head(10)
 # Grab the last 10 rows
-survey_sub_last10 = surveys_df.tail(10)
+waves_sub_last10 = waves_df.tail(10)
 # Reset the index values to the second dataframe appends properly
-survey_sub_last10 = survey_sub_last10.reset_index(drop=True)
+waves_sub_last10 = waves_sub_last10.reset_index(drop=True)
 # drop=True option avoids adding new index column with old index values
 ~~~
 {: .language-python}
@@ -103,16 +103,16 @@ related in some way).
 
 ~~~
 # Stack the DataFrames on top of each other
-vertical_stack = pd.concat([survey_sub, survey_sub_last10], axis=0)
+vertical_stack = pd.concat([waves_sub, waves_sub_last10], axis=0)
 
 # Place the DataFrames side by side
-horizontal_stack = pd.concat([survey_sub, survey_sub_last10], axis=1)
+horizontal_stack = pd.concat([waves_sub, waves_sub_last10], axis=1)
 ~~~
 {: .language-python}
 
 ### Row Index Values and Concat
 Have a look at the `vertical_stack` dataframe? Notice anything unusual?
-The row indexes for the two data frames `survey_sub` and `survey_sub_last10`
+The row indexes for the two data frames `waves_sub` and `waves_sub_last10`
 have been repeated. We can reindex the new dataframe using the `reset_index()` method.
 
 ## Writing Out Data to CSV
@@ -141,9 +141,9 @@ new_output = pd.read_csv('data/out.csv', keep_default_na=False, na_values=[""])
 
 > ## Challenge - Combine Data
 >
-> In the data folder, there are two survey data files: `surveys2001.csv` and
-> `surveys2002.csv`. Read the data into Python and combine the files to make one
-> new data frame. Create a plot of average plot weight by year grouped by sex.
+> In the data folder, there are two waves data files: `waves.csv` and
+> `waves2020.csv`. Read the data into Python and combine the files to make one
+> new data frame. Create a plot of average temperaure by year grouped by buoy_id.
 > Export your results as a CSV and make sure it reads back into Python properly.
 {: .challenge}
 
@@ -160,22 +160,22 @@ table" containing additional data that we want to include in the other.
 NOTE: This process of joining tables is similar to what we do with tables in an
 SQL database.
 
-For example, the `species.csv` file that we've been working with is a lookup
-table. This table contains the genus, species and taxa code for 55 species. The
-species code is unique for each line. These species are identified in our survey
-data as well using the unique species code. Rather than adding 3 more columns
-for the genus, species and taxa to each of the 35,549 line Survey data table, we
+For example, the `waves_LUT.csv` file that we've been working with is a lookup
+table. This table contains the name, manufacturer, water depth and operator for 16 buoys. The
+buoy_id code is unique for each line. These buoys are identified in our waves
+data as well using the unique species code. Rather than adding 4 more columns
+for the depth, operator etc. to each of the multiple line waves data table, we
 can maintain the shorter table with the species information. When we want to
 access that information, we can create a query that joins the additional columns
-of information to the Survey data.
+of information to the waves data.
 
 Storing data in this way has many benefits including:
 
-1. It ensures consistency in the spelling of species attributes (genus, species
-   and taxa) given each species is only entered once. Imagine the possibilities
+1. It ensures consistency in the spelling of buoy attributes (site name, manufacturer etc.) 
+   given each buoy is only entered once. Imagine the possibilities
    for spelling errors when entering the genus and species thousands of times!
 2. It also makes it easy for us to make changes to the species information once
-   without having to find each instance of it in the larger survey data.
+   without having to find each instance of it in the larger wave observations data.
 3. It optimizes the size of our data.
 
 
@@ -183,22 +183,22 @@ Storing data in this way has many benefits including:
 
 To better understand joins, let's grab the first 10 lines of our data as a
 subset to work with. We'll use the `.head` method to do this. We'll also read
-in a subset of the species table.
+in a subset of the waves_LUT look-up table.
 
 ~~~
-# Read in first 10 lines of surveys table
-survey_sub = surveys_df.head(10)
+# Read in first 10 lines of wavess table
+wave_sub = waves_df.head(10)
 
 # Import a small subset of the species data designed for this part of the lesson.
 # It is stored in the data folder.
-species_sub = pd.read_csv('data/speciesSubset.csv', keep_default_na=False, na_values=[""])
+buoys_sub = pd.read_csv('data/waves_LUT.csv', keep_default_na=False, na_values=[""])
 ~~~
 {: .language-python}
 
-In this example, `species_sub` is the lookup table containing genus, species, and
-taxa names that we want to join with the data in `survey_sub` to produce a new
-DataFrame that contains all of the columns from both `species_df` *and*
-`survey_df`.
+In this example, `buoys_sub` is the lookup table containing buoy names and information
+that we want to join with the data in `wave_sub` to produce a new
+DataFrame that contains all of the columns from both `buoys_sub` *and*
+`waves_df`.
 
 
 ## Identifying join keys
@@ -211,19 +211,19 @@ identify a (differently-named) column in each DataFrame that contains the same
 information.
 
 ~~~
->>> species_sub.columns
+>>> buoys_sub.columns
 
-Index([u'species_id', u'genus', u'species', u'taxa'], dtype='object')
+Index([u'buoy_id', u'genus', u'species', u'taxa'], dtype='object')
 
->>> survey_sub.columns
+>>> wave_sub.columns
 
-Index([u'record_id', u'month', u'day', u'year', u'plot_id', u'species_id',
+Index([u'record_id', u'month', u'day', u'year', u'plot_id', u'buoy_id',
        u'sex', u'hindfoot_length', u'weight'], dtype='object')
 ~~~
 {: .language-python}
 
 In our example, the join key is the column containing the two-letter species
-identifier, which is called `species_id`.
+identifier, which is called `buoy_id`.
 
 Now that we know the fields with the common species ID attributes in each
 DataFrame, we are almost ready to join our data. However, since there are
@@ -246,8 +246,8 @@ The pandas function for performing joins is called `merge` and an Inner join is
 the default option:
 
 ~~~
-merged_inner = pd.merge(left=survey_sub, right=species_sub, left_on='species_id', right_on='species_id')
-# In this case `species_id` is the only column name in  both dataframes, so if we skipped `left_on`
+merged_inner = pd.merge(left=wave_sub, right=buoys_sub, left_on='buoy_id', right_on='buoy_id')
+# In this case `buoy_id` is the only column name in  both dataframes, so if we skipped `left_on`
 # And `right_on` arguments we would still get the same result
 
 # What's the size of the output data?
@@ -257,7 +257,7 @@ merged_inner
 {: .language-python}
 
 ~~~
-   record_id  month  day  year  plot_id species_id sex  hindfoot_length  \
+   record_id  month  day  year  plot_id buoy_id sex  hindfoot_length  \
 0          1      7   16  1977        2         NL   M               32
 1          2      7   16  1977        3         NL   M               33
 2          3      7   16  1977        2         DM   F               37
@@ -279,36 +279,36 @@ merged_inner
 ~~~
 {: .output}
 
-The result of an inner join of `survey_sub` and `species_sub` is a new DataFrame
-that contains the combined set of columns from `survey_sub` and `species_sub`. It
+The result of an inner join of `wave_sub` and `buoys_sub` is a new DataFrame
+that contains the combined set of columns from `wave_sub` and `buoys_sub`. It
 *only* contains rows that have two-letter species codes that are the same in
-both the `survey_sub` and `species_sub` DataFrames. In other words, if a row in
-`survey_sub` has a value of `species_id` that does *not* appear in the `species_id`
+both the `wave_sub` and `buoys_sub` DataFrames. In other words, if a row in
+`wave_sub` has a value of `buoy_id` that does *not* appear in the `buoy_id`
 column of `species`, it will not be included in the DataFrame returned by an
-inner join.  Similarly, if a row in `species_sub` has a value of `species_id`
-that does *not* appear in the `species_id` column of `survey_sub`, that row will not
+inner join.  Similarly, if a row in `buoys_sub` has a value of `buoy_id`
+that does *not* appear in the `buoy_id` column of `wave_sub`, that row will not
 be included in the DataFrame returned by an inner join.
 
 The two DataFrames that we want to join are passed to the `merge` function using
-the `left` and `right` argument. The `left_on='species_id'` argument tells `merge`
-to use the `species_id` column as the join key from `survey_sub` (the `left`
-DataFrame). Similarly , the `right_on='species_id'` argument tells `merge` to
-use the `species_id` column as the join key from `species_sub` (the `right`
+the `left` and `right` argument. The `left_on='buoy_id'` argument tells `merge`
+to use the `buoy_id` column as the join key from `wave_sub` (the `left`
+DataFrame). Similarly , the `right_on='buoy_id'` argument tells `merge` to
+use the `buoy_id` column as the join key from `buoys_sub` (the `right`
 DataFrame). For inner joins, the order of the `left` and `right` arguments does
 not matter.
 
-The result `merged_inner` DataFrame contains all of the columns from `survey_sub`
-(record id, month, day, etc.) as well as all the columns from `species_sub`
-(species_id, genus, species, and taxa).
+The result `merged_inner` DataFrame contains all of the columns from `wave_sub`
+(record id, month, day, etc.) as well as all the columns from `buoys_sub`
+(buoy_id, genus, species, and taxa).
 
-Notice that `merged_inner` has fewer rows than `survey_sub`. This is an
-indication that there were rows in `surveys_df` with value(s) for `species_id` that
-do not exist as value(s) for `species_id` in `species_df`.
+Notice that `merged_inner` has fewer rows than `wave_sub`. This is an
+indication that there were rows in `waves_df` with value(s) for `buoy_id` that
+do not exist as value(s) for `buoy_id` in `LookUpTable_df`.
 
 ## Left joins
 
-What if we want to add information from `species_sub` to `survey_sub` without
-losing any of the information from `survey_sub`? In this case, we use a different
+What if we want to add information from `buoys_sub` to `wave_sub` without
+losing any of the information from `wave_sub`? In this case, we use a different
 type of join called a "left outer join", or a "left join".
 
 Like an inner join, a left join uses join keys to combine two DataFrames. Unlike
@@ -327,12 +327,12 @@ A left join is performed in pandas by calling the same `merge` function used for
 inner join, but using the `how='left'` argument:
 
 ~~~
-merged_left = pd.merge(left=survey_sub, right=species_sub, how='left', left_on='species_id', right_on='species_id')
+merged_left = pd.merge(left=wave_sub, right=buoys_sub, how='left', left_on='buoy_id', right_on='buoy_id')
 merged_left
 ~~~
 {: .language-python}
 ~~~
-   record_id  month  day  year  plot_id species_id sex  hindfoot_length  \
+   record_id  month  day  year  plot_id buoy_id sex  hindfoot_length  \
 0          1      7   16  1977        2         NL   M               32
 1          2      7   16  1977        3         NL   M               33
 2          3      7   16  1977        2         DM   F               37
@@ -361,9 +361,9 @@ merged_left
 The result DataFrame from a left join (`merged_left`) looks very much like the
 result DataFrame from an inner join (`merged_inner`) in terms of the columns it
 contains. However, unlike `merged_inner`, `merged_left` contains the **same
-number of rows** as the original `survey_sub` DataFrame. When we inspect
+number of rows** as the original `wave_sub` DataFrame. When we inspect
 `merged_left`, we find there are rows where the information that should have
-come from `species_sub` (i.e., `species_id`, `genus`, and `taxa`) is
+come from `buoys_sub` (i.e., `buoy_id`, `genus`, and `taxa`) is
 missing (they contain NaN values):
 
 ~~~
@@ -371,7 +371,7 @@ merged_left[ pd.isnull(merged_left.genus) ]
 ~~~
 {: .language-python}
 ~~~
-   record_id  month  day  year  plot_id species_id sex  hindfoot_length  \
+   record_id  month  day  year  plot_id buoy_id sex  hindfoot_length  \
 5          6      7   16  1977        1         PF   M               14
 9         10      7   16  1977        6         PF   F               20
 
@@ -381,8 +381,8 @@ merged_left[ pd.isnull(merged_left.genus) ]
 ~~~
 {: .output}
 
-These rows are the ones where the value of `species_id` from `survey_sub` (in this
-case, `PF`) does not occur in `species_sub`.
+These rows are the ones where the value of `buoy_id` from `wave_sub` (in this
+case, `PF`) does not occur in `buoys_sub`.
 
 
 ## Other join types
@@ -401,25 +401,21 @@ The pandas `merge` function supports two other join types:
 # Final Challenges
 
 > ## Challenge - Distributions
-> Create a new DataFrame by joining the contents of the `surveys.csv` and
-> `species.csv` tables. Then calculate and plot the distribution of:
+> Create a new DataFrame by joining the contents of the `waves.csv` and
+> `waves_LUT.csv` tables. Then calculate and plot the distribution of:
 >
-> 1. taxa by plot
-> 2. taxa by sex by plot
+> 1. Depth by Site Type
+> 2. Depth by Country by Site Type
 {: .challenge}
+ 
+> ## Challenge - filter by availability
+>
+> 1. In the data folder, there is a `access.csv` file that contains information about the
+>    data availability and access rights associated with each buoy. Use that data to summarize the number of
+>    observations which are reusable for research.
+> 2. Again using `access.csv` file, use that data to summarize the number of data records from operational 
+     buoys which are available in Cosatal versus Ocean waters.
 
-> ## Challenge - Diversity Index
->
-> 1. In the data folder, there is a `plots.csv` file that contains information about the
->    type associated with each plot. Use that data to summarize the number of
->    plots by plot type.
-> 2. Calculate a diversity index of your choice for control vs rodent exclosure
->    plots. The index should consider both species abundance and number of
->    species. You might choose to use the simple [biodiversity index described
->    here](http://www.amnh.org/explore/curriculum-collections/biodiversity-counts/plant-ecology/how-to-calculate-a-biodiversity-index)
->    which calculates diversity as:
->
->    the number of species in the plot / the total number of individuals in the plot = Biodiversity index.
 {: .challenge}
 
 [join-types]: http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/
