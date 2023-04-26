@@ -59,14 +59,14 @@ single wave buoy, and the columns represent:
 |record_id         | Unique id for the observation      |
 |buoy_id           | Unique id for the wave buoy        |
 |Name              | Name of buoy                       |
-|latitude          | latitude of buoy  (degrees)        |
-|longitude         | longitude of buoy (degrees)        |
+|latitude          | Latitude of buoy  (degrees)        |
+|longitude         | Longitude of buoy (degrees)        |
 |Country           | Country operating the wave buoy    |
-| Date             | Date in day/month/year             |
+|Date              | Date in day/month/year             |
 |Tz	               | The average wave period            |
 |Peak Direction	   | The direction at Tpeak             |
 |Tpeak	           | Dominant wave period               |
-|Wave Height	     | Significan wave height in metres   |
+|Wave Height	   | Significant wave height in metres  |
 |Temperature       | Water temperature in degrees C     |
 |Spread	           | The directional spread at Tpeak    |
 |------------------|------------------------------------|
@@ -80,8 +80,6 @@ record_id	buoy_id	Name	Country	Site Type	latitude	longitude	Date	Tz	Peak Directi
 3	5	Firth of Forth WaveNet Site	Scotland	Ocean	56.19	-2.5	17/04/2023	3.7	115	4.5	0.6	7.8	28
 4	3	Chesil Waverider	England	Coastal	50.6	-2.52	17/04/2023	5.5	225	8.3	0.5	10.2	48
 5	10	M6 Buoy	Ireland	Ocean	53.06	-15.93	17/04/2023	7.6	240	11.7	4.5	11.5	89
-6	9	Lomond	Scotland	Ocean	57.2	2.2	17/04/2023	4	NaN	NaN	0.5	NaN	NaN
-7	2	Cardigan Bay	Wales	Coastal	52.433333	-4.8	17/04/2023	5.9	239	10.5	0.69	9.9	18
 ~~~
 {: .output}
 
@@ -107,7 +105,6 @@ a library, we use the syntax `import libraryName`. If we want to give the
 library a nickname to shorten the command, we can add `as nickNameHere`.  An
 example of importing the pandas library using the common nickname `pd` is below.
 
-
 ~~~
 import pandas as pd
 ~~~
@@ -118,7 +115,6 @@ Each time we call a function that's in a library, we use the syntax
 function name tells Python where to find the function. In the example above, we
 have imported Pandas as `pd`. This means we don't have to type out `pandas` each
 time we call a Pandas function.
-
 
 # Reading CSV Data Using Pandas
 
@@ -145,33 +141,50 @@ pd.read_csv("data/waves.csv")
 ~~~
 {: .language-python}
 
+> ## Referring to libraries
+> If you import a library using its full name, you need to use that name when using functions from it.
+> If you use a nickname, you can _only_ use the nickname when calling functions from that library
+> For example, if you use `import pandas`, you would need to write `pandas.read_csv(...)`, but if you use
+> `import pandas as pd`, writing `pandas.read_csv(...)` will show an error of `name 'pandas' is not defined`
+{: .callout}
+
 The above command yields the **output** below:
 
 ~~~
-      record_id month day year  plot_id species_id  sex hindfoot_length weight
-0             1     7  16 1977        2         NL    M            32.0    NaN
-1             2     7  16 1977        3         NL    M            33.0    NaN
-2             3     7  16 1977        2         DM    F            37.0    NaN
-3             4     7  16 1977        7         DM    M            36.0    NaN
-4             5     7  16 1977        3         DM    M            35.0    NaN
-...         ...   ... ...  ...      ...        ...  ...             ...    ...
-35544     35545    12  31 2002       15         AH  NaN             NaN    NaN
-35545     35546    12  31 2002       15         AH  NaN             NaN    NaN
-35546     35547    12  31 2002       10         RM    F            15.0   14.0
-35547     35548    12  31 2002        7         DO    M            36.0   51.0
-35548     35549    12  31 2002        5        NaN  NaN             NaN    NaN
+        record_id buoy_id               Name    Country Site Type latitude longitude       Date   Tz Peak Direction Tpeak Wave Height Temperature Spread
+0               1      14 SW Isles of Scilly    England     Ocean    49.82     -6.54 17/04/2023 7.20          263.0  10.0         1.8        10.8   26.0
+                                WaveNet Site
+1               2       7     Hayling Island    England   Coastal    50.73     -0.96 17/04/2023 4.00          193.0  11.1         0.2        10.2   14.0
+                                   Waverider
+2               3       5     Firth of Forth    Scotland      NaN    56.19     -2.50 17/04/2023 3.70          115.0   4.5         0.6         7.8   28.0
+                                WaveNet Site
+3               4       3	Chesil Waverider    England   Coastal    50.60     -2.52 17/04/2023 5.50          225.0   8.3         0.5        10.2   48.0
+4               5      10           M6 Buoy     Ireland     Ocean    53.06    -15.93 17/04/2023 7.60          240.0  11.7         4.5        11.5   89.0
+...	...	...	...	...	...	...	...	...	...	...	...	...	...	...
+729           730      14	SW Isles of Scilly  England     Ocean    49.82     -6.54 25/09/2016 1.99            NaN   8.3         NaN         NaN    NaN
+                                  WaveNet Site
+730           731      14   SW Isles of Scilly  England     Ocean    49.82     -6.54 26/09/2016 0.90            NaN   3.9         NaN         NaN    NaN
+                                  WaveNet Site
+731           732      14	SW Isles of Scilly  England     Ocean    49.82     -6.54 27/09/2016 1.42            NaN   4.5         NaN         NaN    NaN
+                                  WaveNet Site
+732           733      14   SW Isles of Scilly  England     Ocean    49.82     -6.54 28/09/2016 1.87            NaN   4.5         NaN         NaN    NaN
+                                  WaveNet Site
+733           734      14	SW Isles of Scilly  England     Ocean    49.82     -6.54 29/09/2016 1.69            NaN   4.8         NaN         NaN    NaN
+                                  WaveNet Site
 
-[35549 rows x 9 columns]
+734 rows × 14 columns
 ~~~
-{: .output}
+{ :.output}
 
-We can see that there were 35,549 rows parsed. Each row has 9
+We can see that there were 734 rows parsed. Each row has 14
 columns. The first column is the index of the DataFrame. The index is used to
-identify the position of the data, but it is not an actual column of the DataFrame.
-It looks like  the `read_csv` function in Pandas  read our file properly. However,
+identify the position of the data, but it is not an actual column of the DataFrame
+(but note that in this instance we also have a `record_id` which is the same as the index, and
+_is_ a column of the DataFrame).
+It looks like  the `read_csv` function in Pandas read our file properly. However,
 we haven't saved any data to memory so we can work with it. We need to assign the
 DataFrame to a variable. Remember that a variable is a name for a value, such as `x`,
-or  `data`. We can create a new  object with a variable name by assigning a value to it using `=`.
+or `data`. We can create a new  object with a variable name by assigning a value to it using `=`.
 
 Let's call the imported wave data `waves_df`:
 
@@ -193,58 +206,9 @@ which prints contents like above.
 
 Note: if the output is too wide to print on your narrow terminal window, you may see something
 slightly different as the large set of data scrolls past. You may see simply the last column
-of data:
-~~~
-17        NaN
-18        NaN
-19        NaN
-20        NaN
-21        NaN
-22        NaN
-23        NaN
-24        NaN
-25        NaN
-26        NaN
-27        NaN
-28        NaN
-29        NaN
-...       ...
-35519    36.0
-35520    48.0
-35521    45.0
-35522    44.0
-35523    27.0
-35524    26.0
-35525    24.0
-35526    43.0
-35527     NaN
-35528    25.0
-35529     NaN
-35530     NaN
-35531    43.0
-35532    48.0
-35533    56.0
-35534    53.0
-35535    42.0
-35536    46.0
-35537    31.0
-35538    68.0
-35539    23.0
-35540    31.0
-35541    29.0
-35542    34.0
-35543     NaN
-35544     NaN
-35545     NaN
-35546    14.0
-35547    51.0
-35548     NaN
+of data. Never fear, all the data is there, if you scroll up.
 
-[35549 rows x 9 columns]
-~~~
-{: .output}
-
-Never fear, all the data is there, if you scroll up. Selecting just a few rows, so it is
+If we selecting just a few rows, so it is
 easier to fit on one window, you can see that pandas has neatly formatted the data to fit
 our screen:
 
@@ -254,19 +218,15 @@ waves_df.head() # The head() method displays the first several lines of a file. 
 ~~~
 {: .language-python}
 ~~~
-   record_id  month  day  year  plot_id species_id sex  hindfoot_length  \
-5          6      7   16  1977        1         PF   M             14.0
-6          7      7   16  1977        2         PE   F              NaN
-7          8      7   16  1977        1         DM   M             37.0
-8          9      7   16  1977        1         DM   F             34.0
-9         10      7   16  1977        6         PF   F             20.0
-
-   weight
-5     NaN
-6     NaN
-7     NaN
-8     NaN
-9     NaN
+        record_id buoy_id               Name    Country Site Type latitude longitude       Date   Tz Peak Direction Tpeak Wave Height Temperature Spread
+0               1      14 SW Isles of Scilly    England     Ocean    49.82     -6.54 17/04/2023 7.20          263.0  10.0         1.8        10.8   26.0
+                                WaveNet Site
+1               2       7     Hayling Island    England   Coastal    50.73     -0.96 17/04/2023 4.00          193.0  11.1         0.2        10.2   14.0
+                                   Waverider
+2               3       5     Firth of Forth    Scotland      NaN    56.19     -2.50 17/04/2023 3.70          115.0   4.5         0.6         7.8   28.0
+                                WaveNet Site
+3               4       3	Chesil Waverider    England   Coastal    50.60     -2.52 17/04/2023 5.50          225.0   8.3         0.5        10.2   48.0
+4               5      10           M6 Buoy     Ireland     Ocean    53.06    -15.93 17/04/2023 7.60          240.0  11.7         4.5        11.5   89.0
 ~~~
 {: .output}
 
@@ -294,15 +254,20 @@ waves_df.dtypes
 ~~~
 {: .language-python}
 ~~~
-record_id            int64
-month                int64
-day                  int64
-year                 int64
-plot_id              int64
-species_id          object
-sex                 object
-hindfoot_length    float64
-weight             float64
+record_id           int64
+buoy_id             int64
+Name               object
+Country            object
+Site Type          object
+latitude          float64
+longitude         float64
+Date               object
+Tz                float64
+Peak Direction    float64
+Tpeak             float64
+Wave Height       float64
+Temperature       float64
+Spread            float64
 dtype: object
 ~~~
 {: .output}
@@ -366,8 +331,9 @@ waves_df.columns
 which **returns**:
 
 ~~~
-Index(['record_id', 'month', 'day', 'year', 'plot_id', 'species_id', 'sex',
-       'hindfoot_length', 'weight'],
+Index(['record_id', 'buoy_id', 'Name', 'Country', 'Site Type', 'latitude',
+       'longitude', 'Date', 'Tz', 'Peak Direction', 'Tpeak', 'Wave Height',
+       'Temperature', 'Spread'],
       dtype='object')
 ~~~
 {: .output}
@@ -383,18 +349,16 @@ pd.unique(waves_df['Name'])
 which **returns**:
 
 ~~~
-array(['NL', 'DM', 'PF', 'PE', 'DS', 'PP', 'SH', 'OT', 'DO', 'OX', 'SS',
-       'OL', 'RM', nan, 'SA', 'PM', 'AH', 'DX', 'AB', 'CB', 'CM', 'CQ',
-       'RF', 'PC', 'PG', 'PH', 'PU', 'CV', 'UR', 'UP', 'ZL', 'UL', 'CS',
-       'SC', 'BA', 'SF', 'RO', 'AS', 'SO', 'PI', 'ST', 'CU', 'SU', 'RX',
-       'PB', 'PL', 'PX', 'CT', 'US'], dtype=object)
+array(['SW Isles of Scilly WaveNet Site', 'Hayling Island Waverider',
+       'Firth of Forth WaveNet Site', 'Chesil Waverider', 'M6 Buoy',
+       'Lomond', 'Cardigan Bay', 'West of Hebrides'], dtype=object)
 ~~~
 {: .output}
 
 > ## Challenge - Statistics
 >
-> 1. Create a list of unique site ID's ("buoy_id") found in the waves data. Call it
->   `site_names`. How many unique sites are there in the data? How many unique
+> 1. Create a list of unique site IDs ("buoy_id") found in the waves data. Call it
+>   `site_ids`. How many unique sites are there in the data? How many unique
 >   buoys are in the data?
 >
 > 2. What is the difference between `len(site_names)` and `waves_df['buoy_id'].nunique()`?
@@ -416,17 +380,23 @@ waves_df['Temperature'].describe()
 gives **output**
 
 ~~~
-count    32283.000000
-mean        42.672428
-std         36.631259
-min          4.000000
-25%         20.000000
-50%         37.000000
-75%         48.000000
-max        280.000000
+count    378.000000
+mean      11.509921
+std        2.118865
+min        7.350000
+25%        9.412500
+50%       11.725000
+75%       13.100000
+max       18.000000
 Name: Temperature, dtype: float64
 ~~~
 {: .language-python}
+
+> Note that the value of `count` is not the same as the total number of rows. This is because
+> statistical methods in Pandas ignore NaN ("not a number") values. We can count the total number of
+> of NaNs using `waves_df["Temperature"].isna().sum()`, which returns 356. 356 + 378 is 734, which _is_
+> the total number of rows in the DataFrame
+{: .callout} 
 
 We can also extract one specific metric if we wish:
 
@@ -465,16 +435,13 @@ grouped_data.mean()
 `grouped_data.mean()` **OUTPUT:**
 
 ~~~
-        record_id     month        day         year    plot_id  \
-sex
-F    18036.412046  6.583047  16.007138  1990.644997  11.440854
-M    17754.835601  6.392668  16.184286  1990.480401  11.098282
-
-     hindfoot_length     weight
-sex
-F          28.836780  42.170555
-M          29.709578  42.995379
-
+        record_id	                                                            buoy_id	...                                     Temperature	Spread
+        count   mean        std         min     25%     50%     75%     max     count       mean        ...     75%     max     count      mean         std         min     25%     50%     75%     max
+Site
+Type
+Coastal	  6.0   7.833333    4.445972    2.0     4.75    8.0     10.50   14.0    6.0         4.000000	...     10.125  10.2    6.0         32.00000    21.568496   14.00   15.0    24.5    43.75   67.0
+Ocean   726.0   371.466942  209.779841  1.0     190.25  371.5   552.75  734.0   726.0       14.980716   ...     13.100  18.0    369.0       31.53645    9.913733    10.95   23.0    28.0    36.00   89.0
+2 rows × 80 columns
 ~~~
 {: .output}
 
@@ -483,30 +450,19 @@ summary stats.
 
 > ## Challenge - Summary Data
 >
-> 1. How many buoys are 'Coastal' and how many `Ocean`?
+> 1. How many buoys are 'Coastal' and how many 'Ocean'?
 > 2. What happens when you group by two columns using the following syntax and
 >    then calculate mean values?
 >   - `grouped_data2 = waves_df.groupby(['buoy_id', 'Site Type'])`
 >   - `grouped_data2.mean()`
-> 3. Summarize Temperature values for each site in your data. HINT: you can use the
->   following syntax to only create summary statistics for one column in your data.
->   `by_site['Temperature'].describe()`
+> 3. Summarize Temperature values for each site in your data. 
 >
->
->> ## Did you get #3 right?
->> **A Snippet of the Output from challenge 3 looks like:**
->>
+>> ## Solution to 3
 >> ~~~
->>  site
->>  1     count    1903.000000
->>        mean       51.822911
->>        std        38.176670
->>        min         4.000000
->>        25%        30.000000
->>        50%        44.000000
->>        75%        53.000000
->>        max       231.000000
->>          ...
+>>              count       mean         std     min       25%       50%       75%     max
+>> Site Type
+>> Coastal        6.0   9.800000    0.465833    8.95    9.7125      9.90    10.125    10.2
+>> Ocean        370.0  11.558919    2.109464    8.35    9.4500     11.85    13.100    18.0
 >> ~~~
 >> {: .output}
 > {: .solution}
@@ -520,7 +476,7 @@ ways, but we'll use `groupby` combined with **a `count()` method**.
 
 ~~~
 # Count the number of samples by Country
-country_counts = waves_df.groupby('Country')['record_id'].count()
+    country_counts = waves_df.groupby('Country')['record_id'].count()
 print(country_counts)
 ~~~
 {: .language-python}
@@ -532,12 +488,15 @@ waves_df.groupby('Country')['record_id'].count()['Wales']
 ~~~
 {: .language-python}
 
-> ## Challenge - Make a list
+<!-- > ## Challenge - Make a list
+
+# let's think about this - not sure it adds anything
+
 >
 >  What's another way to create a list of countries and associated `count` of the
 >  records in the data? Hint: you can perform `count`, `min`, etc. functions on
 >  groupby DataFrames in the same way you can perform them on regular DataFrames.
-{: .challenge}
+{: .challenge} -->
 
 ## Basic Math Functions
 
@@ -552,7 +511,17 @@ waves_df['Temperature']*2
 ~~~
 {: .language-python}
 
-# Quick & Easy Plotting Data Using Pandas
+> ## Challenge - maths & formatting
+>
+> Convert the temperature colum to Kelvin (adding 273.15 to every value), and round the answer to 1 decimal place
+>
+>> Solution
+>>
+>> (waves_df["Temperature"] + 273.15).round(1)
+>>
+{: .challenge}
+
+<!-- # Quick & Easy Plotting Data Using Pandas
 
 We can plot our summary stats using Pandas, too.
 
@@ -694,7 +663,7 @@ total_count.plot(kind='bar');
 >>
 >> ![Stacked Bar Plot](../fig/stackedBar.png)
 > {: .solution}
-{: .challenge}
+{: .challenge} -->
 
 [ernst]: http://www.esapubs.org/archive/ecol/E090/118/default.htm
 [figshare-ndownloader]: https://ndownloader.figshare.com/files/2292172
