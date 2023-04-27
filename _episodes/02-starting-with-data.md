@@ -72,6 +72,16 @@ single wave buoy, and the columns represent:
 |------------------|------------------------------------|
 
 
+If we look out to sea, we notice that waves on the sea surface are not simple sinusoids. The surface appears to be composed of random waves of various lengths and periods. How can we describe this complex surface? 
+
+By making some simplifications and assumptions, we fit an idealised 'spectrum' to describe all the energy held in different wave frequencies. This contains information about the wave energy at a point, covering the energy in small ripples (high frequency) to long period (low frequency) swell waves. This figure shows an example idealised JONSWAP spectrum, with the highest energy around wave periods of 11 seconds.
+
+![WaveSpectra](https://user-images.githubusercontent.com/17011250/234795170-53ebf629-6603-4296-8c0c-55bef733071c.png)
+
+We can go a step further, and also associate a wave direction with the amount of energy. These simplifications lead to a 2D wave spectrum at any point in the sea, with dimensions frequency and direction. Directional spreading is a measure of how wave energy for a given sea state is spread as a function of direction of propagation. For example the wave data on the left have a small directional spread, as the waves travel, this can fan out over a wider range of directions.
+
+![Spreading](https://user-images.githubusercontent.com/17011250/234794959-8327f4b0-3e1d-447f-b467-661295d5c707.png)
+
 The first few rows of our first file look like this:
 ~~~
 record_id	buoy_id	Name	Country	Site Type	latitude	longitude	Date	Tz	Peak Direction	Tpeak	Wave Height	Temperature	Spread
