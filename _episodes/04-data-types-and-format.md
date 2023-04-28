@@ -108,7 +108,7 @@ the type of one column in a DataFrame using the syntax
 `dataFrameName[column_name].dtype`:
 
 ~~~
-waves_df['Country'].dtype
+waves_df['Name'].dtype
 ~~~
 {: .language-python}
 
@@ -157,7 +157,7 @@ dtype: object
 
 Note that some of the columns in our wave data are of type `int64`. This means
 that they are 64 bit integers. While others are floating point value
-which means it contains decimals. The `Country` and `Site Type` columns are objects which
+which means it contains decimals. The `Name` and `SeaState` columns are objects which
 means they contain strings.
 
 ## Working With Integers and Floats
@@ -312,12 +312,12 @@ in the future when you (or someone else) explores your data.
 Let's explore the NaN values in our data a bit further. Using the tools we
 learned in lesson 02, we can figure out how many rows contain NaN values for
 Temperature. We can also create a new subset from our data that only contains rows
-with Temperature values > -50 (i.e., select meaningful seawater temperature values):
+with wave heights values > 0 (i.e., select meaningful values, we don't have negative water levels):
 
 ~~~
-len(waves_df[pd.isnull(waves_df.Temperature)])
-# How many rows have Temperature values?
-len(waves_df[waves_df.Temperature > 0])
+len(waves_df[pd.isnull(waves_df.'Wave Height')])
+# How many rows have Wave Height values?
+len(waves_df[waves_df.'Wave Height' > 0])
 ~~~
 {: .language-python}
 
@@ -336,7 +336,7 @@ values are replaced with 0 is different from when NaN values are simply thrown
 out or ignored.
 
 ~~~
-df1['Temperature'].mean()
+df1['Wave Height'].mean()
 ~~~
 {: .language-python}
 
@@ -346,10 +346,10 @@ df1['Temperature'].mean()
 {: .output}
 
 We can fill NaN values with any value that we chose. The code below fills all
-NaN values with a mean for all Temperature values.
+NaN values with a mean for all Wave Height values.
 
 ~~~
-df1['Temperature'] = waves_df['Temperature'].fillna(waves_df['Temperature'].mean())
+df1['Wave Height'] = waves_df['Wave Height'].fillna(waves_df['Wave Height'].mean())
 ~~~
 {: .language-python}
 
