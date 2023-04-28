@@ -45,12 +45,15 @@ directory structure, however, that is not our focus today.
 
 ### Our Data
 
+We are studying ocean waves and temperature in the seas around the UK.
 
 For this lesson we will be using a subset of data from Centre for Environment Fisheries and Aquaculture Science (Cefas). 
-WaveNet, Cefas’ strategic wave monitoring network for the United Kingdom, provides a single source of real-time wave data from a network of wave buoys located in areas at risk from flooding.
-https://wavenet.cefas.co.uk/
+WaveNet, Cefas’ strategic wave monitoring network for the United Kingdom, provides a single source of real-time wave data from a network of wave buoys located in areas at risk from flooding. https://wavenet.cefas.co.uk/ 
 
-We are studying the wave height and temperature in the seas around the UK. 
+When it is very windy or storms pass-over large sea areas, surface waves grow from short choppy wind-sea waves into powerful swell waves. The height and energy of the waves is larger in winter time, when there are more storms. wind-sea waves have short wavelengths / wave periods (like ripples) while swell waves have longer periods (at a lower frequency).
+
+The example file contains a obervations of sea temperatures, and waves properties at different buoys around the UK. 
+ 
 The dataset is stored as a `.csv` file: each row holds information for a
 single wave buoy, and the columns represent:
 
@@ -59,27 +62,28 @@ single wave buoy, and the columns represent:
 |record_id         | Unique id for the observation      |
 |buoy_id           | Unique id for the wave buoy        |
 |Name              | Name of buoy                       |
-|latitude          | Latitude of buoy  (degrees)        |
-|longitude         | Longitude of buoy (degrees)        |
-|Country           | Country operating the wave buoy    |
-|Date              | Date in day/month/year             |
 |Tz	               | The average wave period            |
 |Peak Direction	   | The direction at Tpeak             |
 |Tpeak	           | Dominant wave period               |
-|Wave Height	   | Significant wave height in metres  |
+|Wave Height	     | Significant wave height in metres  |
 |Temperature       | Water temperature in degrees C     |
 |Spread	           | The directional spread at Tpeak    |
+|Operations	       | sea saftey classification          |
+|Seastate	         | partitioned by period              |
+|Quadrant	         | prevailing wave direction          |
 |------------------|------------------------------------|
 
 
 The first few rows of our first file look like this:
 ~~~
-record_id	buoy_id	Name	Country	Site Type	latitude	longitude	Date	Tz	Peak Direction	Tpeak	Wave Height	Temperature	Spread
-1	14	SW Isles of Scilly WaveNet Site	England	Ocean	49.82	-6.54	17/04/2023	7.2	263	10	1.8	10.8	26
-2	7	Hayling Island Waverider	England	Coastal	50.73	-0.96	17/04/2023	4	193	11.1	0.2	10.2	14
-3	5	Firth of Forth WaveNet Site	Scotland	Ocean	56.19	-2.5	17/04/2023	3.7	115	4.5	0.6	7.8	28
-4	3	Chesil Waverider	England	Coastal	50.6	-2.52	17/04/2023	5.5	225	8.3	0.5	10.2	48
-5	10	M6 Buoy	Ireland	Ocean	53.06	-15.93	17/04/2023	7.6	240	11.7	4.5	11.5	89
+record_id	buoy_id	Name	Date	Tz	Peak Direction	Tpeak	Wave Height	Temperature	Spread	Operations	Seastate	Quadrant
+1	14	SW Isles of Scilly WaveNet Site	17/04/2023	7.2	263	10	1.8	10.8	26	 crew 	swell	west
+2	7	Hayling Island Waverider	17/04/2023	4	193	11.1	0.2	10.2	14	 crew 	swell	south
+3	5	Firth of Forth WaveNet Site	17/04/2023	3.7	115	4.5	0.6	7.8	28	 crew 	windsea	east
+4	3	Chesil Waverider	17/04/2023	5.5	225	8.3	0.5	10.2	48	 crew 	swell	south
+5	10	M6 Buoy	17/04/2023	7.6	240	11.7	4.5	11.5	89	no go  	swell	west
+6	9	Lomond	17/04/2023	4	NaN	NaN	0.5	NaN	NaN	 crew 	swell	north
+7	2	Cardigan Bay	17/04/2023	5.9	239	10.5	0.69	9.9	18	 crew 	swell	west
 ~~~
 {: .output}
 
@@ -361,7 +365,7 @@ array(['SW Isles of Scilly WaveNet Site', 'Hayling Island Waverider',
 >   `site_ids`. How many unique sites are there in the data? How many unique
 >   buoys are in the data?
 >
-> 2. What is the difference between `len(site_names)` and `waves_df['buoy_id'].nunique()`?
+> 2. What is the difference between `len(buoy_id)` and `waves_df['buoy_id'].nunique()`?
 {: .challenge}
 
 # Groups in Pandas
@@ -409,13 +413,13 @@ waves_df['Temperature'].count()
 ~~~
 {: .language-python}
 
-But if we want to summarize by one or more variables, for example Site Type, we can
+But if we want to summarize by one or more variables, for example Seastate, we can
 use **Pandas' `.groupby` method**. Once we've created a groupby DataFrame, we
 can quickly calculate summary statistics by a group of our choice.
 
 ~~~
-# Group data by Site Type
-grouped_data = waves_df.groupby('Site Type')
+# Group data by Seastate
+grouped_data = waves_df.groupby('Seastate')
 ~~~
 {: .language-python}
 
@@ -425,9 +429,9 @@ median, max, min, std and count for a particular column in the data. Pandas'
 numeric data.
 
 ~~~
-# Summary statistics for all numeric columns by Site Type
+# Summary statistics for all numeric columns by Seastate
 grouped_data.describe()
-# Provide the mean for each numeric column by Site Type
+# Provide the mean for each numeric column by Seastate
 grouped_data.mean()
 ~~~
 {: .language-python}
@@ -450,12 +454,12 @@ summary stats.
 
 > ## Challenge - Summary Data
 >
-> 1. How many buoys are 'Coastal' and how many 'Ocean'?
+> 1. How many records have the prevailing wave direction (Quadrant) 'north' and how many 'west'?
 > 2. What happens when you group by two columns using the following syntax and
 >    then calculate mean values?
->   - `grouped_data2 = waves_df.groupby(['buoy_id', 'Site Type'])`
+>   - `grouped_data2 = waves_df.groupby(['Seastate', 'Quadrant'])`
 >   - `grouped_data2.mean()`
-> 3. Summarize Temperature values for each site in your data. 
+> 3. Summarize Temperature values for swell and windsea states in your data. 
 >
 >> ## Solution to 3
 >> ~~~
@@ -470,27 +474,27 @@ summary stats.
 
 ## Quickly Creating Summary Counts in Pandas
 
-Let's next count the number of samples for each Country. We can do this in a few
+Let's next count the number of records for each buoy. We can do this in a few
 ways, but we'll use `groupby` combined with **a `count()` method**.
 
 
 ~~~
-# Count the number of samples by Country
-    country_counts = waves_df.groupby('Country')['record_id'].count()
-print(country_counts)
+# Count the number of samples by Name
+    Name_counts = waves_df.groupby('Name')['record_id'].count()
+print(Name_counts)
 ~~~
 {: .language-python}
 
-Or, we can also count just the rows that have the Country "Wales":
+Or, we can also count just the rows that have the Name "SW Isle of Scilly WaveNet Site":
 
 ~~~
-waves_df.groupby('Country')['record_id'].count()['Wales']
+waves_df.groupby('Name')['record_id'].count()['SW Isle of Scilly WaveNet Site']
 ~~~
 {: .language-python}
 
 <!-- > ## Challenge - Make a list
 
-# let's think about this - not sure it adds anything
+# let's think about this - not sure it adds anything - or could this be where we do an example of nunique?
 
 >
 >  What's another way to create a list of countries and associated `count` of the
@@ -628,9 +632,9 @@ total_count.plot(kind='bar');
 >> Below we'll use `.unstack()` on our grouped data to figure out the total Temperature that each country contributed to each site.
 >>
 >> ~~~
->> by_site_country = waves_df.groupby(['buoy_id', 'Country'])
->> site_country_count = by_site_country['Temperature'].sum()
->> site_country_count.unstack()
+>> by_site_Seastate = waves_df.groupby(['buoy_id', 'Seastate'])
+>> site_Seastate_count = by_site_Seastate['Temperature'].sum()
+>> site_Seastate_count.unstack()
 >> ~~~
 >> {: .language-python }
 >>
@@ -647,15 +651,15 @@ total_count.plot(kind='bar');
 >> ~~~
 >> {: .output}
 >>
->> Now, create a stacked bar plot with that data where the temperatures for each Country are stacked by site.
+>> Now, create a stacked bar plot with that data where the temperatures for each Seastate are stacked by site.
 >>
 >> Rather than display it as a table, we can plot the above data by stacking the values of each country as follows:
 >>
 >> ~~~
->> by_site_country= waves_df.groupby(['buoy_id', 'Country'])
->> site_country_count = by_site_country['Temperature'].sum()
->> spc = site_country_count.unstack()
->> s_plot = spc.plot(kind='bar', stacked=True, title="Total Temperature by site and country")
+>> by_site_Seastate= waves_df.groupby(['buoy_id', 'Country'])
+>> site_Seastate_count = by_site_Seastate['Temperature'].sum()
+>> spc = site_Seastate_count.unstack()
+>> s_plot = spc.plot(kind='bar', stacked=True, title="Total Temperature by site and Seastate")
 >> s_plot.set_ylabel("Temperature")
 >> s_plot.set_xlabel("Plot")
 >> ~~~
