@@ -155,32 +155,32 @@ pd.read_csv("data/waves.csv")
 The above command yields the **output** below:
 
 ~~~
-        record_id buoy_id               Name    Country Site Type latitude longitude       Date   Tz Peak Direction Tpeak Wave Height Temperature Spread
-0               1      14 SW Isles of Scilly    England     Ocean    49.82     -6.54 17/04/2023 7.20          263.0  10.0         1.8        10.8   26.0
+        record_id buoy_id               Name          Date   Tz Peak Direction Tpeak Wave Height Temperature Spread
+0               1      14 SW Isles of Scilly    17/04/2023 7.20          263.0  10.0         1.8        10.8   26.0
                                 WaveNet Site
-1               2       7     Hayling Island    England   Coastal    50.73     -0.96 17/04/2023 4.00          193.0  11.1         0.2        10.2   14.0
+1               2       7     Hayling Island    17/04/2023 4.00          193.0  11.1         0.2        10.2   14.0
                                    Waverider
-2               3       5     Firth of Forth    Scotland      NaN    56.19     -2.50 17/04/2023 3.70          115.0   4.5         0.6         7.8   28.0
+2               3       5     Firth of Forth    17/04/2023 3.70          115.0   4.5         0.6         7.8   28.0
                                 WaveNet Site
-3               4       3	Chesil Waverider    England   Coastal    50.60     -2.52 17/04/2023 5.50          225.0   8.3         0.5        10.2   48.0
-4               5      10           M6 Buoy     Ireland     Ocean    53.06    -15.93 17/04/2023 7.60          240.0  11.7         4.5        11.5   89.0
+3               4       3	Chesil Waverider    17/04/2023 5.50          225.0   8.3         0.5        10.2   48.0
+4               5      10           M6 Buoy     17/04/2023 7.60          240.0  11.7         4.5        11.5   89.0
 ...	...	...	...	...	...	...	...	...	...	...	...	...	...	...
-729           730      14	SW Isles of Scilly  England     Ocean    49.82     -6.54 25/09/2016 1.99            NaN   8.3         NaN         NaN    NaN
+729           730      14	SW Isles of Scilly  25/09/2016 1.99            NaN   8.3         NaN         NaN    NaN
                                   WaveNet Site
-730           731      14   SW Isles of Scilly  England     Ocean    49.82     -6.54 26/09/2016 0.90            NaN   3.9         NaN         NaN    NaN
+730           731      14   SW Isles of Scilly  26/09/2016 0.90            NaN   3.9         NaN         NaN    NaN
                                   WaveNet Site
-731           732      14	SW Isles of Scilly  England     Ocean    49.82     -6.54 27/09/2016 1.42            NaN   4.5         NaN         NaN    NaN
+731           732      14	SW Isles of Scilly  27/09/2016 1.42            NaN   4.5         NaN         NaN    NaN
                                   WaveNet Site
-732           733      14   SW Isles of Scilly  England     Ocean    49.82     -6.54 28/09/2016 1.87            NaN   4.5         NaN         NaN    NaN
+732           733      14   SW Isles of Scilly  28/09/2016 1.87            NaN   4.5         NaN         NaN    NaN
                                   WaveNet Site
-733           734      14	SW Isles of Scilly  England     Ocean    49.82     -6.54 29/09/2016 1.69            NaN   4.8         NaN         NaN    NaN
+733           734      14	SW Isles of Scilly  29/09/2016 1.69            NaN   4.8         NaN         NaN    NaN
                                   WaveNet Site
 
-734 rows × 14 columns
+734 rows × 10 columns
 ~~~
 { :.output}
 
-We can see that there were 734 rows parsed. Each row has 14
+We can see that there were 734 rows parsed. Each row has 10
 columns. The first column is the index of the DataFrame. The index is used to
 identify the position of the data, but it is not an actual column of the DataFrame
 (but note that in this instance we also have a `record_id` which is the same as the index, and
@@ -222,15 +222,15 @@ waves_df.head() # The head() method displays the first several lines of a file. 
 ~~~
 {: .language-python}
 ~~~
-        record_id buoy_id               Name    Country Site Type latitude longitude       Date   Tz Peak Direction Tpeak Wave Height Temperature Spread
-0               1      14 SW Isles of Scilly    England     Ocean    49.82     -6.54 17/04/2023 7.20          263.0  10.0         1.8        10.8   26.0
+        record_id buoy_id               Name          Date   Tz Peak Direction Tpeak Wave Height Temperature Spread
+0               1      14 SW Isles of Scilly    17/04/2023 7.20          263.0  10.0         1.8        10.8   26.0
                                 WaveNet Site
-1               2       7     Hayling Island    England   Coastal    50.73     -0.96 17/04/2023 4.00          193.0  11.1         0.2        10.2   14.0
+1               2       7     Hayling Island    17/04/2023 4.00          193.0  11.1         0.2        10.2   14.0
                                    Waverider
-2               3       5     Firth of Forth    Scotland      NaN    56.19     -2.50 17/04/2023 3.70          115.0   4.5         0.6         7.8   28.0
+2               3       5     Firth of Forth    17/04/2023 3.70          115.0   4.5         0.6         7.8   28.0
                                 WaveNet Site
-3               4       3	Chesil Waverider    England   Coastal    50.60     -2.52 17/04/2023 5.50          225.0   8.3         0.5        10.2   48.0
-4               5      10           M6 Buoy     Ireland     Ocean    53.06    -15.93 17/04/2023 7.60          240.0  11.7         4.5        11.5   89.0
+3               4       3	Chesil Waverider    17/04/2023 5.50          225.0   8.3         0.5        10.2   48.0
+4               5      10           M6 Buoy     17/04/2023 7.60          240.0  11.7         4.5        11.5   89.0
 ~~~
 {: .output}
 
@@ -261,10 +261,6 @@ waves_df.dtypes
 record_id           int64
 buoy_id             int64
 Name               object
-Country            object
-Site Type          object
-latitude          float64
-longitude         float64
 Date               object
 Tz                float64
 Peak Direction    float64
@@ -335,8 +331,7 @@ waves_df.columns
 which **returns**:
 
 ~~~
-Index(['record_id', 'buoy_id', 'Name', 'Country', 'Site Type', 'latitude',
-       'longitude', 'Date', 'Tz', 'Peak Direction', 'Tpeak', 'Wave Height',
+Index(['record_id', 'buoy_id', 'Name', 'Date', 'Tz', 'Peak Direction', 'Tpeak', 'Wave Height',
        'Temperature', 'Spread'],
       dtype='object')
 ~~~
@@ -426,7 +421,7 @@ grouped_data = waves_df.groupby('Seastate')
 The **pandas function `describe`** will return descriptive stats including: mean,
 median, max, min, std and count for a particular column in the data. Pandas'
 `describe` function will only return summary values for columns containing
-numeric data.
+numeric data (does this always make sense?)
 
 ~~~
 # Summary statistics for all numeric columns by Seastate
