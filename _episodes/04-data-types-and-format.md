@@ -240,6 +240,182 @@ float(b)
 ~~~
 {: .output}
 
+## Working with dates
+
+You've probably noticed that one of the columns in our `waves_df` DataFrame represents the time at which the measurement was taken. As with all other non-numeric types, Pandas automatically set the type of
+this column as `Object`. However, because we know it's a date, we can cast is a Date type. For the purposes of this section, let's create a new Pandas Series of the Date values:
+
+~~~
+dates = waves_df["Date"]
+~~~
+{: .language-python}
+
+We can use the `to_datetime` function to convert the values in this Series to a Date type:
+
+~~~
+# note that we're overwriting the variable we created
+dates = pd.to_datetime(dates, format="%d/%m/%Y %H:%M")
+~~~
+{: .language-python}
+
+What does the value given to the `format` argument mean? Because there is no consistent way of specifying dates, Python has a set of codes to specify the elements. We use these codes to tell Python the format
+of the date we want to convert. The full list of codes is at https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes, but we're using:
+
+%d : Day of the month as a zero-padded decimal number.
+%m : Month as a zero-padded decimal number.
+%Y : Year with century as a decimal number.
+%H : Hour (24-hour clock) as a zero-padded decimal number.
+%M : Minute as a zero-padded decimal number.
+
+Let's take an individual value and see some of the things we can do with it
+
+~~~
+date1 = type(dates.iloc[0])
+~~~
+
+ - We'll look at indexing more in the next episode.
+
+We can see that it's now of a DateTime type:
+
+~~~
+type(date1)
+~~~
+{: .language-python}
+
+~~~
+pandas._libs.tslibs.timestamps.Timestamp
+~~~
+{: .output}
+
+We can now take advantage of Pandas' (and Python's) powerful methods of dealing with dates, which we couldn't have easily done while it was a String. For example:
+
+ - The day of the week the measurement was taken (indexed from Monday being 0):
+
+~~~
+# note that this is a statement, so no brackets
+date1.day_of_week
+~~~
+{: .language-python}
+
+ - The name of the day of the week:
+
+~~~
+# note that this is a function, so there are brackets
+date1.day_name()
+~~~
+{: .language-python}
+
+ - We can also determine the day of the year:
+
+~~~
+date1.day_of_year
+~~~
+{: .language-python}
+
+This is a convenient place to highlight that the `apply` method is one way to run a function on every element of a Pandas data structure, without needing to write a loop. For example, to get the length of 
+the Buoy Station Names, we can write:
+
+~~~
+waves_df["Names"].apply(len)
+~~~
+{: .language-python}
+
+which will return
+
+~~~
+0       31
+1       24
+2       27
+3       16
+4        7
+        ..
+2068    16
+2069    16
+2070    16
+2071    16
+2072    16
+Name: Name, Length: 2073, dtype: int64
+~~~
+{: .output}
+
+Similarly, we can create a new Series which contains the day of the week all of the measurements were taken on:
+
+~~~
+days_of_measurements = dates.apply(pd.Timestamp.day_name)
+~~~
+{: .language-python}
+
+However, note that we have to give the full, _qualified_ name of the function - this is something we determine from the documentation (e.g. https://pandas.pydata.org/docs/reference/api/pandas.Timestamp.day_name.html).
+
+Are there any days of the week that measurements weren't taken on? We can either look at the unique string values, or the result of `nunique` which we saw earlier:
+
+~~~
+days_of_measurements = dates.apply(pd.Timestamp.day_name)
+print(days_of_measurements)
+print(len(days_of_measurements.unique()))
+print(days_of_measurements.nunique())
+~~~
+{: .language-python}
+
+If we want to do anything more complex with dates, we may need to use Python's functions (the Pandas functions are mostly convenience functions for some of the underlying Python equivalent ones).
+Looking again at the DateTime codes, we can see that `%a` will give us the short version of the day of the week. The DateTime Library has a function for formatting DateTime objects: `datetime.datetime.strftime`,
+but now we need to give as argument to the function we're going to use in `apply`. The `args` argument allows us to do this:
+
+~~~
+# need to import the DateTime library
+import datetime
+dates.apply(datetime.datetime.strftime, args=("%a",))
+~~~
+{: .language-python}
+
+>## Watch out for tuples!
+> _Tuples_ are data structure similar to a list, but are _immutable_. They are created using parentheses, with items separated by commas: 
+> `my_tuple = (1, 2, 3)`
+> However, putting parentheses around a single object does not make it a tuple! Creating a tuple of length 1 still needs a trailing comma.
+> Test these: `type(("a"))` and `type(("a",))`.
+> The `args` argument of `apply` expects a tuple, so if there's only one argument to give we need to use the trailing comma. 
+{: .callout}
+
+We can also find the time differences between two dates - Pandas (and Python) refer to these as _Time Deltas_. We can take the difference between two timestamps, and Python will
+automatically create a TimeDelta for us:
+
+~~~
+date2 = dates.iloc[1]
+time_diff = date2 - date1
+print(time_diff)
+print(type(time_diff))
+~~~
+{: .language-python}
+
+~~~
+Timedelta('0 days 00:30:00')
+pandas._libs.tslibs.timedeltas.Timedelta
+~~~
+{: .output}
+
+> ## Rounding
+> Using the `apply` function, round the values in the Wave Height column to the nearest whole number and store the resulting Series in a new variable called `rounded_heights`.
+> What would you need to change to round to 2 decimal place?
+>
+> > ~~~
+> > rounded_heights = waves_df["Wave Height"].apply(round)
+> > waves_df["Wave Height"].apply(round, args=(1,))
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
+
+> ## Exploring Timedeltas 
+> Have a look at the Pandas Timedelta documentation. How could you print only the minutes difference from our `time_diff` variable? 
+>
+> > There are 2 ways
+> > ~~~
+> > print(time_diff.components.minutes)
+> > print(time_diff.seconds/60)
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
 
 ## Working With Our Wave Data
 
