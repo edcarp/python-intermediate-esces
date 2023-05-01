@@ -25,9 +25,6 @@ keypoints:
        subsetting."
 ---
 
-
-*** NB CHris - change the order, so it's 04 (formats) first, then 03 (slicing and subetting)
-
 In the first episode of this lesson, we read a CSV file into a pandas' DataFrame. We learned how to:
 
 - save a DataFrame to a named object,
