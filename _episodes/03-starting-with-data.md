@@ -62,6 +62,7 @@ single wave buoy, and the columns represent:
 |record_id         | Unique id for the observation      |
 |buoy_id           | Unique id for the wave buoy        |
 |Name              | Name of buoy                       |
+|Date              | Date of measurement in day/month/year |
 |Tz	               | The average wave period            |
 |Peak Direction	   | The direction at Tpeak             |
 |Tpeak	           | Dominant wave period               |
