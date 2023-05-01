@@ -161,11 +161,13 @@ NOTE: This process of joining tables is similar to what we do with tables in an
 SQL database.
 
 For example, the `waves_LUT.csv` file that we've been working with is a lookup
-table. This table contains the name, manufacturer, water depth and operator for 16 buoys. The
-buoy_id code is unique for each line. These buoys are identified in our waves
-data as well using the unique species code. Rather than adding 4 more columns
-for the depth, operator etc. to each of the multiple line waves data table, we
-can maintain the shorter table with the species information. When we want to
+table. This table contains the "meta data" for 15 buoys. This new table details 
+where the buoy is (Country, Site Type, latitude and longitude), as well as water 
+depth and information about the observing platform (	Manufacturer,	Type, operator)
+The Name and buoy_id code are unique for each line. These buoys are identified in our waves
+data as well using the buoy_id (and more memorable 'Name'). Rather than adding 8 more
+columns to incluide these new meta data  to each of the multiple line waves data table, we
+can maintain the shorter table with the buoy information. When we want to
 access that information, we can create a query that joins the additional columns
 of information to the waves data.
 
@@ -173,8 +175,8 @@ Storing data in this way has many benefits including:
 
 1. It ensures consistency in the spelling of buoy attributes (site name, manufacturer etc.) 
    given each buoy is only entered once. Imagine the possibilities
-   for spelling errors when entering the genus and species thousands of times!
-2. It also makes it easy for us to make changes to the species information once
+   for spelling errors when copying the meta data thousands of times!
+2. It also makes it easy for us to make changes or add information about the buoys once
    without having to find each instance of it in the larger wave observations data.
 3. It optimizes the size of our data.
 
@@ -404,8 +406,8 @@ The pandas `merge` function supports two other join types:
 > Create a new DataFrame by joining the contents of the `waves.csv` and
 > `waves_LUT.csv` tables. Then calculate and plot the distribution of:
 >
-> 1. Depth by Site Type
-> 2. Depth by Country by Site Type
+> 1. Wave Height by Depth
+> 2. Temperature by Site Type by Country 
 {: .challenge}
  
 > ## Challenge - filter by availability
@@ -414,7 +416,7 @@ The pandas `merge` function supports two other join types:
 >    data availability and access rights associated with each buoy. Use that data to summarize the number of
 >    observations which are reusable for research.
 > 2. Again using `access.csv` file, use that data to summarize the number of data records from operational 
-     buoys which are available in Cosatal versus Ocean waters.
+     buoys which are available in Coastal versus Ocean waters.
 
 {: .challenge}
 
