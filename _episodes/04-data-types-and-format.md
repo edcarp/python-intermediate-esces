@@ -108,7 +108,7 @@ the type of one column in a DataFrame using the syntax
 `dataFrameName[column_name].dtype`:
 
 ~~~
-waves_df['Country'].dtype
+waves_df['Name'].dtype
 ~~~
 {: .language-python}
 
@@ -157,7 +157,8 @@ dtype: object
 
 Note that some of the columns in our wave data are of type `int64`. This means
 that they are 64 bit integers. While others are floating point value
-which means it contains decimals. The `Country` and `Site Type` columns are objects which
+which means it contains decimals. The `Name` 'Operations',	'Seastate', 
+and	'Quadrant' columns are objects which
 means they contain strings.
 
 ## Working With Integers and Floats
