@@ -292,17 +292,17 @@ using either label or integer-based indexing.
   they are interpreted as a *label*.
 - `iloc` is primarily *integer* based indexing
 
-
-*** NB Chris - we have to do the date handling section first, before we have a variable holding year etc.
-to use in this section ***
+In this example dataset we know that the first 14 rows are from 2023. 
+We would then like to select just 3 columns of data to focus on: Date, Tpeak, and	Wave Height
 
 To select a subset of rows **and** columns from our DataFrame, we can use the
-`iloc` method. For example, we can select month, day and year (columns 2, 3
-and 4 if we start counting at 1), like this:
+`iloc` method. For example, we can select Date, Tpeak and Wave Height (columns 3, 6
+and 7 if we start counting at 0), and the first 14 rows like this:
 
 ~~~
 # iloc[row slicing, column slicing]
-waves_df.iloc[0:3, 1:4]
+waves_df.iloc[0:14, [3,6,7]]
+
 ~~~
 {: .language-python}
 
@@ -316,9 +316,9 @@ which gives the **output**
 ~~~
 {: .output}
 
-Notice that we asked for a slice from 0:3. This yielded 3 rows of data. When you
-ask for 0:3, you are actually telling Python to start at index 0 and select rows
-0, 1, 2 **up to but not including 3**.
+Notice that we asked for a slice from 0:14. This yielded 14 rows of data. When you
+ask for 0:14, you are actually telling Python to start at index 0 and select rows
+0, 1, 2 **up to but not including 14**.
 
 Let's explore some other ways to index and select subsets of data:
 
@@ -406,10 +406,10 @@ directly indexing column names.
 ## Subsetting Data using Criteria
 
 We can also select a subset of our data using criteria. For example, we can
-select all rows that have a year value of 2002:
+select all rows that have a temperature less than or equal to 10 degrees
 
 ~~~
-waves_df[waves_df.year == 2002]
+waves_df[waves_df.Temperature <= 10]
 ~~~
 {: .language-python}
 
@@ -433,20 +433,19 @@ record_id  month  day  year  plot_id buoy_id  sex  hindfoot_length  Country
 ~~~
 {: .language-python}
 
-*** CHRIS - what did we decide about handling the date format? Shall we include this? Shall I add year/month/day in as extra columns??? - LMB
 
-
-Or we can select all rows that do not contain the year 2002:
+Or we can select all rows that do not contain values for Tpeak (listed as NaN):
 
 ~~~
-waves_df[waves_df.year != 2002]
+waves_df[waves_df["Tpeak"].isna()]
 ~~~
 {: .language-python}
 
-We can define sets of criteria too:
+We can define sets of criteria too, for example selecting only waves
+with a height between 3.0 and 4.0 metres:
 
 ~~~
-waves_df[(waves_df.year >= 1980) & (waves_df.year <= 1985)]
+waves_df[(waves_df["Wave Height"] >= 3.0) & (waves_df["Wave Height"] < 4.0)]
 ~~~
 {: .language-python}
 
@@ -466,7 +465,7 @@ Experiment with selecting various subsets of the "waves" data.
 >
 > 1. Select a subset of rows in the `waves_df` DataFrame that contain data from
 >   the year 2022 and that contain Temperature values less than or equal to 8. How
->   many rows did you end up with? What did your neighbor get?
+>   many rows did you end up with? What did your neighbour get?
 >
 > 2. You can use the `isin` command in Python to query a DataFrame based upon a
 >   list of values as follows:
@@ -480,11 +479,11 @@ Experiment with selecting various subsets of the "waves" data.
 >   in the "waves" DataFrame. How many records contain these values?
 >
 > 3. Experiment with other queries. Create a query that finds all rows with a
->   Tpeak > or equal to 10.
+>   Tpeak greater than or equal to 10.
 >
 > 4. The `~` symbol in Python can be used to return the OPPOSITE of the
 >   selection that you specify in Python. It is equivalent to **is not in**.
->   Write a query that selects all rows with Country NOT equal to 'England' or 'Wales' in
+>   Write a query that selects all rows with Quadrant NOT equal to 'south' or 'east' in
 >   the "waves" data.
 {: .challenge}
 
@@ -574,13 +573,13 @@ asking Python to select rows that have a `NaN` value of Temperature.
 > ## Challenge - Putting it all together
 >
 > 1. Create a new DataFrame that only contains observations with Site Type values that
->   are **not** in Ocean or Coastal. Print the number of rows in this new DataFrame.
+>   are **not** from the east or south. Print the number of rows in this new DataFrame.
 >   Verify the result by comparing the number of rows in the new DataFrame with
 >   the number of rows in the waves DataFrame where Site Type is null.
 >
-> 2. Create a new DataFrame that contains only observations that are of Country
->  Wales or Ireland and where Tpeak values are greater than 10. Create a stacked bar
->   plot of average Tpeak by plot with Ocean vs Coastal values stacked for each
+> 2. Create a new DataFrame that contains only observations that are of Quadrant
+>  north or west and where Tpeak values are greater than 10. Create a stacked bar
+>   plot of average Tpeak by plot with north and west values stacked for each
 >   plot.
 {: .challenge}
 
