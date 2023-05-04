@@ -151,14 +151,13 @@ species_id          object
 sex                 object
 hindfoot_length    float64
 weight             float64
-dtype: object
 ~~~
 {: .language-python }
 
 Note that some of the columns in our wave data are of type `int64`. This means
 that they are 64 bit integers. While others are floating point value
-which means it contains decimals. The `Country` and `Site Type` columns are objects which
-means they contain strings.
+which means it contains decimals. The `Operations`	`Seastate`	`Quadrant` and
+`Name` columns are objects which means they contain strings.
 
 ## Working With Integers and Floats
 
@@ -520,6 +519,9 @@ df1['Temperature'].mean()
 38.751976145601844
 ~~~
 {: .output}
+
+This sounds like it could be a 'real' temperature value, but the answer is biased 'low' 
+because we have included a load of erroneous zeros - instead of using NaNs for our missing values.
 
 We can fill NaN values with any value that we chose. The code below fills all
 NaN values with a mean for all Temperature values.
