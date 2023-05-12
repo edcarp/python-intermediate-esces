@@ -50,6 +50,16 @@ We are studying ocean waves and temperature in the seas around the UK.
 For this lesson we will be using a subset of data from Centre for Environment Fisheries and Aquaculture Science (Cefas). 
 WaveNet, Cefas’ strategic wave monitoring network for the United Kingdom, provides a single source of real-time wave data from a network of wave buoys located in areas at risk from flooding. https://wavenet.cefas.co.uk/ 
 
+If we look out to sea, we notice that waves on the sea surface are not simple sinusoids. The surface appears to be composed of random waves of various lengths and periods. How can we describe this complex surface?
+ 
+By making some simplifications and assumptions, we fit an idealised 'spectrum' to describe all the energy held in different wave frequencies. This describes the wave energy at a point, covering the energy in small ripples (high frequency) to long period (low frequency) swell waves. This figure shows an example idealised spectrum, with the highest energy around wave periods of 11 seconds.
+ 
+![An idealised wave spectra for a wave period of 11 seconds](../fig/wave_spectra.png)
+
+We can go a step further, and also associate a wave direction with the amount of energy. These simplifications lead to a 2D wave spectrum at any point in the sea, with dimensions frequency and direction. Directional spreading is a measure of how wave energy for a given sea state is spread as a function of direction of propagation. For example the wave data on the left have a small directional spread, as the waves travel, this can fan out over a wider range of directions.
+
+![A rose diagram of wave energy vs direction](../fig/waves_spreading.png)
+
 When it is very windy or storms pass-over large sea areas, surface waves grow from short choppy wind-sea waves into powerful swell waves. The height and energy of the waves is larger in winter time, when there are more storms. wind-sea waves have short wavelengths / wave periods (like ripples) while swell waves have longer periods (at a lower frequency).
 
 The example file contains a obervations of sea temperatures, and waves properties at different buoys around the UK. 
@@ -379,7 +389,7 @@ waves_df['Temperature'].describe()
 {: .language-python}
 gives **output**
 
-~~~
+~~~UPDATE
 count    378.000000
 mean      11.509921
 std        2.118865
@@ -428,7 +438,7 @@ numeric data (does this always make sense?)
 # Summary statistics for all numeric columns by Seastate
 grouped_data.describe()
 # Provide the mean for each numeric column by Seastate
-grouped_data.mean()
+    grouped_data.mean()
 ~~~
 {: .language-python}
 
