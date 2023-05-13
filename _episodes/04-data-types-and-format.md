@@ -80,7 +80,8 @@ is in the table below:
 
 Now that we're armed with a basic understanding of numeric and text data
 types, let's explore the format of our wave data. We'll be working with the
-same `waves.csv` dataset that we've used in previous lessons.
+same `waves.csv` dataset that we've used in previous lessons. If you've started a new
+notebook, you'll need to load Pandas and the dataset again:
 
 ~~~
 # Make sure pandas is loaded
@@ -103,12 +104,12 @@ pandas.core.frame.DataFrame
 ~~~
 {: .output}
 
-Next, let's look at the structure of our waves data. In pandas, we can check
+Next, let's look at the structure of our waves data. In Pandas, we can check
 the type of one column in a DataFrame using the syntax
 `dataFrameName[column_name].dtype`:
 
 ~~~
-waves_df['Country'].dtype
+waves_df['Name'].dtype
 ~~~
 {: .language-python}
 
@@ -142,15 +143,19 @@ waves_df.dtypes
 which **returns**:
 
 ~~~
-record_id            int64
-month                int64
-day                  int64
-year                 int64
-plot_id              int64
-species_id          object
-sex                 object
-hindfoot_length    float64
-weight             float64
+record_id           int64
+buoy_id             int64
+Name               object
+Date               object
+Tz                float64
+Peak Direction    float64
+Tpeak             float64
+Wave Height       float64
+Temperature       float64
+Spread            float64
+Operations         object
+Seastate           object
+Quadrant           object
 dtype: object
 ~~~
 {: .language-python }
@@ -437,15 +442,15 @@ dtype('float64')
 
 > ## Changing Types
 >
-> Try converting the column `plot_id` to floats using
+> Try converting the column `buoy_id` to floats using
 >
 > ~~~
-> waves_df.plot_id.astype("float")
+> waves_df.buoy_id.astype("float")
 > ~~~
 > {: .language-python}
 >
 > Next try converting `Temperature` to an integer. What goes wrong here? What is Pandas telling you?
-> We will talk about some solutions to this later.
+> We will talk about some solutions to this in the section below.
 {: .challenge}
 
 ## Missing Data Values - NaN
@@ -464,7 +469,7 @@ waves_df['Temperature'].mean()
 {: .language-python}
 
 ~~~
-42.672428212991356
+12.872890559732667
 ~~~
 {: .output}
 
@@ -483,12 +488,12 @@ NaN. However it is good practice to get in the habit of intentionally marking
 cells that have no data, with a no data value! That way there are no questions
 in the future when you (or someone else) explores your data.
 
-### Where Are the NaN's?
+### Where Are the NaNs?
 
 Let's explore the NaN values in our data a bit further. Using the tools we
 learned in lesson 02, we can figure out how many rows contain NaN values for
 Temperature. We can also create a new subset from our data that only contains rows
-with Temperature values > -50 (i.e., select meaningful seawater temperature values):
+with Temperature values > 0 (i.e. select meaningful seawater temperature values):
 
 ~~~
 len(waves_df[pd.isnull(waves_df.Temperature)])
@@ -497,13 +502,25 @@ len(waves_df[waves_df.Temperature > 0])
 ~~~
 {: .language-python}
 
-We can replace all NaN values with zeroes using the `.fillna()` method (after
-making a copy of the data so we don't lose our work):
+In our case, all the Temperature values are above zero. You can verify this by either trying to
+select all rows that have temperatures less than or equal to zero (which returns an empty data frame):
+
+```
+waves_df[waves_df.Temperature <= 0]
+```
+{: .language-python}
+
+or, by seeing that the number of rows that have values above zero (1197) added to the
+number of rows with NaN values (876) is equal to the total number of rows in the
+original data frame (2073).
+
+We can replace all NaN values with zeroes using the `.fillna()` method (we might want to
+make a copy of the data so we don't lose our work):
 
 ~~~
 df1 = waves_df.copy()
 # Fill all NaN values with 0
-df1['Temperature'] = df1['Temperature'].fillna(0)
+waves_df['Temperature'] = waves_df['Temperature'].fillna(0)
 ~~~
 {: .language-python}
 
@@ -512,25 +529,38 @@ values are replaced with 0 is different from when NaN values are simply thrown
 out or ignored.
 
 ~~~
-df1['Temperature'].mean()
+waves_df['Temperature'].mean()
 ~~~
 {: .language-python}
 
 ~~~
-38.751976145601844
+7.4331162566329
 ~~~
 {: .output}
 
 We can fill NaN values with any value that we chose. The code below fills all
-NaN values with a mean for all Temperature values.
+NaN values with a mean for all Temperature values. Let's reset our data
 
 ~~~
-df1['Temperature'] = waves_df['Temperature'].fillna(waves_df['Temperature'].mean())
+waves_df = df1.copy()
+waves_df['Temperature'] = waves_df['Temperature'].fillna(waves_df['Temperature'].mean())
 ~~~
 {: .language-python}
 
 We could also chose to create a subset of our data, only keeping rows that do
 not contain NaN values.
+
+Our mean now looks more sensible again:
+
+~~~
+waves_df['Temperature'].mean()
+~~~
+{: .language-python}
+
+~~~
+12.872890559732667
+~~~
+{: .output}
 
 The point is to make conscious decisions about how to manage missing data. This
 is where we think about how our data will be used and how these values will
@@ -543,11 +573,29 @@ results.
 > ## Counting
 > Count the number of missing values per column.
 >
-> > ## Hint
-> > The method `.count()` gives you the number of non-NA observations per column.
-> > Try looking to the `.isnull()` method.
+> ## Hint
+> The method `.count()` gives you the number of non-NA observations per column.
+> Try looking to the `.isnull()` method.
+>
+>> ~~~
+>> for c in surveys_df.columns:
+>>     print(c, len(surveys_df[surveys_df[c].isnull()]))
+>> ~~~
+>> {: .language-python}
+>>
+>> Or, since we've been using the `pd.isnull` function so far:
+>>
+>> ~~~
+>> for c in surveys_df.columns:
+>>     print(c, len(surveys_df[pd.isnull(surveys_df[c])]))
+>> ~~~
+>> {: .language-python}
 > {: .solution}
 {: .challenge}
+
+The answer to the previous challenge shows there's often more than one way to use the _same_ function - in this case we
+can call `.isnull()` on a DataFrame, or pass a DataFrame to it as an argument. In most cases, you will need to read the
+documentation to find out how to use functions.
 
 ## Writing Out Data to CSV
 
@@ -560,6 +608,7 @@ we're not mixing up all of our previous manipulations.
 waves_df = pd.read_csv("data/waves.csv")
 ~~~
 {: .language-python}
+
 Next, let's drop all the rows that contain missing values. We will use the command `dropna`.
 By default, dropna removes rows that contain missing data for even just one column.
 
@@ -568,8 +617,8 @@ df_na = waves_df.dropna()
 ~~~
 {: .language-python}
 
-If you now type `df_na`, you should observe that the resulting DataFrame has 30676 rows
-and 9 columns, much smaller than the 35549 row original.
+If you now type `df_na`, you should observe that the resulting DataFrame has 692 rows
+and 13 columns, much smaller than the 2073 row original.
 
 We can now use the `to_csv` command to export a DataFrame in CSV format. Note that the code
 below will by default save the data into the current working directory. We can
