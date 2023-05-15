@@ -47,7 +47,7 @@ surveys_df
 
 [35549 rows x 9 columns]
 
-LookUpTable_df = pd.read_csv("data/waves_LUT.csv",
+buoys_df = pd.read_csv("data/buoy_data.csv",
                          keep_default_na=False, na_values=[""])
 species_df
   buoy_id             genus          species     taxa
@@ -78,16 +78,18 @@ this is however also the default behaviour of `read_csv`.
 # Concatenating DataFrames
 
 We can use the `concat` function in pandas to append either columns or rows from
-one DataFrame to another.  Let's grab two subsets of our data to see how this
-works.
+one DataFrame to another.  Let's grab another set of waves data (in the same format)
+to see how this works.
 
+waves2020_df = pd.read_csv("data/waves_2020.csv",
+                         keep_default_na=False, na_values=[""])
 ~~~
-# Read in first 10 lines of waves table
-waves_sub = waves_df.head(10)
-# Grab the last 10 rows
-waves_sub_last10 = waves_df.tail(10)
+# Read in first 18 lines of waves table
+waves_sub = waves2020_df.head(18)
+# Grab the last 18 rows
+waves_sub_last18 = waves2020_df.tail(18)
 # Reset the index values to the second dataframe appends properly
-waves_sub_last10 = waves_sub_last10.reset_index(drop=True)
+waves_sub_last18 = waves_sub_last18.reset_index(drop=True)
 # drop=True option avoids adding new index column with old index values
 ~~~
 {: .language-python}
@@ -103,16 +105,16 @@ related in some way).
 
 ~~~
 # Stack the DataFrames on top of each other
-vertical_stack = pd.concat([waves_sub, waves_sub_last10], axis=0)
+vertical_stack = pd.concat([waves_sub, waves_sub_last18], axis=0)
 
 # Place the DataFrames side by side
-horizontal_stack = pd.concat([waves_sub, waves_sub_last10], axis=1)
+horizontal_stack = pd.concat([waves_sub, waves_sub_last18], axis=1)
 ~~~
 {: .language-python}
 
 ### Row Index Values and Concat
 Have a look at the `vertical_stack` dataframe? Notice anything unusual?
-The row indexes for the two data frames `waves_sub` and `waves_sub_last10`
+The row indexes for the two data frames `waves_sub` and `waves_sub_last18`
 have been repeated. We can reindex the new dataframe using the `reset_index()` method.
 
 ## Writing Out Data to CSV
@@ -142,7 +144,7 @@ new_output = pd.read_csv('data/out.csv', keep_default_na=False, na_values=[""])
 > ## Challenge - Combine Data
 >
 > In the data folder, there are two waves data files: `waves.csv` and
-> `waves2020.csv`. Read the data into Python and combine the files to make one
+> `waves_2020.csv`. Read the data into Python and combine the files to make one
 > new data frame. Create a plot of average temperaure by year grouped by buoy_id.
 > Export your results as a CSV and make sure it reads back into Python properly.
 {: .challenge}
@@ -160,7 +162,7 @@ table" containing additional data that we want to include in the other.
 NOTE: This process of joining tables is similar to what we do with tables in an
 SQL database.
 
-For example, the `waves_LUT.csv` file that we've been working with is a lookup
+For example, the `buoys_data.csv` file that we've been working with is a lookup
 table. This table contains the "meta data" for 15 buoys. This new table details 
 where the buoy is (Country, Site Type, latitude and longitude), as well as water 
 depth and information about the observing platform (	Manufacturer,	Type, operator)
@@ -185,21 +187,21 @@ Storing data in this way has many benefits including:
 
 To better understand joins, let's grab the first 10 lines of our data as a
 subset to work with. We'll use the `.head` method to do this. We'll also read
-in a subset of the waves_LUT look-up table.
+in the meta data for the buoys 'buoys_data.csv' as a look-up table.
 
 ~~~
-# Read in first 10 lines of wavess table
+# Read in first 10 lines of waves table
 wave_sub = waves_df.head(10)
 
 # Import a small subset of the species data designed for this part of the lesson.
 # It is stored in the data folder.
-buoys_sub = pd.read_csv('data/waves_LUT.csv', keep_default_na=False, na_values=[""])
+buoys_df = pd.read_csv('data/buoys_data.csv', keep_default_na=False, na_values=[""])
 ~~~
 {: .language-python}
 
-In this example, `buoys_sub` is the lookup table containing buoy names and information
+In this example, `buoys_df` is the lookup table containing buoy names and information
 that we want to join with the data in `wave_sub` to produce a new
-DataFrame that contains all of the columns from both `buoys_sub` *and*
+DataFrame that contains all of the columns from both `buoys_df` *and*
 `waves_df`.
 
 
@@ -213,14 +215,18 @@ identify a (differently-named) column in each DataFrame that contains the same
 information.
 
 ~~~
->>> buoys_sub.columns
+>>> buoys_df.columns
 
-Index([u'buoy_id', u'genus', u'species', u'taxa'], dtype='object')
+Index(['buoy_id', 'Name', 'Manufacturer', 'Depth', 'Type', 'operator',
+       'Country', 'Site Type', 'latitude', 'longitude'],
+      dtype='object')
 
 >>> wave_sub.columns
-
-Index([u'record_id', u'month', u'day', u'year', u'plot_id', u'buoy_id',
-       u'sex', u'hindfoot_length', u'weight'], dtype='object')
+Index(['record_id', 'buoy_id', 'Name', 'Date', 'Tz', 'Peak Direction', 'Tpeak',
+       'Wave Height', 'Temperature', 'Spread', 'Operations', 'Seastate',
+       'Quadrant'],
+      dtype='object')
+      
 ~~~
 {: .language-python}
 
@@ -248,7 +254,7 @@ The pandas function for performing joins is called `merge` and an Inner join is
 the default option:
 
 ~~~
-merged_inner = pd.merge(left=wave_sub, right=buoys_sub, left_on='buoy_id', right_on='buoy_id')
+merged_inner = pd.merge(left=wave_sub, right=buoys_df, left_on='buoy_id', right_on='buoy_id')
 # In this case `buoy_id` is the only column name in  both dataframes, so if we skipped `left_on`
 # And `right_on` arguments we would still get the same result
 
@@ -281,35 +287,37 @@ merged_inner
 ~~~
 {: .output}
 
-The result of an inner join of `wave_sub` and `buoys_sub` is a new DataFrame
-that contains the combined set of columns from `wave_sub` and `buoys_sub`. It
+The result of an inner join of `wave_sub` and `buoys_df` is a new DataFrame
+that contains the combined set of columns from `wave_sub` and `buoys_df`. It
 *only* contains rows that have two-letter species codes that are the same in
-both the `wave_sub` and `buoys_sub` DataFrames. In other words, if a row in
+both the `wave_sub` and `buoys_df` DataFrames. In other words, if a row in
 `wave_sub` has a value of `buoy_id` that does *not* appear in the `buoy_id`
-column of `species`, it will not be included in the DataFrame returned by an
-inner join.  Similarly, if a row in `buoys_sub` has a value of `buoy_id`
+column of `buoys_data`, it will not be included in the DataFrame returned by an
+inner join.  Similarly, if a row in `buoys_df` has a value of `buoy_id`
 that does *not* appear in the `buoy_id` column of `wave_sub`, that row will not
-be included in the DataFrame returned by an inner join.
+be included in the DataFrame returned by an inner join. In our example, there is 
+data from the `M6 Buoy`, but this buot (id 10) does not exist in our look-up table.
 
 The two DataFrames that we want to join are passed to the `merge` function using
 the `left` and `right` argument. The `left_on='buoy_id'` argument tells `merge`
 to use the `buoy_id` column as the join key from `wave_sub` (the `left`
 DataFrame). Similarly , the `right_on='buoy_id'` argument tells `merge` to
-use the `buoy_id` column as the join key from `buoys_sub` (the `right`
+use the `buoy_id` column as the join key from `buoys_df` (the `right`
 DataFrame). For inner joins, the order of the `left` and `right` arguments does
 not matter.
 
 The result `merged_inner` DataFrame contains all of the columns from `wave_sub`
-(record id, month, day, etc.) as well as all the columns from `buoys_sub`
-(buoy_id, genus, species, and taxa).
+(record id, Tz, Peak Direction, Tpeak, etc.) as well as all the columns from 
+`buoys_df` (buoy_id, Name, Manufacturer, Depth, Type, operator, Country, Site,
+Type,	latitude, and longitude).
 
 Notice that `merged_inner` has fewer rows than `wave_sub`. This is an
 indication that there were rows in `waves_df` with value(s) for `buoy_id` that
-do not exist as value(s) for `buoy_id` in `LookUpTable_df`.
+do not exist as value(s) for `buoy_id` in `buoys_df`.
 
 ## Left joins
 
-What if we want to add information from `buoys_sub` to `wave_sub` without
+What if we want to add information from `buoys_df` to `wave_sub` without
 losing any of the information from `wave_sub`? In this case, we use a different
 type of join called a "left outer join", or a "left join".
 
@@ -329,7 +337,7 @@ A left join is performed in pandas by calling the same `merge` function used for
 inner join, but using the `how='left'` argument:
 
 ~~~
-merged_left = pd.merge(left=wave_sub, right=buoys_sub, how='left', left_on='buoy_id', right_on='buoy_id')
+merged_left = pd.merge(left=wave_sub, right=buoys_df, how='left', left_on='buoy_id', right_on='buoy_id')
 merged_left
 ~~~
 {: .language-python}
@@ -365,8 +373,8 @@ result DataFrame from an inner join (`merged_inner`) in terms of the columns it
 contains. However, unlike `merged_inner`, `merged_left` contains the **same
 number of rows** as the original `wave_sub` DataFrame. When we inspect
 `merged_left`, we find there are rows where the information that should have
-come from `buoys_sub` (i.e., `buoy_id`, `genus`, and `taxa`) is
-missing (they contain NaN values):
+come from `buoys_df` (i.e. buoy_id, Name, Manufacturer, Depth, Type, operator,
+Country, Site, Type,	latitude, and longitude). is missing (they contain NaN values):
 
 ~~~
 merged_left[ pd.isnull(merged_left.genus) ]
@@ -384,7 +392,7 @@ merged_left[ pd.isnull(merged_left.genus) ]
 {: .output}
 
 These rows are the ones where the value of `buoy_id` from `wave_sub` (in this
-case, `PF`) does not occur in `buoys_sub`.
+case, `M6 Buoy`) does not occur in `buoys_df`.
 
 
 ## Other join types
@@ -404,10 +412,10 @@ The pandas `merge` function supports two other join types:
 
 > ## Challenge - Distributions
 > Create a new DataFrame by joining the contents of the `waves.csv` and
-> `waves_LUT.csv` tables. Then calculate and plot the distribution of:
+> `buoys_data.csv` tables. Then calculate the mean:
 >
-> 1. Wave Height by Depth
-> 2. Temperature by Site Type by Country 
+> 1. Wave Height by Site Type
+> 2. Temperature by Seastate and by Country 
 {: .challenge}
  
 > ## Challenge - filter by availability
