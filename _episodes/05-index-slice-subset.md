@@ -315,8 +315,8 @@ using either label or integer-based indexing.
 - `iloc` is primarily *integer* based indexing
 
 To select a subset of rows **and** columns from our DataFrame, we can use the
-`iloc` method. For example, for the first 15 rows, we can select record_id, name, and date (columns 0, 2,
-and 4 when we start counting at 0), like this:
+`iloc` method. For example, for the first 3 rows, we can select record_id, name, and date (columns 0, 2,
+and 3 when we start counting at 0), like this:
 
 ~~~
 # iloc[row slicing, column slicing]
@@ -437,12 +437,13 @@ arrays)
 ## Subsetting Data using Criteria
 
 We can also select a subset of our data using criteria. For example, we can
-select all rows that have a buoy_id of 3:
+select all rows that have a temperature less than or equal to 10 degrees
 
 ~~~
-waves_df[waves_df.buoy_id == 3]
+waves_df[waves_df.Temperature <= 10]
 ~~~
-{: .language-python}
+
+
 
 Which produces the following output:
 
@@ -454,17 +455,33 @@ Which produces the following output:
 ~~~
 {: .language-python}
 
-Or we can select all rows that do not contain the buoy_id 1:
+Or, we can select all rows that have a buoy_id of 3:
+
+~~~
+waves_df[waves_df.buoy_id == 3]
+~~~
+{: .language-python}
+
+
+We can also select all rows that do not contain values for Tpeak (listed as NaN):
+
+~~~
+waves_df[waves_df["Tpeak"].isna()]
+~~~
+{: .language-python}
+
+Or we can select all rows that do not contain the buoy_id 3:
 
 ~~~
 waves_df[waves_df.buoy_id != 3]
 ~~~
 {: .language-python}
 
-We can define sets of criteria too:
+We can define sets of criteria too, for example selecting only waves
+with a height between 3.0 and 4.0 metres:
 
 ~~~
-waves_df[(waves_df.Temperature >= 15) & (waves_df.Temperature <= 20)]
+waves_df[(waves_df["Wave Height"] >= 3.0) & (waves_df["Wave Height"] < 4.0)]
 ~~~
 {: .language-python}
 
@@ -530,11 +547,11 @@ Experiment with selecting various subsets of the "waves" data.
 >   in the "waves" DataFrame. How many records contain these values?
 >
 > 3. Experiment with other queries. Create a query that finds all rows with a
->   Tpeak > or equal to 10.
+>   Tpeak greater than or equal to 10.
 >
 > 4. The `~` symbol in Python can be used to return the OPPOSITE of the
 >   selection that you specify in Python. It is equivalent to **is not in**.
->   Write a query that selects all rows with Country NOT equal to 'England' or 'Wales' in
+>   Write a query that selects all rows with Quadrant NOT equal to 'south' or 'east' in
 >   the "waves" data.
 {: .challenge}
 
@@ -627,6 +644,8 @@ asking Python to select rows that have a `NaN` value of Temperature.
 > 2. Create a new DataFrame that contains only observations from the Chesil Waverider of 
 >  Hayling Island Waverider buoys, and where the wave height is less than 50 cm. 
 >
+> 3. Create a new DataFrame that contains only observations that are of Quadrant
+>  north or west and where Tpeak values are greater than 10. 
 >> ~~~
 >> waves_df[(waves_df["buoy_id"].isin([3,7])) & (waves_df["Wave Height"] < 0.5)]
 >> ~~~
