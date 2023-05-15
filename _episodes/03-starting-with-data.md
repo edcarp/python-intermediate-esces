@@ -326,7 +326,7 @@ Let's look at the data using these.
 We've read our data into Python. Next, let's perform some quick summary
 statistics to learn more about the data that we're working with. We might want
 to know how many observations were collected in each site, or how many observations
-were made in each country. We can perform summary stats quickly using groups. But
+were made at each named buoy. We can perform summary stats quickly using groups. But
 first we need to figure out what we want to group by.
 
 Let's begin by exploring our data:
@@ -379,13 +379,13 @@ array(['SW Isles of Scilly WaveNet Site', 'Hayling Island Waverider',
 
 We often want to calculate summary statistics grouped by subsets or attributes
 within fields of our data. For example, we might want to calculate the average
-temperature at all buoys per Site Type.
+Wave Height at all buoys per Seastate.
 
 We can calculate basic statistics for all records in a single column using the
 syntax below:
 
 ~~~
-waves_df['Temperature'].describe()
+waves_df['Wave Height'].describe()
 ~~~
 {: .language-python}
 gives **output**
@@ -405,18 +405,18 @@ Name: Temperature, dtype: float64
 
 > Note that the value of `count` is not the same as the total number of rows. This is because
 > statistical methods in Pandas ignore NaN ("not a number") values. We can count the total number of
-> of NaNs using `waves_df["Temperature"].isna().sum()`, which returns 356. 356 + 378 is 734, which _is_
+> of NaNs using `waves_df["Wave Height"].isna().sum()`, which returns 356. 356 + 378 is 734, which _is_
 > the total number of rows in the DataFrame
 {: .callout} 
 
 We can also extract one specific metric if we wish:
 
 ~~~
-waves_df['Temperature'].min()
-waves_df['Temperature'].max()
-waves_df['Temperature'].mean()
-waves_df['Temperature'].std()
-waves_df['Temperature'].count()
+waves_df['Wave Height'].min()
+waves_df['Wave Height'].max()
+waves_df['Wave Height'].mean()
+waves_df['Wave Height'].std()
+waves_df['Wave Height'].count()
 ~~~
 {: .language-python}
 
@@ -457,6 +457,9 @@ Seastate
 
 The `groupby` command is powerful in that it allows us to quickly generate
 summary stats.
+
+This example shows that the wave height associated with water described as 'swell' 
+is much larger than the wave heights classified as 'windsea'.
 
 > ## Challenge - Summary Data
 >
@@ -514,7 +517,12 @@ If we wanted to, we could perform math on an entire column of our data. For
 example let's convert all the degrees values to radians. 
 
 ~~~
-# Convert degrees to radians
+# convert the directions from degrees to radians
+Sometimes people use different units for directions, for example we could describe 
+the directions in terms of radians (where a full circle 360 degrees = 2*pi radians)
+To do this we need to use the math library which contains the constant pi
+
+# Convert degrees to radians by multiplying all direction values values by pi/180
 import math # the constant pi is stored in the math(s) library, so need to import it
 waves_df['Peak Direction'] * math.pi / 180
 ~~~
