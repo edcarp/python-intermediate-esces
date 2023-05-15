@@ -531,6 +531,9 @@ waves_df['Temperature'].mean()
 ~~~
 {: .output}
 
+This sounds like it could be a 'real' temperature value, but the answer is biased 'low' 
+because we have included a load of erroneous zeros - instead of using NaNs for our missing values.
+
 We can fill NaN values with any value that we chose. The code below fills all
 NaN values with a mean for all Temperature values. Let's first reset our data
 (`waves_df` doesn't currently contain any NaN values after we replaced them with zeros!)
