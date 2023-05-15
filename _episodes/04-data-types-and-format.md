@@ -161,9 +161,9 @@ dtype: object
 {: .language-python }
 
 Note that some of the columns in our wave data are of type `int64`. This means
-that they are 64 bit integers. While others are floating point value
-which means it contains decimals. The `Name` and `SeaState` columns are objects which
-means they contain strings.
+that they are 64 bit integers. Others are floating point value
+which means they contains decimals. The `Name`, 'Operations',	'Seastate', 
+and	'Quadrant' columns are objects which contain strings.
 
 ## Working With Integers and Floats
 
