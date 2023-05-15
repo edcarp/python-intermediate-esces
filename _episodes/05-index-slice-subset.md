@@ -41,7 +41,7 @@ In this lesson, we will explore ways to access different parts of the data using
 ## Loading our data
 
 We will continue to use the waves dataset that we worked with in the last
-episode. Let's reopen and read in the data again:
+episode. If you need to, reopen and read in the data again:
 
 ~~~
 # Make sure pandas is loaded
@@ -61,7 +61,8 @@ numeric ranges, or specific x,y index locations.
 
 ## Selecting data using Labels (Column Headings)
 
-We use square brackets `[]` to select a subset of a Python object. For example,
+We use square brackets `[]` to select a subset of a Python object - this is the
+same whether it's a list, a NumPy ndarray, or a Pandas DataFrame. For example,
 we can select all data from a column named `buoy_id` from the `waves_df`
 DataFrame by name. There are two ways to do this:
 
@@ -70,8 +71,13 @@ DataFrame by name. There are two ways to do this:
 # Method 1: select a 'subset' of the data using the column name
 waves_df['buoy_id']
 
-# Method 2: use the column name as an 'attribute'; gives the same output
+# Method 2: with Pandas, we can also use the column name as an 'attribute' if
+# it's a single word, and this gives the same output
 waves_df.buoy_id
+
+# These also give the same output:
+waves_df['buoy_id'].head()
+waves_df.buoy_id.head()
 ~~~
 {: .language-python}
 
@@ -197,6 +203,14 @@ waves_df[-1:]
 ~~~
 {: .language-python}
 
+Pandas also recognises the _step_ parameter:
+
+~~~
+# return every other row in the first ten rows
+waves_df[0:11:2]
+~~~
+{: .language-python}
+
 We can also reassign values within subsets of our DataFrame.
 
 But before we do that, let's look at the difference between the concept of
@@ -275,6 +289,14 @@ It retains the original values for the first three rows.
   ~~~
   {: .language-python }
 
+## Inserting columns
+
+You can insert a column of data by specifying a column name that doesn't already exist
+and passing a list of the same length as the number of rows; e.g.
+
+waves_df["new_column"] = range(0,2073)
+
+
 Okay, that's enough of that. Let's create a brand new clean dataframe from
 the original data CSV file.
 
@@ -292,33 +314,30 @@ using either label or integer-based indexing.
   they are interpreted as a *label*.
 - `iloc` is primarily *integer* based indexing
 
-In this example dataset we know that the first 14 rows are from 2023. 
-We would then like to select just 3 columns of data to focus on: Date, Tpeak, and	Wave Height
-
 To select a subset of rows **and** columns from our DataFrame, we can use the
-`iloc` method. For example, we can select Date, Tpeak and Wave Height (columns 3, 6
-and 7 if we start counting at 0), and the first 14 rows like this:
+`iloc` method. For example, for the first 3 rows, we can select record_id, name, and date (columns 0, 2,
+and 3 when we start counting at 0), like this:
 
 ~~~
 # iloc[row slicing, column slicing]
-waves_df.iloc[0:14, [3,6,7]]
-
+waves_df.iloc[0:3, [0,2,3]]
 ~~~
 {: .language-python}
 
 which gives the **output**
 
 ~~~
-   month  day  year
-0      7   16  1977
-1      7   16  1977
-2      7   16  1977
+
+  record_id                              Name	                Date
+0	        1	  SW Isles of Scilly WaveNet Site   	17/04/2023 00:00
+1         2	         Hayling Island Waverider	    17/04/2023 00:00
+2	        3	      Firth of Forth WaveNet Site	    17/04/2023 00:00
 ~~~
 {: .output}
 
-Notice that we asked for a slice from 0:14. This yielded 14 rows of data. When you
-ask for 0:14, you are actually telling Python to start at index 0 and select rows
-0, 1, 2 **up to but not including 14**.
+Notice that we asked for a slice from 0:3. This yielded 3 rows of data. When you
+ask for 0:3, you are actually telling Python to start at index 0 and select rows
+0, 1, 2 **up to but not including 3**.
 
 Let's explore some other ways to index and select subsets of data:
 
@@ -334,7 +353,10 @@ waves_df.loc[[0, 10, 35549], :]
 ~~~
 {: .language-python}
 
-**NOTE**: Labels must be found in the DataFrame or you will get a `KeyError`.
+**NOTE 1**: with our dataset, we are using integers even when using `loc` because our DataFrame index
+(which is the unnamed first column) is composed of integers - but Pandas converts these to strings
+
+**NOTE 2**: Labels must be found in the DataFrame or you will get a `KeyError`.
 
 Indexing by labels `loc` differs from indexing by integers `iloc`.
 With `loc`, both the start bound and the stop bound are **inclusive**. When using
@@ -361,25 +383,34 @@ waves_df.iloc[2, 6]
 gives the **output**
 
 ~~~
-'F'
+4.5
 ~~~
 {: .output}
 
 Remember that Python indexing begins at 0. So, the index location [2, 6]
-selects the element that is 3 rows down and 7 columns over in the DataFrame.
+selects the element that is 3 rows down and 7 columns over (Tpeak) in the DataFrame.
 
 It is worth noting that rows are selected when using `loc` with a single list of
 labels (or `iloc` with a single list of integers). However, unlike `loc` or `iloc`,
 indexing a data frame directly with labels will select columns (e.g. 
-`waves_df['buoy_id', 'plot_id', 'Country']`), while ranges of integers will
-select rows (e.g. waves_df[0:13]). Direct indexing of rows is redundant with
-using `iloc`, and will raise a `KeyError` if a single integer or list is used; the
-error will also occur if index labels are used without `loc` (or column labels used
+`waves_df[['buoy_id', 'Name', 'Temperature']]`), while ranges of integers will
+select rows (e.g. waves_df[0:13]) - but passing a single integer will raise an error.
+Direct indexing of rows is redundant with using `iloc`, and will raise a `KeyError` if a single integer or list is used:
+
+~~~
+# produces an error - even though you might think it looks sensible
+waves_df.loc[1:10,1]
+~~~
+{: .language-python}
+
+
+the error will also occur if index labels are used without `loc` (or column labels used
 with it).
-A useful rule of thumb is the following: integer-based slicing is best done with
-`iloc` and will avoid errors (and is generally consistent with indexing of Numpy
-arrays), label-based slicing of rows is done with `loc`, and slicing of columns by
-directly indexing column names.
+A useful rule of thumb is the following: 
+ - integer-based slicing of rows is best done with `iloc` and will avoid errors - it is generally consistent with indexing of Numpy
+arrays)
+ - label-based slicing of rows is done with `loc`
+ - slicing of columns by directly indexing column names.
 
 
 > ## Challenge - Range
@@ -411,33 +442,38 @@ select all rows that have a temperature less than or equal to 10 degrees
 ~~~
 waves_df[waves_df.Temperature <= 10]
 ~~~
-{: .language-python}
+
+
 
 Which produces the following output:
 
 ~~~
-record_id  month  day  year  plot_id buoy_id  sex  hindfoot_length  Country
-33320      33321      1   12  2002        1         DM    M     38      44
-33321      33322      1   12  2002        1         DO    M     37      58
-33322      33323      1   12  2002        1         PB    M     28      45
-33323      33324      1   12  2002        1         AB  NaN    NaN     NaN
-33324      33325      1   12  2002        1         DO    M     35      29
-...
-35544      35545     12   31  2002       15         AH  NaN    NaN     NaN
-35545      35546     12   31  2002       15         AH  NaN    NaN     NaN
-35546      35547     12   31  2002       10         RM    F     15      14
-35547      35548     12   31  2002        7         DO    M     36      51
-35548      35549     12   31  2002        5        NaN  NaN    NaN     NaN
 
-[2229 rows x 9 columns]
+    record_id    buoy_id                Name                Date     Tz    Peak Direction    Tpeak    Wave Height    Temperature    Spread    Operations    Seastate    Quadrant
+3           4	         3    Chesil Waverider    17/04/2023 00:00    5.5             225.0      8.3           0.50          10.20      48.0          crew       swell       south
+10         11          3    Chesil Waverider    15/04/2023 00:00    3.2             260.0      3.4           0.21           8.95      67.0          crew     windsea        west
+~~~
+{: .language-python}
+
+Or, we can select all rows that have a buoy_id of 3:
+
+~~~
+waves_df[waves_df.buoy_id == 3]
 ~~~
 {: .language-python}
 
 
-Or we can select all rows that do not contain values for Tpeak (listed as NaN):
+We can also select all rows that do not contain values for Tpeak (listed as NaN):
 
 ~~~
 waves_df[waves_df["Tpeak"].isna()]
+~~~
+{: .language-python}
+
+Or we can select all rows that do not contain the buoy_id 3:
+
+~~~
+waves_df[waves_df.buoy_id != 3]
 ~~~
 {: .language-python}
 
@@ -448,6 +484,37 @@ with a height between 3.0 and 4.0 metres:
 waves_df[(waves_df["Wave Height"] >= 3.0) & (waves_df["Wave Height"] < 4.0)]
 ~~~
 {: .language-python}
+
+## Different types of and
+> In Python, we can normally use the keyword `and` for the Boolean _and_ operator:
+> ~~~
+> x = True
+> y = True
+> x and y
+> ~~~
+> {: .language-python}
+>
+> ~~~
+> True
+> ~~~
+> {: .output}
+>
+> ~~~
+> x = True
+> y = False
+> x and y
+> ~~~
+> {: .language-python}
+>
+> ~~~
+> False
+> ~~~
+> {: .output}
+>
+> _But_, in Pandas we need to use the `&` symbol instead. The `and` operator requires "Truth-values", but `Series` of Booleans
+> is considered "ambiguous", and trying to use `and` returns an error `Truth value of a Series is ambiguous.`
+{: .callout}  
+
 
 ### Python Syntax Cheat Sheet
 
@@ -465,7 +532,8 @@ Experiment with selecting various subsets of the "waves" data.
 >
 > 1. Select a subset of rows in the `waves_df` DataFrame that contain data from
 >   the year 2022 and that contain Temperature values less than or equal to 8. How
->   many rows did you end up with? What did your neighbour get?
+>   many rows did you end up with? You may want to create a new column containing the dates
+>   formatted as DateType that we created earlier
 >
 > 2. You can use the `isin` command in Python to query a DataFrame based upon a
 >   list of values as follows:
@@ -475,7 +543,7 @@ Experiment with selecting various subsets of the "waves" data.
 >    ~~~
 >    {: .language-python }
 >
->   Use the `isin` function to find all plots that contain particular buoy
+>   Use the `isin` function to find all plots that contain buoy ids 5 and 7
 >   in the "waves" DataFrame. How many records contain these values?
 >
 > 3. Experiment with other queries. Create a query that finds all rows with a
@@ -533,14 +601,10 @@ pd.isnull(waves_df)
 A snippet of the output is below:
 
 ~~~
-      record_id  month    day   year plot_id species_id    sex  hindfoot_length weight
-0         False  False  False  False   False      False  False   False      True
-1         False  False  False  False   False      False  False   False      True
-2         False  False  False  False   False      False  False   False      True
-3         False  False  False  False   False      False  False   False      True
-4         False  False  False  False   False      False  False   False      True
-
-[35549 rows x 9 columns]
+    record_id    buoy_id     Name     Date       Tz    Peak Direction    Tpeak    Wave Height    Temperature    Spread    Operations    Seastate    Quadrant
+0       False      False    False    False    False             False    False          False          False     False         False       False       False
+1       False      False    False    False    False             False    False          False          False     False         False       False       False
+2       False      False    False    False    False             False    False          False          False     False         False       False       False
 ~~~
 {: .language-python}
 
@@ -554,9 +618,9 @@ waves_df[pd.isnull(waves_df).any(axis=1)]
 {: .language-python}
 
 Note that the `Temperature` and other columns of our DataFrame contains many `null` or `NaN`
-values. We will explore ways of dealing with this in the next episode on [Data Types and Formats]({{ page.root }}{% link _episodes/04-data-types-and-format.md %}).
+values. Remember we've disucssed ways of dealing with this in the previous episode on [Data Types and Formats]({{ page.root }}{% link _episodes/04-data-types-and-format.md %}).
 
-We can run `isnull` on a particular column too. What does the code below do?
+As we saw earlier, we can run `isnull` on a particular column too. What does the code below do?
 
 ~~~
 # What does this do?
@@ -572,15 +636,21 @@ asking Python to select rows that have a `NaN` value of Temperature.
 
 > ## Challenge - Putting it all together
 >
-> 1. Create a new DataFrame that only contains observations with Site Type values that
->   are **not** from the east or south. Print the number of rows in this new DataFrame.
+> 1. Create a new DataFrame that only contains observations with Operations values that
+>   are **not** crew or survey. Print the number of rows in this new DataFrame.
 >   Verify the result by comparing the number of rows in the new DataFrame with
->   the number of rows in the waves DataFrame where Site Type is null.
+>   the number of rows in the waves DataFrame where Site Type is No Go.
 >
-> 2. Create a new DataFrame that contains only observations that are of Quadrant
->  north or west and where Tpeak values are greater than 10. Create a stacked bar
->   plot of average Tpeak by plot with north and west values stacked for each
->   plot.
+> 2. Create a new DataFrame that contains only observations from the Chesil Waverider of 
+>  Hayling Island Waverider buoys, and where the wave height is less than 50 cm. 
+>
+> 3. Create a new DataFrame that contains only observations that are of Quadrant
+>  north or west and where Tpeak values are greater than 10. 
+>> ~~~
+>> waves_df[(waves_df["buoy_id"].isin([3,7])) & (waves_df["Wave Height"] < 0.5)]
+>> ~~~
+>> {: .language-python}
+> {: .solution}
 {: .challenge}
 
 {% include links.md %}
