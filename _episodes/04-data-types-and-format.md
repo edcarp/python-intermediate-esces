@@ -80,7 +80,8 @@ is in the table below:
 
 Now that we're armed with a basic understanding of numeric and text data
 types, let's explore the format of our wave data. We'll be working with the
-same `waves.csv` dataset that we've used in previous lessons.
+same `waves.csv` dataset that we've used in previous lessons. If you've started a new
+notebook, you'll need to load Pandas and the dataset again:
 
 ~~~
 # Make sure pandas is loaded
@@ -103,7 +104,7 @@ pandas.core.frame.DataFrame
 ~~~
 {: .output}
 
-Next, let's look at the structure of our waves data. In pandas, we can check
+Next, let's look at the structure of our waves data. In Pandas, we can check
 the type of one column in a DataFrame using the syntax
 `dataFrameName[column_name].dtype`:
 
@@ -142,15 +143,19 @@ waves_df.dtypes
 which **returns**:
 
 ~~~
-record_id            int64
-month                int64
-day                  int64
-year                 int64
-plot_id              int64
-species_id          object
-sex                 object
-hindfoot_length    float64
-weight             float64
+record_id           int64
+buoy_id             int64
+Name               object
+Date               object
+Tz                float64
+Peak Direction    float64
+Tpeak             float64
+Wave Height       float64
+Temperature       float64
+Spread            float64
+Operations         object
+Seastate           object
+Quadrant           object
 dtype: object
 ~~~
 {: .language-python }
@@ -240,6 +245,182 @@ float(b)
 ~~~
 {: .output}
 
+## Working with dates
+
+You've probably noticed that one of the columns in our `waves_df` DataFrame represents the time at which the measurement was taken. As with all other non-numeric types, Pandas automatically set the type of
+this column as `Object`. However, because we know it's a date, we can cast is a Date type. For the purposes of this section, let's create a new Pandas Series of the Date values:
+
+~~~
+dates = waves_df["Date"]
+~~~
+{: .language-python}
+
+We can use the `to_datetime` function to convert the values in this Series to a Date type:
+
+~~~
+# note that we're overwriting the variable we created
+dates = pd.to_datetime(dates, format="%d/%m/%Y %H:%M")
+~~~
+{: .language-python}
+
+What does the value given to the `format` argument mean? Because there is no consistent way of specifying dates, Python has a set of codes to specify the elements. We use these codes to tell Python the format
+of the date we want to convert. The full list of codes is at https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes, but we're using:
+
+%d : Day of the month as a zero-padded decimal number.
+%m : Month as a zero-padded decimal number.
+%Y : Year with century as a decimal number.
+%H : Hour (24-hour clock) as a zero-padded decimal number.
+%M : Minute as a zero-padded decimal number.
+
+Let's take an individual value and see some of the things we can do with it
+
+~~~
+date1 = type(dates.iloc[0])
+~~~
+
+ - We'll look at indexing more in the next episode.
+
+We can see that it's now of a DateTime type:
+
+~~~
+type(date1)
+~~~
+{: .language-python}
+
+~~~
+pandas._libs.tslibs.timestamps.Timestamp
+~~~
+{: .output}
+
+We can now take advantage of Pandas' (and Python's) powerful methods of dealing with dates, which we couldn't have easily done while it was a String. For example:
+
+ - The day of the week the measurement was taken (indexed from Monday being 0):
+
+~~~
+# note that this is a statement, so no brackets
+date1.day_of_week
+~~~
+{: .language-python}
+
+ - The name of the day of the week:
+
+~~~
+# note that this is a function, so there are brackets
+date1.day_name()
+~~~
+{: .language-python}
+
+ - We can also determine the day of the year:
+
+~~~
+date1.day_of_year
+~~~
+{: .language-python}
+
+This is a convenient place to highlight that the `apply` method is one way to run a function on every element of a Pandas data structure, without needing to write a loop. For example, to get the length of 
+the Buoy Station Names, we can write:
+
+~~~
+waves_df["Names"].apply(len)
+~~~
+{: .language-python}
+
+which will return
+
+~~~
+0       31
+1       24
+2       27
+3       16
+4        7
+        ..
+2068    16
+2069    16
+2070    16
+2071    16
+2072    16
+Name: Name, Length: 2073, dtype: int64
+~~~
+{: .output}
+
+Similarly, we can create a new Series which contains the day of the week all of the measurements were taken on:
+
+~~~
+days_of_measurements = dates.apply(pd.Timestamp.day_name)
+~~~
+{: .language-python}
+
+However, note that we have to give the full, _qualified_ name of the function - this is something we determine from the documentation (e.g. https://pandas.pydata.org/docs/reference/api/pandas.Timestamp.day_name.html).
+
+Are there any days of the week that measurements weren't taken on? We can either look at the unique string values, or the result of `nunique` which we saw earlier:
+
+~~~
+days_of_measurements = dates.apply(pd.Timestamp.day_name)
+print(days_of_measurements)
+print(len(days_of_measurements.unique()))
+print(days_of_measurements.nunique())
+~~~
+{: .language-python}
+
+If we want to do anything more complex with dates, we may need to use Python's functions (the Pandas functions are mostly convenience functions for some of the underlying Python equivalent ones).
+Looking again at the DateTime codes, we can see that `%a` will give us the short version of the day of the week. The DateTime Library has a function for formatting DateTime objects: `datetime.datetime.strftime`,
+but now we need to give as argument to the function we're going to use in `apply`. The `args` argument allows us to do this:
+
+~~~
+# need to import the DateTime library
+import datetime
+dates.apply(datetime.datetime.strftime, args=("%a",))
+~~~
+{: .language-python}
+
+>## Watch out for tuples!
+> _Tuples_ are data structure similar to a list, but are _immutable_. They are created using parentheses, with items separated by commas: 
+> `my_tuple = (1, 2, 3)`
+> However, putting parentheses around a single object does not make it a tuple! Creating a tuple of length 1 still needs a trailing comma.
+> Test these: `type(("a"))` and `type(("a",))`.
+> The `args` argument of `apply` expects a tuple, so if there's only one argument to give we need to use the trailing comma. 
+{: .callout}
+
+We can also find the time differences between two dates - Pandas (and Python) refer to these as _Time Deltas_. We can take the difference between two timestamps, and Python will
+automatically create a TimeDelta for us:
+
+~~~
+date2 = dates.iloc[1]
+time_diff = date2 - date1
+print(time_diff)
+print(type(time_diff))
+~~~
+{: .language-python}
+
+~~~
+Timedelta('0 days 00:30:00')
+pandas._libs.tslibs.timedeltas.Timedelta
+~~~
+{: .output}
+
+> ## Rounding
+> Using the `apply` function, round the values in the Wave Height column to the nearest whole number and store the resulting Series in a new variable called `rounded_heights`.
+> What would you need to change to round to 2 decimal place?
+>
+> > ~~~
+> > rounded_heights = waves_df["Wave Height"].apply(round)
+> > waves_df["Wave Height"].apply(round, args=(1,))
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
+
+> ## Exploring Timedeltas 
+> Have a look at the Pandas Timedelta documentation. How could you print only the minutes difference from our `time_diff` variable? 
+>
+> > There are 2 ways
+> > ~~~
+> > print(time_diff.components.minutes)
+> > print(time_diff.seconds/60)
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
 
 ## Working With Our Wave Data
 
@@ -261,15 +442,15 @@ dtype('float64')
 
 > ## Changing Types
 >
-> Try converting the column `plot_id` to floats using
+> Try converting the column `buoy_id` to floats using
 >
 > ~~~
-> waves_df.plot_id.astype("float")
+> waves_df.buoy_id.astype("float")
 > ~~~
 > {: .language-python}
 >
 > Next try converting `Temperature` to an integer. What goes wrong here? What is Pandas telling you?
-> We will talk about some solutions to this later.
+> We will talk about some solutions to this in the section below.
 {: .challenge}
 
 ## Missing Data Values - NaN
@@ -288,7 +469,7 @@ waves_df['Temperature'].mean()
 {: .language-python}
 
 ~~~
-42.672428212991356
+12.872890559732667
 ~~~
 {: .output}
 
@@ -307,27 +488,32 @@ NaN. However it is good practice to get in the habit of intentionally marking
 cells that have no data, with a no data value! That way there are no questions
 in the future when you (or someone else) explores your data.
 
-### Where Are the NaN's?
+### Where Are the NaNs?
 
 Let's explore the NaN values in our data a bit further. Using the tools we
 learned in lesson 02, we can figure out how many rows contain NaN values for
 Temperature. We can also create a new subset from our data that only contains rows
-with wave heights values > 0 (i.e., select meaningful values, we don't have negative water levels):
+with Temperature values > 0 (i.e. select meaningful seawater temperature values):
 
-~~~
-len(waves_df[pd.isnull(waves_df.'Wave Height')])
-# How many rows have Wave Height values?
-len(waves_df[waves_df.'Wave Height' > 0])
-~~~
+In our case, all the Temperature values are above zero. You can verify this by either trying to
+select all rows that have temperatures less than or equal to zero (which returns an empty data frame):
+
+```
+waves_df[waves_df.Temperature <= 0]
+```
 {: .language-python}
 
-We can replace all NaN values with zeroes using the `.fillna()` method (after
-making a copy of the data so we don't lose our work):
+or, by seeing that the number of rows that have values above zero (1197) added to the
+number of rows with NaN values (876) is equal to the total number of rows in the
+original data frame (2073).
+
+We can replace all NaN values with zeroes using the `.fillna()` method (we might want to
+make a copy of the data so we don't lose our work):
 
 ~~~
 df1 = waves_df.copy()
 # Fill all NaN values with 0
-df1['Temperature'] = df1['Temperature'].fillna(0)
+waves_df['Temperature'] = waves_df['Temperature'].fillna(0)
 ~~~
 {: .language-python}
 
@@ -336,25 +522,39 @@ values are replaced with 0 is different from when NaN values are simply thrown
 out or ignored.
 
 ~~~
-df1['Wave Height'].mean()
+waves_df['Temperature'].mean()
 ~~~
 {: .language-python}
 
 ~~~
-38.751976145601844
+7.4331162566329
 ~~~
 {: .output}
 
 We can fill NaN values with any value that we chose. The code below fills all
-NaN values with a mean for all Wave Height values.
+NaN values with a mean for all Temperature values. Let's first reset our data
+(`waves_df` doesn't currently contain any NaN values after we replaced them with zeros!)
 
 ~~~
-df1['Wave Height'] = waves_df['Wave Height'].fillna(waves_df['Wave Height'].mean())
+waves_df = df1.copy()
+waves_df['Temperature'] = waves_df['Temperature'].fillna(waves_df['Temperature'].mean())
 ~~~
 {: .language-python}
 
 We could also chose to create a subset of our data, only keeping rows that do
 not contain NaN values.
+
+Our mean now looks more sensible again:
+
+~~~
+waves_df['Temperature'].mean()
+~~~
+{: .language-python}
+
+~~~
+12.872890559732667
+~~~
+{: .output}
 
 The point is to make conscious decisions about how to manage missing data. This
 is where we think about how our data will be used and how these values will
@@ -367,11 +567,29 @@ results.
 > ## Counting
 > Count the number of missing values per column.
 >
-> > ## Hint
-> > The method `.count()` gives you the number of non-NA observations per column.
-> > Try looking to the `.isnull()` method.
+> ## Hint
+> The method `.count()` gives you the number of non-NA observations per column.
+> Try looking to the `.isnull()` method.
+>
+>> ~~~
+>> for c in surveys_df.columns:
+>>     print(c, len(surveys_df[surveys_df[c].isnull()]))
+>> ~~~
+>> {: .language-python}
+>>
+>> Or, since we've been using the `pd.isnull` function so far:
+>>
+>> ~~~
+>> for c in surveys_df.columns:
+>>     print(c, len(surveys_df[pd.isnull(surveys_df[c])]))
+>> ~~~
+>> {: .language-python}
 > {: .solution}
 {: .challenge}
+
+The answer to the previous challenge shows there's often more than one way to use the _same_ function - in this case we
+can call `.isnull()` on a DataFrame, or pass a DataFrame to it as an argument. In most cases, you will need to read the
+documentation to find out how to use functions.
 
 ## Writing Out Data to CSV
 
@@ -384,6 +602,7 @@ we're not mixing up all of our previous manipulations.
 waves_df = pd.read_csv("data/waves.csv")
 ~~~
 {: .language-python}
+
 Next, let's drop all the rows that contain missing values. We will use the command `dropna`.
 By default, dropna removes rows that contain missing data for even just one column.
 
@@ -392,8 +611,8 @@ df_na = waves_df.dropna()
 ~~~
 {: .language-python}
 
-If you now type `df_na`, you should observe that the resulting DataFrame has 30676 rows
-and 9 columns, much smaller than the 35549 row original.
+If you now type `df_na`, you should observe that the resulting DataFrame has 692 rows
+and 13 columns, much smaller than the 2073 row original.
 
 We can now use the `to_csv` command to export a DataFrame in CSV format. Note that the code
 below will by default save the data into the current working directory. We can

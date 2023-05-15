@@ -1,0 +1,15 @@
+﻿buoy_id,Name,Manufacturer,Depth,Type,operator,Country,Site Type,latitude,longitude
+1,Beryl A,saab,104m ,Downward-looking wave radar,Shell UK,Scotland,Ocean,59.5,1.5
+2,Cardigan Bay,Waverider,48m,Directional,Met Office,Wales,Coastal,52.433333,-4.8
+3,Chesil Waverider,Waverider,10m,Directional,Channel Coastal Observatory,England,Coastal,50.6,-2.52
+4,Claymore,saab,150m,Downward-looking wave radar,Oil and Gas UK,Scotland,Ocean,58.4,-0.3
+5,Firth of Forth WaveNet Site, Waverider MkIII,65m,Directional,Cefas,Scotland,Coastal,56.19,-2.5
+6,Greenwich Light Vessel,unknown,51m,Unspecified wave measurement sensor,Met Office,England,Coastal,50.733167,-0.959333
+7,Hayling Island Waverider,Triaxiy,10.2m,Directional,Cefas,England,Coastal,50.73,-0.96
+8,K7,Triaxiys,650m,Directional,Cefas,Scotland,Ocean,60.48333,-4.166667
+9,Lomond,saab,NaN,Downward-looking wave radar,Oil and Gas UK,Scotland,Ocean,57.2,2.2
+11,South Pembrokeshire WaveNet Site, Waverider MkIII,20m,Directional,Cefas,Wales,Coastal,51.456167,-5.230333
+12,Southwold Approach WaveNet Site, Waverider MkIII,23m,Directional,Cefas,England,Coastal,52.312333,1.784333
+14,SW Isles of Scilly WaveNet Site, Waverider MkIII,96m,Directional,Cefas,England,Ocean,49.82,-6.54
+15,Torness Power Station Waverider, Waverider MkIII,17m,Directional,Cefas,Scotland,Coastal,55.979833,-2.409333
+16,West of Hebrides, Waverider MkIII,100m,Directional,Cefas,Scotland,Ocean,57.292167,-7.914167
