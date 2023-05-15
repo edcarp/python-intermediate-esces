@@ -162,7 +162,7 @@ dtype: object
 
 Note that some of the columns in our wave data are of type `int64`. This means
 that they are 64 bit integers. While others are floating point value
-which means it contains decimals. The `Country` and `Site Type` columns are objects which
+which means it contains decimals. The `Name` and `SeaState` columns are objects which
 means they contain strings.
 
 ## Working With Integers and Floats
@@ -495,13 +495,6 @@ learned in lesson 02, we can figure out how many rows contain NaN values for
 Temperature. We can also create a new subset from our data that only contains rows
 with Temperature values > 0 (i.e. select meaningful seawater temperature values):
 
-~~~
-len(waves_df[pd.isnull(waves_df.Temperature)])
-# How many rows have Temperature values?
-len(waves_df[waves_df.Temperature > 0])
-~~~
-{: .language-python}
-
 In our case, all the Temperature values are above zero. You can verify this by either trying to
 select all rows that have temperatures less than or equal to zero (which returns an empty data frame):
 
@@ -539,7 +532,8 @@ waves_df['Temperature'].mean()
 {: .output}
 
 We can fill NaN values with any value that we chose. The code below fills all
-NaN values with a mean for all Temperature values. Let's reset our data
+NaN values with a mean for all Temperature values. Let's first reset our data
+(`waves_df` doesn't currently contain any NaN values after we replaced them with zeros!)
 
 ~~~
 waves_df = df1.copy()
