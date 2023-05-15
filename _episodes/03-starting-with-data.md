@@ -50,6 +50,16 @@ We are studying ocean waves and temperature in the seas around the UK.
 For this lesson we will be using a subset of data from Centre for Environment Fisheries and Aquaculture Science (Cefas). 
 WaveNet, Cefas’ strategic wave monitoring network for the United Kingdom, provides a single source of real-time wave data from a network of wave buoys located in areas at risk from flooding. https://wavenet.cefas.co.uk/ 
 
+If we look out to sea, we notice that waves on the sea surface are not simple sinusoids. The surface appears to be composed of random waves of various lengths and periods. How can we describe this complex surface?
+ 
+By making some simplifications and assumptions, we fit an idealised 'spectrum' to describe all the energy held in different wave frequencies. This describes the wave energy at a point, covering the energy in small ripples (high frequency) to long period (low frequency) swell waves. This figure shows an example idealised spectrum, with the highest energy around wave periods of 11 seconds.
+ 
+![An idealised wave spectra for a wave period of 11 seconds](../fig/wave_spectra.png)
+
+We can go a step further, and also associate a wave direction with the amount of energy. These simplifications lead to a 2D wave spectrum at any point in the sea, with dimensions frequency and direction. Directional spreading is a measure of how wave energy for a given sea state is spread as a function of direction of propagation. For example the wave data on the left have a small directional spread, as the waves travel, this can fan out over a wider range of directions.
+
+![A rose diagram of wave energy vs direction](../fig/waves_spreading.png)
+
 When it is very windy or storms pass-over large sea areas, surface waves grow from short choppy wind-sea waves into powerful swell waves. The height and energy of the waves is larger in winter time, when there are more storms. wind-sea waves have short wavelengths / wave periods (like ripples) while swell waves have longer periods (at a lower frequency).
 
 The example file contains a obervations of sea temperatures, and waves properties at different buoys around the UK. 
@@ -61,30 +71,33 @@ single wave buoy, and the columns represent:
 |------------------|------------------------------------|
 |record_id         | Unique id for the observation      |
 |buoy_id           | Unique id for the wave buoy        |
-|Name              | Name of buoy                       |
-|Date              | Date of measurement in day/month/year |
-|Tz	               | The average wave period            |
-|Peak Direction	   | The direction at Tpeak             |
-|Tpeak	           | Dominant wave period               |
-|Wave Height	     | Significant wave height in metres  |
-|Temperature       | Water temperature in degrees C     |
-|Spread	           | The directional spread at Tpeak    |
-|Operations	       | sea saftey classification          |
-|Seastate	         | partitioned by period              |
-|Quadrant	         | prevailing wave direction          |
+|Name              | Name of the wave buoy                       |
+|Date              | Date & time of measurement in day/month/year hour:minute |
+|Tz                   | The average wave period (in seconds)            |
+|Peak Direction       | The direction of the highest energy waves (in degrees)             |
+|Tpeak               | The period of the highest energy waves (in seconds)                |
+|Wave Height         | Significant* wave height (in metres)  |
+|Temperature       | Water temperature (in degrees C)     |
+|Spread               | The "directional spread" at Tpeak (in degrees)    |
+|Operations           | Sea safety classification          |
+|Seastate             | Categorised by period              |
+|Quadrant             | Categorised by prevailing wave direction          |
 |------------------|------------------------------------|
 
+* "significant" here is defined as the mean wave height (trough to crest) of the highest third of the waves
 
 The first few rows of our first file look like this:
 ~~~
-record_id	buoy_id	Name	Date	Tz	Peak Direction	Tpeak	Wave Height	Temperature	Spread	Operations	Seastate	Quadrant
-1	14	SW Isles of Scilly WaveNet Site	17/04/2023	7.2	263	10	1.8	10.8	26	 crew 	swell	west
-2	7	Hayling Island Waverider	17/04/2023	4	193	11.1	0.2	10.2	14	 crew 	swell	south
-3	5	Firth of Forth WaveNet Site	17/04/2023	3.7	115	4.5	0.6	7.8	28	 crew 	windsea	east
-4	3	Chesil Waverider	17/04/2023	5.5	225	8.3	0.5	10.2	48	 crew 	swell	south
-5	10	M6 Buoy	17/04/2023	7.6	240	11.7	4.5	11.5	89	no go  	swell	west
-6	9	Lomond	17/04/2023	4	NaN	NaN	0.5	NaN	NaN	 crew 	swell	north
-7	2	Cardigan Bay	17/04/2023	5.9	239	10.5	0.69	9.9	18	 crew 	swell	west
+record_id    buoy_id                  Name                Date     Tz    Peak Direction    Tpeak    Wave Height    Temperature    Spread    Operations    Seastate    Quadrant
+1                 14    SW Isles of Scilly    17/04/2023 00:00    7.2               263       10            1.8           10.8        26          crew       swell        west
+                              WaveNet Site    
+2                  7        Hayling Island    17/04/2023 00:00      4               193     11.1            0.2           10.2        14          crew       swell       south
+                                 Waverider
+3                  5        Firth of Forth    17/04/2023 00:00    3.7               115      4.5            0.6            7.8        28          crew     windsea        east
+                              WaveNet Site
+4                  3      Chesil Waverider    17/04/2023 00:00    5.5               225      8.3            0.5            10.2       48          crew       swell       south
+5                 10               M6 Buoy    17/04/2023 00:00    7.6               240     11.7            4.5            11.5       89         no go       swell        west
+6                  9                Lomond    17/04/2023 00:00      4               NaN      NaN            0.5             NaN      NaN          crew       swell       north
 ~~~
 {: .output}
 
@@ -156,32 +169,25 @@ pd.read_csv("data/waves.csv")
 The above command yields the **output** below:
 
 ~~~
-        record_id buoy_id               Name          Date   Tz Peak Direction Tpeak Wave Height Temperature Spread
-0               1      14 SW Isles of Scilly    17/04/2023 7.20          263.0  10.0         1.8        10.8   26.0
-                                WaveNet Site
-1               2       7     Hayling Island    17/04/2023 4.00          193.0  11.1         0.2        10.2   14.0
-                                   Waverider
-2               3       5     Firth of Forth    17/04/2023 3.70          115.0   4.5         0.6         7.8   28.0
-                                WaveNet Site
-3               4       3	Chesil Waverider    17/04/2023 5.50          225.0   8.3         0.5        10.2   48.0
-4               5      10           M6 Buoy     17/04/2023 7.60          240.0  11.7         4.5        11.5   89.0
-...	...	...	...	...	...	...	...	...	...	...	...	...	...	...
-729           730      14	SW Isles of Scilly  25/09/2016 1.99            NaN   8.3         NaN         NaN    NaN
-                                  WaveNet Site
-730           731      14   SW Isles of Scilly  26/09/2016 0.90            NaN   3.9         NaN         NaN    NaN
-                                  WaveNet Site
-731           732      14	SW Isles of Scilly  27/09/2016 1.42            NaN   4.5         NaN         NaN    NaN
-                                  WaveNet Site
-732           733      14   SW Isles of Scilly  28/09/2016 1.87            NaN   4.5         NaN         NaN    NaN
-                                  WaveNet Site
-733           734      14	SW Isles of Scilly  29/09/2016 1.69            NaN   4.8         NaN         NaN    NaN
-                                  WaveNet Site
-
-734 rows × 10 columns
+    record_id   buoy_id                        Name                Date     Tz    Peak Direction    Tpeak    Wave Height    Temperature    Spread    Operations    Seastate    Quadrant
+0           1        14          SW Isles of Scilly    17/04/2023 00:00    7.2             263.0     10.0           1.80          10.80      26.0          crew       swell        west
+                                       WaveNet Site
+1           2         7    Hayling Island Waverider    17/04/2023 00:00    4.0             193.0     11.1           0.20          10.20      14.0          crew       swell       south
+2           3         5      Firth of Forth WaveNet    17/04/2023 00:00    3.7             115.0      4.5           0.60           7.80      28.0          crew     windsea        east
+                                               Site
+3           4         3            Chesil Waverider    17/04/2023 00:00    5.5             225.0      8.3           0.50          10.20      48.0          crew       swell       south
+4           5        10                     M6 Buoy    17/04/2023 00:00    7.6             240.0     11.7           4.50          11.50      89.0         no go       swell        west
+...    ...    ...    ...    ...    ...    ...    ...    ...    ...    ...    ...    ...    ...
+2068     2069        16            west of Hebrides    18/10/2022 16:00    6.1              13.0      9.1           1.46          12.70      28.0          crew       swell        north
+2069     2070        16            west of Hebrides    18/10/2022 16:30    5.9              11.0      8.7           1.49          12.70      34.0          crew       swell        north
+2070     2071        16            west of Hebrides    18/10/2022 17:00    5.6               3.0      9.5           1.36          12.65      34.0          crew       swell        north
+2071     2072        16            west of Hebrides    18/10/2022 17:30    5.7             347.0     10.0           1.39          12.70      31.0          crew       swell        north
+2072     2073        16            west of Hebrides    18/10/2022 18:00    5.7               8.0      8.7           1.36          12.65      34.0          crew       swell        north
+2073 rows × 13 columns
 ~~~
 { :.output}
 
-We can see that there were 734 rows parsed. Each row has 10
+We can see that there were 2073 rows parsed. Each row has 13
 columns. The first column is the index of the DataFrame. The index is used to
 identify the position of the data, but it is not an actual column of the DataFrame
 (but note that in this instance we also have a `record_id` which is the same as the index, and
@@ -223,15 +229,14 @@ waves_df.head() # The head() method displays the first several lines of a file. 
 ~~~
 {: .language-python}
 ~~~
-        record_id buoy_id               Name          Date   Tz Peak Direction Tpeak Wave Height Temperature Spread
-0               1      14 SW Isles of Scilly    17/04/2023 7.20          263.0  10.0         1.8        10.8   26.0
-                                WaveNet Site
-1               2       7     Hayling Island    17/04/2023 4.00          193.0  11.1         0.2        10.2   14.0
-                                   Waverider
-2               3       5     Firth of Forth    17/04/2023 3.70          115.0   4.5         0.6         7.8   28.0
-                                WaveNet Site
-3               4       3	Chesil Waverider    17/04/2023 5.50          225.0   8.3         0.5        10.2   48.0
-4               5      10           M6 Buoy     17/04/2023 7.60          240.0  11.7         4.5        11.5   89.0
+    record_id   buoy_id                        Name                Date     Tz    Peak Direction    Tpeak    Wave Height    Temperature    Spread    Operations    Seastate    Quadrant
+0           1        14          SW Isles of Scilly    17/04/2023 00:00    7.2             263.0     10.0           1.80          10.80      26.0          crew       swell        west
+                                       WaveNet Site
+1           2         7    Hayling Island Waverider    17/04/2023 00:00    4.0             193.0     11.1           0.20          10.20      14.0          crew       swell       south
+2           3         5      Firth of Forth WaveNet    17/04/2023 00:00    3.7             115.0      4.5           0.60           7.80      28.0          crew     windsea        east
+                                               Site
+3           4         3            Chesil Waverider    17/04/2023 00:00    5.5             225.0      8.3           0.50          10.20      48.0          crew       swell       south
+4           5        10                     M6 Buoy    17/04/2023 00:00    7.6             240.0     11.7           4.50          11.50      89.0         no go       swell        west
 ~~~
 {: .output}
 
@@ -269,15 +274,18 @@ Tpeak             float64
 Wave Height       float64
 Temperature       float64
 Spread            float64
+Operations         object
+Seastate           object
+Quadrant           object
 dtype: object
 ~~~
 {: .output}
 
 All the values in a column have the same type. For example, buoy_id have type
-`int64`, which is a kind of integer. Cells in the month column cannot have
+`int64`, which is a kind of integer. Cells in the buoy_id column cannot have
 fractional values, but the TPeak and Wave Height columns can, because they
 have type `float64`. The `object` type doesn't have a very helpful name, but in
-this case it represents strings (such as 'Coastal' and 'Ocean' in the case of Site Type).
+this case it represents strings (such as 'swell' and 'windsea' in the case of Seastate).
 
 We'll talk a bit more about what the different formats mean in a different lesson.
 
@@ -318,7 +326,7 @@ Let's look at the data using these.
 We've read our data into Python. Next, let's perform some quick summary
 statistics to learn more about the data that we're working with. We might want
 to know how many observations were collected in each site, or how many observations
-were made in each country. We can perform summary stats quickly using groups. But
+were made at each named buoy. We can perform summary stats quickly using groups. But
 first we need to figure out what we want to group by.
 
 Let's begin by exploring our data:
@@ -332,8 +340,9 @@ waves_df.columns
 which **returns**:
 
 ~~~
-Index(['record_id', 'buoy_id', 'Name', 'Date', 'Tz', 'Peak Direction', 'Tpeak', 'Wave Height',
-       'Temperature', 'Spread'],
+Index(['record_id', 'buoy_id', 'Name', 'Date', 'Tz', 'Peak Direction', 'Tpeak',
+       'Wave Height', 'Temperature', 'Spread', 'Operations', 'Seastate',
+       'Quadrant'],
       dtype='object')
 ~~~
 {: .output}
@@ -351,61 +360,63 @@ which **returns**:
 ~~~
 array(['SW Isles of Scilly WaveNet Site', 'Hayling Island Waverider',
        'Firth of Forth WaveNet Site', 'Chesil Waverider', 'M6 Buoy',
-       'Lomond', 'Cardigan Bay', 'West of Hebrides'], dtype=object)
+       'Lomond', 'Cardigan Bay', 'South Pembrokeshire WaveNet Site',
+       'Greenwich Light Vessel', 'west of Hebrides'], dtype=object)
 ~~~
 {: .output}
 
 > ## Challenge - Statistics
 >
 > 1. Create a list of unique site IDs ("buoy_id") found in the waves data. Call it
->   `site_ids`. How many unique sites are there in the data? How many unique
+>   `buoy_ids`. How many unique sites are there in the data? How many unique
 >   buoys are in the data?
 >
-> 2. What is the difference between `len(buoy_id)` and `waves_df['buoy_id'].nunique()`?
+> 2. What is the difference between using `len(buoy_id)` and `waves_df['buoy_id'].nunique()`?
+>    in this case, the result is the same but when might be the difference be important?
 {: .challenge}
 
 # Groups in Pandas
 
 We often want to calculate summary statistics grouped by subsets or attributes
 within fields of our data. For example, we might want to calculate the average
-temperature at all buoys per Site Type.
+Wave Height at all buoys per Seastate.
 
 We can calculate basic statistics for all records in a single column using the
 syntax below:
 
 ~~~
-waves_df['Temperature'].describe()
+waves_df['Wave Height'].describe()
 ~~~
 {: .language-python}
 gives **output**
 
 ~~~
-count    378.000000
-mean      11.509921
-std        2.118865
-min        7.350000
-25%        9.412500
-50%       11.725000
-75%       13.100000
-max       18.000000
+count    1197.000000
+mean       12.872891
+std         4.678751
+min         5.150000
+25%        12.200000
+50%        12.950000
+75%        17.300000
+max        18.700000
 Name: Temperature, dtype: float64
 ~~~
 {: .language-python}
 
 > Note that the value of `count` is not the same as the total number of rows. This is because
 > statistical methods in Pandas ignore NaN ("not a number") values. We can count the total number of
-> of NaNs using `waves_df["Temperature"].isna().sum()`, which returns 356. 356 + 378 is 734, which _is_
+> of NaNs using `waves_df["Wave Height"].isna().sum()`, which returns 356. 356 + 378 is 734, which _is_
 > the total number of rows in the DataFrame
 {: .callout} 
 
 We can also extract one specific metric if we wish:
 
 ~~~
-waves_df['Temperature'].min()
-waves_df['Temperature'].max()
-waves_df['Temperature'].mean()
-waves_df['Temperature'].std()
-waves_df['Temperature'].count()
+waves_df['Wave Height'].min()
+waves_df['Wave Height'].max()
+waves_df['Wave Height'].mean()
+waves_df['Wave Height'].std()
+waves_df['Wave Height'].count()
 ~~~
 {: .language-python}
 
@@ -428,25 +439,27 @@ numeric data (does this always make sense?)
 # Summary statistics for all numeric columns by Seastate
 grouped_data.describe()
 # Provide the mean for each numeric column by Seastate
-grouped_data.mean()
+    grouped_data.mean()
 ~~~
 {: .language-python}
 
 `grouped_data.mean()` **OUTPUT:**
 
 ~~~
-        record_id	                                                            buoy_id	...                                     Temperature	Spread
-        count   mean        std         min     25%     50%     75%     max     count       mean        ...     75%     max     count      mean         std         min     25%     50%     75%     max
-Site
-Type
-Coastal	  6.0   7.833333    4.445972    2.0     4.75    8.0     10.50   14.0    6.0         4.000000	...     10.125  10.2    6.0         32.00000    21.568496   14.00   15.0    24.5    43.75   67.0
-Ocean   726.0   371.466942  209.779841  1.0     190.25  371.5   552.75  734.0   726.0       14.980716   ...     13.100  18.0    369.0       31.53645    9.913733    10.95   23.0    28.0    36.00   89.0
-2 rows × 80 columns
+           record_id                                                                             buoy_id                ...    Temperature    Spread
+           count    mean           std           min    25%        50%       75%       max       count     mean         ...    75%        max      count    mean         std          min     25%     50%     75%     max
+Seastate                                                                                    
+   swell  1747.0    1019.925587    645.553036    1.0     441.50     878.0    1636.5    2073.0    1747.0    11.464797    ...    17.4000    18.70    378.0    30.592593    10.035383    14.0    23.0    28.0    36.0    89.0
+ windsea   326.0    1128.500000    188.099299    3.0    1036.25    1121.5    1273.5    1355.0    326.0      7.079755    ...    12.4875    13.35    326.0    25.036810     9.598327     9.0    16.0    25.0    31.0    68.0
+2 rows × 64 columns
 ~~~
 {: .output}
 
 The `groupby` command is powerful in that it allows us to quickly generate
 summary stats.
+
+This example shows that the wave height associated with water described as 'swell' 
+is much larger than the wave heights classified as 'windsea'.
 
 > ## Challenge - Summary Data
 >
@@ -459,10 +472,10 @@ summary stats.
 >
 >> ## Solution to 3
 >> ~~~
->>              count       mean         std     min       25%       50%       75%     max
->> Site Type
->> Coastal        6.0   9.800000    0.465833    8.95    9.7125      9.90    10.125    10.2
->> Ocean        370.0  11.558919    2.109464    8.35    9.4500     11.85    13.100    18.0
+>>             count    mean         std         min     25%      50%      75%        max
+>> Seastate                                
+>>    swell    871.0    14.703502    3.626322    5.15    12.75    17.10    17.4000    18.70
+>>  windsea    326.0    7.981902     3.518419    5.15     5.40     5.45    12.4875    13.35
 >> ~~~
 >> {: .output}
 > {: .solution}
@@ -476,15 +489,15 @@ ways, but we'll use `groupby` combined with **a `count()` method**.
 
 ~~~
 # Count the number of samples by Name
-    Name_counts = waves_df.groupby('Name')['record_id'].count()
-print(Name_counts)
+name_counts = waves_df.groupby('Name')['record_id'].count()
+print(name_counts)
 ~~~
 {: .language-python}
 
 Or, we can also count just the rows that have the Name "SW Isle of Scilly WaveNet Site":
 
 ~~~
-waves_df.groupby('Name')['record_id'].count()['SW Isle of Scilly WaveNet Site']
+waves_df.groupby('Name')['record_id'].count()['SW Isles of Scilly WaveNet Site']
 ~~~
 {: .language-python}
 
@@ -498,28 +511,64 @@ waves_df.groupby('Name')['record_id'].count()['SW Isle of Scilly WaveNet Site']
 >  groupby DataFrames in the same way you can perform them on regular DataFrames.
 {: .challenge} -->
 
-## Basic Math Functions
+## Basic Maths Functions
 
 If we wanted to, we could perform math on an entire column of our data. For
-example let's multiply all Temperature values by 2. A more practical use of this might
-be to normalize the data according to a mean, area, or some other value
-calculated from our data.
+example let's convert all the degrees values to radians. 
 
 ~~~
-# Multiply all Temperature values by 2
-waves_df['Temperature']*2
+# convert the directions from degrees to radians
+Sometimes people use different units for directions, for example we could describe 
+the directions in terms of radians (where a full circle 360 degrees = 2*pi radians)
+To do this we need to use the math library which contains the constant pi
+
+# Convert degrees to radians by multiplying all direction values values by pi/180
+import math # the constant pi is stored in the math(s) library, so need to import it
+waves_df['Peak Direction'] * math.pi / 180
 ~~~
 {: .language-python}
+
+> ## Constants
+>
+> It is normal for code to include variables that have values that should not change, for example. 
+> the mathematical value of _pi_. These are called constants. The maths library contains [three
+> numerical constants](https://docs.python.org/3/library/math.html#constants): _pi_, _e_, and _tau_, but
+> other built-in modules also contain constants. The `os` library (which provides a portable way of using
+> operating system tools, such as creating directories) lists error codes as constants, while the
+> `calendar` library contains the days of the week mapped to numerical index (from monday as zero)
+> as constants.
+>
+> The convention for naming constants is to use block capitals (n.b. `math.pi` doesn't follow this!) and
+> to list them all together at the top of a module.
+{: .callout}
 
 > ## Challenge - maths & formatting
 >
 > Convert the temperature colum to Kelvin (adding 273.15 to every value), and round the answer to 1 decimal place
 >
->> Solution
->>
+>> ~~~
 >> (waves_df["Temperature"] + 273.15).round(1)
->>
+>> ~~~
+>> {: .language-python}
+> {: .solution}
 {: .challenge}
+
+> ## Challenge - normalising values
+>
+> Sometimes, we need to _normalise_ values. A common way of doing this is to scale values between 0 and 1, using 
+> `y = (x - min) / (max - min)`. Using this equation, scale the Temperature column
+>
+>> ~~~
+>> x = waves_df["Temperature"]
+>> y = (x - x.min()) / (x.max() - x.min())
+>> ~~~
+>> {: .language-python}
+> {: .solution}
+{: .challenge}
+
+A more practical use of this might
+be to normalize the data according to a mean, area, or some other value
+calculated from our data.
 
 <!-- # Quick & Easy Plotting Data Using Pandas
 
