@@ -84,20 +84,17 @@ single wave buoy, and the columns represent:
 |Quadrant             | Categorised by prevailing wave direction          |
 |------------------|------------------------------------|
 
-* "significant" here is defined as the mean wave height (trough to crest) of the highest third of the waves
+ \* "significant" here is defined as the mean wave height (trough to crest) of the highest third of the waves
 
 The first few rows of our first file look like this:
 ~~~
-record_id    buoy_id                  Name                Date     Tz    Peak Direction    Tpeak    Wave Height    Temperature    Spread    Operations    Seastate    Quadrant
-1                 14    SW Isles of Scilly    17/04/2023 00:00    7.2               263       10            1.8           10.8        26          crew       swell        west
-                              WaveNet Site    
-2                  7        Hayling Island    17/04/2023 00:00      4               193     11.1            0.2           10.2        14          crew       swell       south
-                                 Waverider
-3                  5        Firth of Forth    17/04/2023 00:00    3.7               115      4.5            0.6            7.8        28          crew     windsea        east
-                              WaveNet Site
-4                  3      Chesil Waverider    17/04/2023 00:00    5.5               225      8.3            0.5            10.2       48          crew       swell       south
-5                 10               M6 Buoy    17/04/2023 00:00    7.6               240     11.7            4.5            11.5       89         no go       swell        west
-6                  9                Lomond    17/04/2023 00:00      4               NaN      NaN            0.5             NaN      NaN          crew       swell       north
+record_id,buoy_id,Name,Date,Tz,Peak Direction,Tpeak,Wave,Height,Temperature,Spread,Operations,Seastate,Quadrant
+1,14,SW Isles of Scilly WaveNet Site,17/04/2023,00:00,7.2,263,10,1.8,10.8,26,crew,swell,west
+2,7,Hayling Island Waverider,17/04/2023,00:00,4,193,11.1,0.2,10.2,14,crew,swell,south
+3,5,Firth of Forth WaveNet Site,17/04/2023,00:00,3.7,115,4.5,0.6,7.8,28,crew,windsea,east
+4,3,Chesil Waverider,17/04/2023,00:00,5.5,225,8.3,0.5,10.2,48,crew,swell,south
+5,10,M6 Buoy,17/04/2023,00:00,7.6,240,11.7,4.5,11.5,89,no,go,swell,west
+6,9,Lomond,17/04/2023,00:00,4,NaN,NaN,0.5,NaN,NaN,crew,swell,north
 ~~~
 {: .output}
 
@@ -169,20 +166,18 @@ pd.read_csv("data/waves.csv")
 The above command yields the **output** below:
 
 ~~~
-    record_id   buoy_id                        Name                Date     Tz    Peak Direction    Tpeak    Wave Height    Temperature    Spread    Operations    Seastate    Quadrant
-0           1        14          SW Isles of Scilly    17/04/2023 00:00    7.2             263.0     10.0           1.80          10.80      26.0          crew       swell        west
-                                       WaveNet Site
-1           2         7    Hayling Island Waverider    17/04/2023 00:00    4.0             193.0     11.1           0.20          10.20      14.0          crew       swell       south
-2           3         5      Firth of Forth WaveNet    17/04/2023 00:00    3.7             115.0      4.5           0.60           7.80      28.0          crew     windsea        east
-                                               Site
-3           4         3            Chesil Waverider    17/04/2023 00:00    5.5             225.0      8.3           0.50          10.20      48.0          crew       swell       south
-4           5        10                     M6 Buoy    17/04/2023 00:00    7.6             240.0     11.7           4.50          11.50      89.0         no go       swell        west
-...    ...    ...    ...    ...    ...    ...    ...    ...    ...    ...    ...    ...    ...
-2068     2069        16            west of Hebrides    18/10/2022 16:00    6.1              13.0      9.1           1.46          12.70      28.0          crew       swell        north
-2069     2070        16            west of Hebrides    18/10/2022 16:30    5.9              11.0      8.7           1.49          12.70      34.0          crew       swell        north
-2070     2071        16            west of Hebrides    18/10/2022 17:00    5.6               3.0      9.5           1.36          12.65      34.0          crew       swell        north
-2071     2072        16            west of Hebrides    18/10/2022 17:30    5.7             347.0     10.0           1.39          12.70      31.0          crew       swell        north
-2072     2073        16            west of Hebrides    18/10/2022 18:00    5.7               8.0      8.7           1.36          12.65      34.0          crew       swell        north
+,record_id,buoy_id,Name,Date,Tz,Peak Direction,Tpeak,Wave Height,Temperature,Spread,Operations,Seastate,Quadrant
+0,1,14,SW Isles of Scilly WaveNet Site,17/04/2023 00:00,7.2,263.0,10.0,1.80,10.80,26.0,crew,swell,west
+1,2,7,Hayling Island Waverider,17/04/2023 00:00,4.0,193.0,11.1,0.20,10.20,14.0,crew,swell,south
+2,3,5,Firth of Forth WaveNet Site,17/04/2023 00:00,3.7,115.0,4.5,0.60,7.80,28.0,crew,windsea,east
+3,4,3,Chesil Waverider,17/04/2023 00:00,5.5,225.0,8.3,0.50,10.20,48.0,crew,swell,south
+4,5,10,M6 Buoy,17/04/2023 00:00,7.6,240.0,11.7,4.50,11.50,89.0,no go,swell,west
+...,...,...,...,...,...,...,...,...,...,...,...,...,...
+2068,2069,16,west of Hebrides,18/10/2022 16:00,6.1,13.0,9.1,1.46,12.70,28.0,crew,swell,north
+2069,2070,16,west of Hebrides,18/10/2022 16:30,5.9,11.0,8.7,1.49,12.70,34.0,crew,swell,north
+2070,2071,16,west of Hebrides,18/10/2022 17:00,5.6,3.0,9.5,1.36,12.65,34.0,crew,swell,north
+2071,2072,16,west of Hebrides,18/10/2022 17:30,5.7,347.0,10.0,1.39,12.70,31.0,crew,swell,north
+2072,2073,16,west of Hebrides,18/10/2022 18:00,5.7,8.0,8.7,1.36,12.65,34.0,crew,swell,north
 2073 rows × 13 columns
 ~~~
 { :.output}
@@ -224,19 +219,16 @@ easier to fit on one window, you can see that pandas has neatly formatted the da
 our screen:
 
 ~~~
-waves_df.head() # The head() method displays the first several lines of a file. It
-                  # is discussed below.
+waves_df.head() # The head() method displays the first several lines of a file. It is discussed below.
 ~~~
 {: .language-python}
 ~~~
-    record_id   buoy_id                        Name                Date     Tz    Peak Direction    Tpeak    Wave Height    Temperature    Spread    Operations    Seastate    Quadrant
-0           1        14          SW Isles of Scilly    17/04/2023 00:00    7.2             263.0     10.0           1.80          10.80      26.0          crew       swell        west
-                                       WaveNet Site
-1           2         7    Hayling Island Waverider    17/04/2023 00:00    4.0             193.0     11.1           0.20          10.20      14.0          crew       swell       south
-2           3         5      Firth of Forth WaveNet    17/04/2023 00:00    3.7             115.0      4.5           0.60           7.80      28.0          crew     windsea        east
-                                               Site
-3           4         3            Chesil Waverider    17/04/2023 00:00    5.5             225.0      8.3           0.50          10.20      48.0          crew       swell       south
-4           5        10                     M6 Buoy    17/04/2023 00:00    7.6             240.0     11.7           4.50          11.50      89.0         no go       swell        west
+,record_id,buoy_id,Name,Date,Tz,Peak Direction,Tpeak,Wave Height,Temperature,Spread,Operations,Seastate,Quadrant
+0,1,14,SW Isles of Scilly WaveNet Site,17/04/2023 00:00,7.2,263.0,10.0,1.80,10.80,26.0,crew,swell,west
+1,2,7,Hayling Island Waverider,17/04/2023 00:00,4.0,193.0,11.1,0.20,10.20,14.0,crew,swell,south
+2,3,5,Firth of Forth WaveNet Site,17/04/2023 00:00,3.7,115.0,4.5,0.60,7.80,28.0,crew,windsea,east
+3,4,3,Chesil Waverider,17/04/2023 00:00,5.5,225.0,8.3,0.50,10.20,48.0,crew,swell,south
+4,5,10,M6 Buoy,17/04/2023 00:00,7.6,240.0,11.7,4.50,11.50,89.0,no go,swell,west
 ~~~
 {: .output}
 
@@ -314,8 +306,8 @@ Let's look at the data using these.
 > 1. `waves_df.columns`
 > 2. `waves_df.shape` Take note of the output of `shape` - what format does it
 >    return the shape of the DataFrame in?
+>    HINT: [More on tuples here][python-datastructures]
 >
->    HINT: [More on tuples, here][python-datastructures].
 > 3. `waves_df.head()` Also, what does `waves_df.head(15)` do?
 > 4. `waves_df.tail()`
 {: .challenge}
@@ -375,7 +367,7 @@ array(['SW Isles of Scilly WaveNet Site', 'Hayling Island Waverider',
 >    in this case, the result is the same but when might be the difference be important?
 {: .challenge}
 
-# Groups in Pandas
+## Groups in Pandas
 
 We often want to calculate summary statistics grouped by subsets or attributes
 within fields of our data. For example, we might want to calculate the average
@@ -388,7 +380,8 @@ syntax below:
 waves_df['Wave Height'].describe()
 ~~~
 {: .language-python}
-gives **output**
+
+which gives the following
 
 ~~~
 count    1197.000000
@@ -403,6 +396,7 @@ Name: Temperature, dtype: float64
 ~~~
 {: .language-python}
 
+> ## What counts don't include
 > Note that the value of `count` is not the same as the total number of rows. This is because
 > statistical methods in Pandas ignore NaN ("not a number") values. We can count the total number of
 > of NaNs using `waves_df["Wave Height"].isna().sum()`, which returns 356. 356 + 378 is 734, which _is_
@@ -430,7 +424,7 @@ grouped_data = waves_df.groupby('Seastate')
 ~~~
 {: .language-python}
 
-The **pandas function `describe`** will return descriptive stats including: mean,
+The Pandas `describe` function will return descriptive stats including: mean,
 median, max, min, std and count for a particular column in the data. Pandas'
 `describe` function will only return summary values for columns containing
 numeric data (does this always make sense?)
@@ -439,18 +433,18 @@ numeric data (does this always make sense?)
 # Summary statistics for all numeric columns by Seastate
 grouped_data.describe()
 # Provide the mean for each numeric column by Seastate
-    grouped_data.mean()
+grouped_data.mean()
 ~~~
 {: .language-python}
 
-`grouped_data.mean()` **OUTPUT:**
+`grouped_data.mean()` produces
 
 ~~~
-           record_id                                                                             buoy_id                ...    Temperature    Spread
-           count    mean           std           min    25%        50%       75%       max       count     mean         ...    75%        max      count    mean         std          min     25%     50%     75%     max
-Seastate                                                                                    
-   swell  1747.0    1019.925587    645.553036    1.0     441.50     878.0    1636.5    2073.0    1747.0    11.464797    ...    17.4000    18.70    378.0    30.592593    10.035383    14.0    23.0    28.0    36.0    89.0
- windsea   326.0    1128.500000    188.099299    3.0    1036.25    1121.5    1273.5    1355.0    326.0      7.079755    ...    12.4875    13.35    326.0    25.036810     9.598327     9.0    16.0    25.0    31.0    68.0
+record_id,buoy_id,...,Temperature,Spread
+,count,mean,std,min,25%,50%,75%,max,count,mean,...,75%,max,count,mean,std,min,25%,50%,75%,max
+Seastate,
+swell,1747.0,1019.925587,645.553036,1.0,441.50,878.0,1636.5,2073.0,1747.0,11.464797,...,17.4000,18.70,378.0,30.592593,10.035383,14.0,23.0,28.0,36.0,89.0
+windsea,326.0,1128.500000,188.099299,3.0,1036.25,1121.5,1273.5,1355.0,326.0,7.079755,...,12.4875,13.35,326.0,25.036810,9.598327,9.0,16.0,25.0,31.0,68.0
 2 rows × 64 columns
 ~~~
 {: .output}
@@ -471,6 +465,11 @@ is much larger than the wave heights classified as 'windsea'.
 > 3. Summarize Temperature values for swell and windsea states in your data. 
 >
 >> ## Solution to 3
+>> ~~
+>> waves_df.groupby(['Seastate'])["Temperature"].describe()
+>> ~~
+>> {: .language-python}
+>> which produces the following:
 >> ~~~
 >>             count    mean         std         min     25%      50%      75%        max
 >> Seastate                                
@@ -518,9 +517,9 @@ example let's convert all the degrees values to radians.
 
 ~~~
 # convert the directions from degrees to radians
-Sometimes people use different units for directions, for example we could describe 
-the directions in terms of radians (where a full circle 360 degrees = 2*pi radians)
-To do this we need to use the math library which contains the constant pi
+# Sometimes people use different units for directions, for example we could describe 
+# the directions in terms of radians (where a full circle 360 degrees = 2*pi radians)
+# To do this we need to use the math library which contains the constant pi
 
 # Convert degrees to radians by multiplying all direction values values by pi/180
 import math # the constant pi is stored in the math(s) library, so need to import it
@@ -546,6 +545,7 @@ waves_df['Peak Direction'] * math.pi / 180
 >
 > Convert the temperature colum to Kelvin (adding 273.15 to every value), and round the answer to 1 decimal place
 >
+>> ## Solution
 >> ~~~
 >> (waves_df["Temperature"] + 273.15).round(1)
 >> ~~~
@@ -558,6 +558,7 @@ waves_df['Peak Direction'] * math.pi / 180
 > Sometimes, we need to _normalise_ values. A common way of doing this is to scale values between 0 and 1, using 
 > `y = (x - min) / (max - min)`. Using this equation, scale the Temperature column
 >
+>> ## Solution
 >> ~~~
 >> x = waves_df["Temperature"]
 >> y = (x - x.min()) / (x.max() - x.min())
@@ -569,150 +570,6 @@ waves_df['Peak Direction'] * math.pi / 180
 A more practical use of this might
 be to normalize the data according to a mean, area, or some other value
 calculated from our data.
-
-<!-- # Quick & Easy Plotting Data Using Pandas
-
-We can plot our summary stats using Pandas, too.
-
-~~~
-# Make sure figures appear inline in Ipython Notebook
-%matplotlib inline
-# Create a quick bar chart
-country_counts.plot(kind='bar');
-~~~
-{: .language-python}
-
-![Weight by Species Site](../fig/countPerSpecies.png)
-Count per species site
-
-We can also look at how many observations were made at each site:
-
-~~~
-total_count = waves_df.groupby('buoy_id')['record_id'].nunique()
-# Let's plot that too
-total_count.plot(kind='bar');
-~~~
-{: .language-python}
-
-> ## Challenge - Plots
->
-> 1. Create a plot of average Temperature across all buoy_id per Site Type.
-> 2. Create a plot of total Coastal versus total Ocean sites for the entire dataset.
-{: .challenge}
-
-> ## Summary Plotting Challenge
->
-> Create a stacked bar plot, with Temperature on the Y axis, and the stacked variable
-> being Site Type. The plot should show average Temperature by Site Type for each site. Some
-> tips are below to help you solve this challenge:
->
-> * For more information on pandas plots, see [pandas' documentation page on visualization][pandas-plot].
-> * You can use the code that follows to create a stacked bar plot but the data to stack
->  need to be in individual columns.  Here's a simple example with some data where
->  'a', 'b', and 'c' are the groups, and 'one' and 'two' are the subgroups.
->
-> ~~~
-> d = {'one' : pd.Series([1., 2., 3.], index=['a', 'b', 'c']), 'two' : pd.Series([1., 2., 3., 4.], index=['a', 'b', 'c', 'd'])}
-> pd.DataFrame(d)
-> ~~~
-> {: .language-python }
->
-> shows the following data
->
-> ~~~
->       one  two
->   a    1    1
->   b    2    2
->   c    3    3
->   d  NaN    4
-> ~~~
-> {: .output}
->
-> We can plot the above with
->
-> ~~~
-> # Plot stacked data so columns 'one' and 'two' are stacked
-> my_df = pd.DataFrame(d)
-> my_df.plot(kind='bar', stacked=True, title="The title of my graph")
-> ~~~
-> {: .language-python }
->
-> ![Stacked Bar Plot](../fig/stackedBar1.png)
->
-> * You can use the `.unstack()` method to transform grouped data into columns
-> for each plotting.  Try running `.unstack()` on some DataFrames above and see
-> what it yields.
->
-> Start by transforming the grouped data (by site and country) into an unstacked layout, then create
-> a stacked plot.
->
->
->> ## Solution to Summary Challenge
->>
->> First we group data by site and by country, and then calculate a total for each site.
->>
->> ~~~
->> by_site_country = waves_df.groupby(['buoy_id', 'Country'])
->> site_country_count = by_site_country['Temperature'].sum()
->> ~~~
->> {: .language-python}
->>
->> This calculates the sums of Temperature for each country within each site as a table
->>
->> ~~~
->> site  country
->> buoy_id  sex
->> 1        F      38253
->>          M      59979
->> 2        F      50144
->>          M      57250
->> 3        F      27251
->>          M      28253
->> 4        F      39796
->>          M      49377
->> <other sites removed for brevity>
->> ~~~
->> {: .output}
->>
->> Below we'll use `.unstack()` on our grouped data to figure out the total Temperature that each country contributed to each site.
->>
->> ~~~
->> by_site_Seastate = waves_df.groupby(['buoy_id', 'Seastate'])
->> site_Seastate_count = by_site_Seastate['Temperature'].sum()
->> site_Seastate_count.unstack()
->> ~~~
->> {: .language-python }
->>
->> The `unstack` method above will display the following output:
->>
->> ~~~
->> sex          F      M
->> buoy_id
->> 1        38253  59979
->> 2        50144  57250
->> 3        27251  28253
->> 4        39796  49377
->> <other sites removed for brevity>
->> ~~~
->> {: .output}
->>
->> Now, create a stacked bar plot with that data where the temperatures for each Seastate are stacked by site.
->>
->> Rather than display it as a table, we can plot the above data by stacking the values of each country as follows:
->>
->> ~~~
->> by_site_Seastate= waves_df.groupby(['buoy_id', 'Country'])
->> site_Seastate_count = by_site_Seastate['Temperature'].sum()
->> spc = site_Seastate_count.unstack()
->> s_plot = spc.plot(kind='bar', stacked=True, title="Total Temperature by site and Seastate")
->> s_plot.set_ylabel("Temperature")
->> s_plot.set_xlabel("Plot")
->> ~~~
->> {: .language-python}
->>
->> ![Stacked Bar Plot](../fig/stackedBar.png)
-> {: .solution}
-{: .challenge} -->
 
 [ernst]: http://www.esapubs.org/archive/ecol/E090/118/default.htm
 [figshare-ndownloader]: https://ndownloader.figshare.com/files/2292172
