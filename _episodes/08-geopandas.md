@@ -1,7 +1,7 @@
 ---
-title: Data Ingest and Visualization - Matplotlib and Pandas
-teaching: 40
-exercises: 65
+title: A brief introduction to geospatial data
+teaching: 30
+exercises: 45
 questions:
     - "What can I do with geospatial data in Python?"
     - "How can I visualise and analyse this data?"
@@ -26,30 +26,7 @@ episode - if you need more background please see [this Carpentries Incubator
 lesson](https://carpentries-incubator.github.io/geospatial-python/). Instead, we will
 highlight some useful tasks that can achieved with some key python libraries.
 
-## Obtain data
-
-There are many repositories online from which you can obtain data. We are
-providing you with one data file to use with these exercises, but feel free to
-use any data that is relevant to your research. The file
-[`bouldercreek_09_2013.txt`]({{ page.root }}/data/bouldercreek_09_2013.txt)
-contains stream discharge data, summarized at
-15 minute intervals (in cubic feet per second) for a streamgage on Boulder
-Creek at North 75th Street (USGS gage06730200) for 1-30 September 2013. If you'd
-like to use this dataset, please find it in the data folder.
-
-## Clean up your data and open it using Python and Pandas
-
-We'll use the data about buoys again.
-
-<!-- To begin, import your data file into Python using Pandas. Did it fail? Your data
-file probably has a header that Pandas does not recognize as part of the data
-table. Remove this header, but do not simply delete it in a text editor! Use
-either a shell script or Python to do this - you wouldn't want to do it by hand
-if you had many files to process.
-
-If you are still having trouble importing the data as a table using Pandas,
-check the documentation. You can open the docstring in a Jupyter Notebook using
-a question mark. For example: -->
+We'll be using the data about buoys again.
 
 ~~~
 import pandas as pd
@@ -83,8 +60,15 @@ import geoplot as gplt
 ~~~
 {: .language-python}
 
-
-# callout about conda envs
+> ## Conda environments
+> We're now at the stage where you might find it useful to have different python _environments_ for specific 
+> tasks. When you open Anaconda Navigator, it will, by default, be running in your `base` environment.
+> However, you can create new environments via the Environments tab in the left-hand menu. Each environment
+> can have different packages (or different versions of packages), different versions of python, etc - and 
+> different packages can be installed via the Environments tab. However, note that individual Notebooks are _not_
+> associated with specific environments - they are associated with the current _active_ environment. A full 
+> introduction to Conda environments can be found at https://carpentries-incubator.github.io/introduction-to-conda-for-data-scientists/
+{: .callout}
 
 In our `locations` DataFrame, latitude and longitude are of type float:
 
