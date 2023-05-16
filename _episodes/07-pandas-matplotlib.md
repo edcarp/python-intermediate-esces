@@ -3,11 +3,11 @@ title: Data Ingest and Visualization - Matplotlib and Pandas
 teaching: 40
 exercises: 65
 questions:
-    - "What other tools can I use to create plots apart from ggplot?"
+    - "What tools can I use to create plots?"
     - "Why should I use Python to create plots?"
 objectives:
     - "Import the pyplot toolbox to create figures in Python."
-    - "Use matplotlib to make adjustments to Pandas or plotnine objects."
+    - "Use matplotlib to make adjustments to Pandas objects."
 keypoints:
     - "Matplotlib is the engine behind plotnine and Pandas plots."
     - "The object-based nature of matplotlib plots enables their detailed customization after they have been created."
@@ -97,7 +97,7 @@ With the new column names:
 
 [Matplotlib](https://matplotlib.org/) is a Python package that is widely used throughout the scientific Python community to create high-quality and publication-ready graphics. It supports a wide range of raster and vector graphics formats including PNG, PostScript, EPS, PDF and SVG.
 
-Moreover, matplotlib is the actual engine behind the plotting capabilities of both Pandas and plotnine packages. For example, when we call the `.plot` method on Pandas data objects, we actually use the matplotlib package.
+Moreover, matplotlib is the actual engine behind the plotting capabilities of Pandas. For example, as we'll see, we can call the `.plot` method on Pandas data objects - this actually uses the matplotlib package. There are also alternative plotting packages, e.g. [PLotnine](https://plotnine.readthedocs.io/en/stable/), which is also built upon Matplotlib.
 
 First, import the pyplot toolbox:
 
@@ -109,13 +109,13 @@ import matplotlib.pyplot as plt
 Now, let's read data and plot it!
 
 ~~~
-surveys = pd.read_csv("data/surveys.csv")
-my_plot = surveys.plot("hindfoot_length", "weight", kind="scatter")
+waves = pd.read_csv("data/waves.csv")
+my_plot = waves.plot("Tpeak", "Wave Height", kind="scatter")
 plt.show() # not necessary in Jupyter Notebooks
 ~~~
 {: .language-python}
 
-![Scatter plot of survey data set](../fig/08_scatter_surveys.png)
+![Scatter plot of survey data set](../fig/07_scatter_wave-heights.png)
 
 > ## Tip
 > By default, matplotlib creates a figure in a separate window. When using
@@ -134,7 +134,7 @@ to which we may make further adjustments and refinements using other matplotlib 
 > ## Tip
 > Matplotlib itself can be overwhelming, so a useful strategy is to
 > do as much as you easily can in a convenience layer, _i.e._ start
-> creating the plot in Pandas or plotnine, and then use matplotlib
+> creating the plot in Pandas, and then use matplotlib
 > for the rest.
 {: .callout}
 
@@ -218,9 +218,9 @@ ax2.hist(beta_draws)
 
 
 
-### Link matplotlib, Pandas and plotnine
+### Link matplotlib and Pandas
 
-When we create a plot using pandas or plotnine, both libraries use matplotlib
+When we create a plot using pandas (or plotnine), it uses matplotlib
 to create those plots. The plots created in pandas or plotnine are matplotlib
 objects, which enables us to use some of the advanced plotting options available
 in the matplotlib library. Because the objects output by pandas and plotnine
@@ -230,7 +230,7 @@ provide, offering a consistent environment to make publication-quality visualiza
 ~~~
 fig, ax1 = plt.subplots() # prepare a matplotlib figure
 
-surveys.plot("hindfoot_length", "weight", kind="scatter", ax=ax1)
+waves.plot("Tpeak", "Wave Height", kind="scatter", ax=ax1)
 
 # Provide further adaptations with matplotlib:
 ax1.set_xlabel("Hindfoot length")
@@ -239,9 +239,9 @@ fig.suptitle('Scatter plot of weight versus hindfoot length', fontsize=15)
 ~~~
 {: .language-python}
 
-![Extended version of scatter plot surveys](../fig/08_scatter_surveys_extended.png)
+![Extended version of scatter plot surveys](../fig/07_scatter_wave-heights_extended.png)
 
-To retrieve the matplotlib figure object from plotnine for customization, use the `draw()` function in plotnine:
+<!-- To retrieve the matplotlib figure object from plotnine for customization, use the `draw()` function in plotnine:
 
 ~~~
 import plotnine as p9
@@ -257,11 +257,68 @@ p9_ax = my_plt_version.axes[0] # each subplot is an item in a list
 p9_ax.set_xlabel("Hindfoot length")
 p9_ax.tick_params(labelsize=16, pad=8)
 p9_ax.set_title('Scatter plot of weight versus hindfoot length', fontsize=15)
-plt.show() # not necessary in Jupyter Notebooks
+plt.show() # not necessary in Jupyter Notebooks -->
 ~~~
 {: .language-python}
 
 ![Extended version of plotnine scatter plot](../fig/08_scatter_surveys_plotnine.png)
+
+> ## Challenge - subsetting data before plotting
+> Plot Tpeak vs Wave Height from the West Hebrides site. Can you add appropriate labels and a title, and
+> Make both axes start at 0?
+>
+> > ## Answers
+> >
+> > ~~~
+> > fig, ax1 = plt.subplots()
+> > waves[waves["buoy_id"] == 16].plot("Tpeak", "Wave Height", kind="scatter", ax=ax1)
+> > ax1.set_xlabel("Highest energy wave period")
+> > ax1.tick_params(labelsize=16, pad=8)
+> > ax1.set_xbound(0, waves[waves["buoy_id"] == 16].Tpeak.max()+1)
+> > ax1.set_ybound(0, waves[waves["buoy_id"] == 16]["Wave Height"].max()+1)
+> > fig.suptitle('Scatter plot of wave height versus Tpeak for West Hebrides', fontsize=15)
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
+
+> ## Challenge - grouping data before plotting
+> Can you group the waves data by buoy id, find only the maximum value for wave height for each buoy, and then plot Temperature vs Wave Height for these values.
+> Is there more useful information you could add to this plot?
+>
+> > ## Answers
+> >
+> > ~~~
+> > data = waves.groupby("buoy_id").max("Wave Height")
+> > x = data["Temperature"]
+> > y = data["Wave Height"]
+> > fig, plot = plt.subplots() # although we're not using the `fig` variable, subplots returns 2 objects
+> > plot.scatter(x, y) # notice a different way of creating a scatter plot
+> > for i in data.index:
+> >     plot.annotate(i, (x[i], y[i]), xytext=(5, -5), textcoords="offset pixels") # annotate the point with the buoy index
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
+
+> ## Challenge - multiple datasets
+> Plot Wave Height vs Tpeak for both the West Hebrides and the South Pembrokeshore buoys. Change the marker style for one of the Series, and make sure that you include a legend
+>
+> > ## Answers
+> >
+> > ~~~
+> > fig, ax = plt.subplots()
+> > wh = waves[waves["buoy_id"] == 16]
+> > pb = waves[waves["buoy_id"] == 11]
+> > 
+> > ax.scatter(wh["Tpeak"], wh["Wave Height"])
+> > ax.scatter(pb["Tpeak"], pb["Wave Height"], marker="*")
+> > 
+> > ax.legend(["West Hebrides", "South Pembrokeshire"], loc="best")
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
 
 > ## Challenge - Pandas and matplotlib
 > Load the streamgage data set with Pandas, subset the week of the 2013 Front Range flood
