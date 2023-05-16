@@ -3,22 +3,17 @@ title: Setup
 ---
 
 > ## Data
-> Data for this lesson is from the
-> [Portal Project Teaching Database](https://figshare.com/articles/Portal_Project_Teaching_Database/1314459).
-> Specifically, we use the following eight data files:
-> - [surveys.csv](https://ndownloader.figshare.com/files/10717177)
-> - [surveys2001.csv]({{ page.root }}/data/yearly_files/surveys2001.csv)
-> - [surveys2002.csv]({{ page.root }}/data/yearly_files/surveys2002.csv)
-> - [species.csv](https://ndownloader.figshare.com/files/3299483)
-> - [speciesSubset.csv]({{ page.root }}/data/speciesSubset.csv)
-> - [plots.csv](https://ndownloader.figshare.com/files/3299474)
-> - [bouldercreek_09_2013.txt]({{ page.root }}/data/bouldercreek_09_2013.txt)
-> - [portal_mammals.sqlite](https://ndownloader.figshare.com/files/11188550)
+> We will be using some ocean wave data and some geospatial datasets for this lesson, specifically the following datasets:
+> - [waves.csv]({{ page.root }}/data/waves.csv)
+> - [waves_2020.csv]({{ page.root }}/data/waves_2020.csv)
+> - [buoy_data.csv]({{ page.root }}/data/buoy_data.csv)
+> - [access.csv]({{ page.root }}/data/access.csv)
+> - [north_atlantic.geojson]({{ page.root }}/data/north_atlantic.geojson)
+> - [scotland_boundaries.geojson]({{ page.root }}/data/scotland_boundaries.geojson)
+> - [cairngorms_boundary.shp]({{ page.root }}/data/cairngorms_boundary.shp)
 >
-> Please download them (by clicking on the corresponding links) and move them to the same directory, or
-> [download all the files as a zip]({{ page.root }}/data/portal-teachingdb-master.zip)
-> which will give you everything in a single compressed file. You'll need to unzip
-> this file after downloading it.
+> Please download them (by clicking on the corresponding links) and move them to a directory called data within the 
+> directory you will run your Notebook from
 {: .prereq}
 
 
