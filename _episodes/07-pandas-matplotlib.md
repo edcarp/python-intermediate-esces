@@ -36,7 +36,7 @@ use any data that is relevant to your research. The file
 contains stream discharge data, summarized at
 15 minute intervals (in cubic feet per second) for a streamgage on Boulder
 Creek at North 75th Street (USGS gage06730200) for 1-30 September 2013. If you'd
-like to use this dataset, please find it in the data folder.
+like to use this dataset, please download it and put it in your data directory.
 
 ## Clean up your data and open it using Python and Pandas
 
@@ -257,11 +257,14 @@ p9_ax = my_plt_version.axes[0] # each subplot is an item in a list
 p9_ax.set_xlabel("Hindfoot length")
 p9_ax.tick_params(labelsize=16, pad=8)
 p9_ax.set_title('Scatter plot of weight versus hindfoot length', fontsize=15)
-plt.show() # not necessary in Jupyter Notebooks -->
+plt.show() # not necessary in Jupyter Notebooks 
 ~~~
 {: .language-python}
 
+
 ![Extended version of plotnine scatter plot](../fig/08_scatter_surveys_plotnine.png)
+
+-->
 
 > ## Challenge - subsetting data before plotting
 > Plot Tpeak vs Wave Height from the West Hebrides site. Can you add appropriate labels and a title, and

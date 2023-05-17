@@ -336,7 +336,8 @@ The pandas `merge` function supports two other join types:
 >    data availability and access rights associated with each buoy. Use that data to summarize the number of
 >    observations which are reusable for research.
 > 2. Again using `access.csv` file, use that data to summarize the number of data records from operational 
-     buoys which are available in Coastal versus Ocean waters.
+>     buoys which are available in Coastal versus Ocean waters.
+{: .challenge}
 
 {: .challenge}
 

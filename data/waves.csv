@@ -1,4 +1,4 @@
-﻿record_id,buoy_id,Name,Date,Tz,Peak Direction,Tpeak,Wave Height,Temperature,Spread,Operations,Seastate,Quadrant
+record_id,buoy_id,Name,Date,Tz,Peak Direction,Tpeak,Wave Height,Temperature,Spread,Operations,Seastate,Quadrant
 1,14,SW Isles of Scilly WaveNet Site,17/04/2023 00:00,7.2,263,10,1.8,10.8,26,crew,swell,west
 2,7,Hayling Island Waverider,17/04/2023 00:00,4,193,11.1,0.2,10.2,14,crew,swell,south
 3,5,Firth of Forth WaveNet Site,17/04/2023 00:00,3.7,115,4.5,0.6,7.8,28,crew,windsea,east

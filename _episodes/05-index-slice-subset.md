@@ -646,6 +646,8 @@ asking Python to select rows that have a `NaN` value of Temperature.
 >
 > 3. Create a new DataFrame that contains only observations that are of Quadrant
 >  north or west and where Tpeak values are greater than 10. 
+>
+>> ## Solution
 >> ~~~
 >> waves_df[(waves_df["buoy_id"].isin([3,7])) & (waves_df["Wave Height"] < 0.5)]
 >> ~~~

@@ -402,6 +402,7 @@ pandas._libs.tslibs.timedeltas.Timedelta
 > Using the `apply` function, round the values in the Wave Height column to the nearest whole number and store the resulting Series in a new variable called `rounded_heights`.
 > What would you need to change to round to 2 decimal place?
 >
+> > ## Solution
 > > ~~~
 > > rounded_heights = waves_df["Wave Height"].apply(round)
 > > waves_df["Wave Height"].apply(round, args=(1,))
@@ -413,6 +414,7 @@ pandas._libs.tslibs.timedeltas.Timedelta
 > ## Exploring Timedeltas 
 > Have a look at the Pandas Timedelta documentation. How could you print only the minutes difference from our `time_diff` variable? 
 >
+> > ## Solution
 > > There are 2 ways
 > > ~~~
 > > print(time_diff.components.minutes)
@@ -570,10 +572,11 @@ results.
 > ## Counting
 > Count the number of missing values per column.
 >
-> ## Hint
+> **Hint**
 > The method `.count()` gives you the number of non-NA observations per column.
 > Try looking to the `.isnull()` method.
 >
+>> ## Solution
 >> ~~~
 >> for c in surveys_df.columns:
 >>     print(c, len(surveys_df[surveys_df[c].isnull()]))
