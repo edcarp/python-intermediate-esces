@@ -266,6 +266,33 @@ plt.show() # not necessary in Jupyter Notebooks
 
 -->
 
+## More complicated plotting
+
+What about plotting after joining DataFrames? Let's plot the water depths at each of the buoys
+
+~~~
+joined = pd.merge(left=waves_df, right=buoys_df, left_on='buoy_id', right_on='buoy_id')
+plt.bar(joined["Name_x"].unique(), joined["Depth"].unique())
+~~~
+{: .language-python}
+
+Notice that we have to use `Name_x`: where column names are duplicated between DataFrames, Pandas
+appends `_x` to the column name that came from the "left", and `_y` to the column name that came from
+the "right".
+
+We can plot only the non-null values:
+
+~~~
+names = joined["Name_x"].unique()
+depths = joined["Depth"].unique()
+depths_df = pd.DataFrame({"depths":depths, "names":names})
+depths_df = depths_df[~depths_df["depths"].isna()]
+plt.bar(depths_df["names"], depths_df["depths"])
+~~~
+{: .language-python}
+
+Note that the return type of `.unique` is a Numpy ndarray, even though the column were of type Series! 
+
 > ## Challenge - subsetting data before plotting
 > Plot Tpeak vs Wave Height from the West Hebrides site. Can you add appropriate labels and a title, and
 > Make both axes start at 0?
