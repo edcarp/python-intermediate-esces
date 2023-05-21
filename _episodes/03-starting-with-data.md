@@ -465,9 +465,9 @@ is much larger than the wave heights classified as 'windsea'.
 > 3. Summarize Temperature values for swell and windsea states in your data. 
 >
 >> ## Solution to 3
->> ~~
+>> ~~~
 >> waves_df.groupby(['Seastate'])["Temperature"].describe()
->> ~~
+>> ~~~
 >> {: .language-python}
 >> which produces the following:
 >> ~~~
