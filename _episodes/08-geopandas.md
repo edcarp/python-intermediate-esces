@@ -67,7 +67,7 @@ import geoplot as gplt
 > can have different packages (or different versions of packages), different versions of python, etc - and 
 > different packages can be installed via the Environments tab. However, note that individual Notebooks are _not_
 > associated with specific environments - they are associated with the current _active_ environment. A full 
-> introduction to Conda environments can be found at https://carpentries-incubator.github.io/introduction-to-conda-for-data-scientists/
+> introduction to Conda environments can be found at [https://carpentries-incubator.github.io/introduction-to-conda-for-data-scientists/](https://carpentries-incubator.github.io/introduction-to-conda-for-data-scientists/)
 {: .callout}
 
 In our `locations` DataFrame, latitude and longitude are of type float:
@@ -117,10 +117,16 @@ buoys_geo["geometry"].distance(buoys_geo.iloc[0,3])
 Notice the `espg=27700` argument - this is the ESPG code for the UK National Grid. We have then calculated the
 distance of every point relative to the first point in the Series (Beryl A).
 
+For the rest of the lesson, we need to consider the data back in Latitude / Longitude format, so let's revert it back:
+
+~~~
+buoys_geo.to_crs(epsg="EPSG:4326",inplace=True)
+~~~
+{: .language-python}
+
 ## Geospatial polygons
 
-In our case, the geospatial data are all individual points. However, geospatial data can also deal with polygons. Let's load in
-data about Scottish Local Authority Boundaries:
+In our case, the geospatial data are all individual points. However, geospatial data can also deal with polygons. Let's load in data about Scottish Local Authority Boundaries:
 
 ~~~
 scotland = gpd.read_file("data/scotland.geojson")
@@ -134,8 +140,7 @@ scotland.plot()
 ~~~
 {: .language-python}
 
-We can see it looks like Scotland! We can look at the `shape` of the DataFrame to see that it has 32 rows - this is the number
-of Local Authorities in Scotland, and 5 columns. 
+We can see it looks like Scotland! We can look at the `shape` of the DataFrame to see that it has 32 rows - this is the number of Local Authorities in Scotland, and 5 columns. 
 
 We can find the "centroid" point of each Polygon - we can even plot this if we want an abstract map of Scotland!
 
