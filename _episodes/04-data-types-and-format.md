@@ -578,16 +578,23 @@ results.
 >
 >> ## Solution
 >> ~~~
->> for c in surveys_df.columns:
->>     print(c, len(surveys_df[surveys_df[c].isnull()]))
+>> for c in waves_df.columns:
+>>     print(c, len(waves_df[waves_df[c].isnull()]))
 >> ~~~
 >> {: .language-python}
 >>
 >> Or, since we've been using the `pd.isnull` function so far:
 >>
 >> ~~~
->> for c in surveys_df.columns:
->>     print(c, len(surveys_df[pd.isnull(surveys_df[c])]))
+>> for c in waves_df.columns:
+>>     print(c, len(waves_df[pd.isnull(waves_df[c])]))
+>> ~~~
+>> {: .language-python}
+>>
+>> It's also possible to use function chaining:
+>>
+>> ~~~
+>> waves_df.isnull().sum()
 >> ~~~
 >> {: .language-python}
 > {: .solution}
