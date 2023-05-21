@@ -233,9 +233,10 @@ fig, ax1 = plt.subplots() # prepare a matplotlib figure
 waves.plot("Tpeak", "Wave Height", kind="scatter", ax=ax1)
 
 # Provide further adaptations with matplotlib:
-ax1.set_xlabel("Hindfoot length")
+ax1.set_xlabel("Tpeak (highest energy wave periodicity; seconds)")
 ax1.tick_params(labelsize=16, pad=8)
-fig.suptitle('Scatter plot of weight versus hindfoot length', fontsize=15)
+ax1.set_ylabel("Significant Wave Height (metres)")
+fig.suptitle('Scatter plot of Significant Wave Height versus Tpeak', fontsize=15)
 ~~~
 {: .language-python}
 
