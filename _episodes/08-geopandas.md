@@ -196,9 +196,12 @@ scotland.overlaps(cairngorms.iloc[0].geometry)
 > > ## Solution
 > > import matplotlib.pyplot as plt
 > >
+> > ~~~
 > > figure, ax = plt.subplots()
 > > scotland.plot(ax=ax)
 > > cairngorms.plot(ax=ax, color="green")
+> > ~~~
+> > {: .language-python}
 > {: .solution}
 {: .challenge}
 
