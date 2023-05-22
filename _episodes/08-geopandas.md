@@ -193,7 +193,7 @@ scotland.overlaps(cairngorms.iloc[0].geometry)
 > We've already seen that we plot GeoDataFrames. We can pass these to Matplotlib subplots in the
 > same way as any other figure. Can you plot the Scotland and Cairngorms GeoDataFrames on the same
 > axes, and customise the plot to highlight the Cairngorms data in some way?
-> >
+> > ## Solution
 > > import matplotlib.pyplot as plt
 > >
 > > figure, ax = plt.subplots()
@@ -250,11 +250,11 @@ north_atlantic = gpd.read_file("data/north_atlantic.geojson")
 
 > ## Where to find data
 > One challenge with mapping is often to find appropriate data.
-> This file came from the NUTS dataset: https://marineregions.org/gazetteer.php?p=details&id=1912. Another useful source of
-> European data is the EU (https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/nuts#nuts21),
+> This file came from the NUTS dataset: [https://marineregions.org/gazetteer.php?p=details&id=1912](https://marineregions.org/gazetteer.php?p=details&id=1912). Another useful source of
+> European data is the EU ([https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/nuts#nuts21](https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/nuts#nuts21)),
 > while the Cairngorms data we looked at earlier came from the UK Government geospatial data catalogue
-> (https://www.data.gov.uk/dataset/8a00dbd7-e8f2-40e0-bcba-da2067d1e386/cairngorms-national-park-designated-boundary), and the
-> Scottish data came from the Scottish Government (https://data.spatialhub.scot/dataset/local_authority_boundaries-is/resource/d24c5735-0f1c-4819-a6bd-dbfeb93bd8e4) 
+> ([https://www.data.gov.uk/dataset/8a00dbd7-e8f2-40e0-bcba-da2067d1e386/cairngorms-national-park-designated-boundary](https://www.data.gov.uk/dataset/8a00dbd7-e8f2-40e0-bcba-da2067d1e386/cairngorms-national-park-designated-boundary)), and the
+> Scottish data came from the Scottish Government ([https://data.spatialhub.scot/dataset/local_authority_boundaries-is/resource/d24c5735-0f1c-4819-a6bd-dbfeb93bd8e4](https://data.spatialhub.scot/dataset/local_authority_boundaries-is/resource/d24c5735-0f1c-4819-a6bd-dbfeb93bd8e4)) 
 {: .callout}
 
 We can then plot the location of the buoys, and save the figure as we saw earlier
