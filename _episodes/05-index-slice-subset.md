@@ -485,7 +485,7 @@ waves_df[(waves_df["Wave Height"] >= 3.0) & (waves_df["Wave Height"] < 4.0)]
 ~~~
 {: .language-python}
 
-## Different types of and
+> ## Different types of and
 > In Python, we can normally use the keyword `and` for the Boolean _and_ operator:
 > ~~~
 > x = True
