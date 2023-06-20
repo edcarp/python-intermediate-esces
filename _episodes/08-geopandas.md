@@ -145,7 +145,7 @@ We can see it looks like Scotland! We can look at the `shape` of the DataFrame t
 We can find the "centroid" point of each Polygon - we can even plot this if we want an abstract map of Scotland!
 
 ~~~
-scotlan.centroid.plot()
+scotland.centroid.plot()
 ~~~
 {: .language-python}
 
