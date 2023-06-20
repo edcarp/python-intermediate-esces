@@ -515,7 +515,7 @@ make a copy of the data so we don't lose our work):
 ~~~
 df1 = waves_df.copy()
 # Fill all NaN values with 0
-waves_df['Temperature'] = waves_df['Temperature'].fillna(0)
+df1['Temperature'] = df1['Temperature'].fillna(0)
 ~~~
 {: .language-python}
 
@@ -524,7 +524,7 @@ values are replaced with 0 is different from when NaN values are simply thrown
 out or ignored.
 
 ~~~
-waves_df['Temperature'].mean()
+df1['Temperature'].mean()
 ~~~
 {: .language-python}
 
@@ -537,12 +537,11 @@ This sounds like it could be a 'real' temperature value, but the answer is biase
 because we have included a load of erroneous zeros - instead of using NaNs for our missing values.
 
 We can fill NaN values with any value that we chose. The code below fills all
-NaN values with a mean for all Temperature values. Let's first reset our data
-(`waves_df` doesn't currently contain any NaN values after we replaced them with zeros!)
+NaN values with a mean for all Temperature values. Let's first create another copy of our data.
 
 ~~~
-waves_df = df1.copy()
-waves_df['Temperature'] = waves_df['Temperature'].fillna(waves_df['Temperature'].mean())
+df2 = waves_df.copy()
+df2['Temperature'] = df2['Temperature'].fillna(waves_df['Temperature'].mean())
 ~~~
 {: .language-python}
 
@@ -552,7 +551,7 @@ not contain NaN values.
 Our mean now looks more sensible again:
 
 ~~~
-waves_df['Temperature'].mean()
+df2['Temperature'].mean()
 ~~~
 {: .language-python}
 
