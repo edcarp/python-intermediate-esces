@@ -275,7 +275,7 @@ of the date we want to convert. The full list of codes is at https://docs.python
 Let's take an individual value and see some of the things we can do with it
 
 ~~~
-date1 = type(dates.iloc[0])
+date1 = type(dates.iloc[14])
 ~~~
 
  - We'll look at indexing more in the next episode.
