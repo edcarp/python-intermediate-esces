@@ -328,10 +328,10 @@ which gives the **output**
 
 ~~~
 
-  record_id                              Name	                Date
-0	        1	  SW Isles of Scilly WaveNet Site   	17/04/2023 00:00
-1         2	         Hayling Island Waverider	    17/04/2023 00:00
-2	        3	      Firth of Forth WaveNet Site	    17/04/2023 00:00
+  record_id                             Name                Date
+0         1  SW Isles of Scilly WaveNet Site    17/04/2023 00:00
+1         2         Hayling Island Waverider    17/04/2023 00:00
+2         3      Firth of Forth WaveNet Site    17/04/2023 00:00
 ~~~
 {: .output}
 
