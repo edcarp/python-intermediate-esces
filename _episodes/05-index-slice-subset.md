@@ -207,7 +207,7 @@ Pandas also recognises the _step_ parameter:
 
 ~~~
 # return every other row in the first ten rows
-waves_df[0:11:2]
+waves_df[0:10:2]
 ~~~
 {: .language-python}
 
