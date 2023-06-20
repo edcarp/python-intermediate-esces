@@ -377,7 +377,7 @@ We can calculate basic statistics for all records in a single column using the
 syntax below:
 
 ~~~
-waves_df['Wave Height'].describe()
+waves_df['Temperature'].describe()
 ~~~
 {: .language-python}
 
@@ -399,18 +399,18 @@ Name: Temperature, dtype: float64
 > ## What counts don't include
 > Note that the value of `count` is not the same as the total number of rows. This is because
 > statistical methods in Pandas ignore NaN ("not a number") values. We can count the total number of
-> of NaNs using `waves_df["Wave Height"].isna().sum()`, which returns 356. 356 + 378 is 734, which _is_
+> of NaNs using `waves_df["Temperature"].isna().sum()`, which returns 876. 876 + 1197 is 2073, which _is_
 > the total number of rows in the DataFrame
 {: .callout} 
 
 We can also extract one specific metric if we wish:
 
 ~~~
-waves_df['Wave Height'].min()
-waves_df['Wave Height'].max()
-waves_df['Wave Height'].mean()
-waves_df['Wave Height'].std()
-waves_df['Wave Height'].count()
+waves_df['Temperature'].min()
+waves_df['Temperature'].max()
+waves_df['Temperature'].mean()
+waves_df['Temperature'].std()
+waves_df['Temperature'].count()
 ~~~
 {: .language-python}
 
