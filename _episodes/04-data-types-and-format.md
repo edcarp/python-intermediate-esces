@@ -642,16 +642,5 @@ We will use this data file later in the workshop. Check out your working directo
 sure the CSV wrote out properly, and that you can open it! If you want, try to bring it
 back into Python to make sure it imports properly.
 
-
-## Recap
-
-What we've learned:
-
-+ How to explore the data types of columns within a DataFrame
-+ How to change the data type
-+ What NaN values are, how they might be represented, and what this means for your work
-+ How to replace NaN values, if desired
-+ How to use `to_csv` to write manipulated data to a file.
-
 {% include links.md %}
 
