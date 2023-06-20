@@ -180,7 +180,7 @@ The above command yields the **output** below:
 2072,2073,16,west of Hebrides,18/10/2022 18:00,5.7,8.0,8.7,1.36,12.65,34.0,crew,swell,north
 2073 rows × 13 columns
 ~~~
-{ :.output}
+{: .output}
 
 We can see that there were 2073 rows parsed. Each row has 13
 columns. The first column is the index of the DataFrame. The index is used to
