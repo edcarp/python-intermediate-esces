@@ -272,6 +272,14 @@ plt.show() # not necessary in Jupyter Notebooks
 What about plotting after joining DataFrames? Let's plot the water depths at each of the buoys
 
 ~~~
+# water depth in the buoys dataframe is currently a string (it's suffixed by "m") so we need to fix that
+def fix_depth_string(i, depth):
+    if type(depth) == str:
+        buoys_df["Depth"][i] = float((buoys_df["Depth"][i]).strip().rstrip("m"))
+
+for i, depth in enumerate(buoys_df["Depth"]):
+    fix_depth_string(i, depth)
+
 joined = pd.merge(left=waves_df, right=buoys_df, left_on='buoy_id', right_on='buoy_id')
 plt.bar(joined["Name_x"].unique(), joined["Depth"].unique())
 ~~~
