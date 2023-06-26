@@ -120,7 +120,7 @@ distance of every point relative to the first point in the Series (Beryl A).
 For the rest of the lesson, we need to consider the data back in Latitude / Longitude format, so let's revert it back:
 
 ~~~
-buoys_geo.to_crs(epsg="EPSG:4326",inplace=True)
+buoys_geo.to_crs(epsg="4326",inplace=True)
 ~~~
 {: .language-python}
 
@@ -154,7 +154,7 @@ and see which Council area has the shortest boundary:
 
 ~~~
 scotland["lengths"] = scotland.length
-scot.sort_values("lengths")
+scotland.sort_values("lengths")
 ~~~
 {: .language-python}
 
@@ -162,7 +162,9 @@ Now, let's look at a different geospatial file: the boundaries of the Cairngorms
 National Parks in Scotland, and we can plot it
 
 ~~~
-cairngorms =  gpd.read_file("data/cairngorms.shp") # notice this is a different file format
+# Notice this is a different file format to the geojson file we used for the Scottish Council Boundaries data
+# The corresponding shp file (with the same filename) also needs to be in the same directory  
+cairngorms =  gpd.read_file("data/cairngorms.shp")
 cairngorms.plot()
 ~~~
 {: .language-python}
@@ -217,23 +219,9 @@ cairngorms.explore(style_kwds={"fillColor":"lime"})
 Our buoy data is based around the UK. Geopandas includes some very low resolution maps which we can use to plot our geospatial data on
 
 ~~~
-import geopandas as gpd
-import pandas as pd
-import matplotlib.pyplot as plt
-
-buoys_data = pd.read_csv("buoy_data.csv")
-
-buoys = buoys_data[["Name", "latitude", "longitude"]]
-
-buoys_gdf = gpd.GeoDataFrame(
-    buoys, geometry=gpd.points_from_xy(buoys.longitude, buoys.latitude), crs="EPSG:4326"
-)
-
 world = gpd.read_file(gpd.datasets.get_path("naturalearth_lowres"))
-
 ax = world.clip([-15, 50, 9, 61]).plot(color="white", edgecolor="black")
-
-buoys_gdf.plot(ax=ax, color="blue")
+buoys_geo.plot(ax=ax, color="blue")
 ~~~
 {: .language-python}
 
@@ -260,9 +248,11 @@ north_atlantic = gpd.read_file("data/north_atlantic.geojson")
 > Scottish data came from the Scottish Government ([https://data.spatialhub.scot/dataset/local_authority_boundaries-is/resource/d24c5735-0f1c-4819-a6bd-dbfeb93bd8e4](https://data.spatialhub.scot/dataset/local_authority_boundaries-is/resource/d24c5735-0f1c-4819-a6bd-dbfeb93bd8e4)) 
 {: .callout}
 
-We can then plot the location of the buoys, and save the figure as we saw earlier
+We can then plot the location of the buoys, and save the figure as we saw earlier. Although we could use the same technique as in the previous example (where we set the map as the axis and plotted the buoy positions on this object), here we're showing we can also use Matplotlib subplots. This will allow us more control over the subsequent plot. However, subplots aren't suppoorted directly via Pandas or Geopandas, so we now need to import Matplotlib
 
 ~~~
+import matplotlib.pyplot as plt
+
 fig, ax = plt.subplots()
 north_atlantic.plot(ax=ax)
 buoys_geo.plot(ax=ax, color="red")
