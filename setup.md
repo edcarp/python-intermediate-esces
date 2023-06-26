@@ -11,6 +11,7 @@ title: Setup
 > - [north_atlantic.geojson]({{ page.root }}/data/north_atlantic.geojson)
 > - [scotland_boundaries.geojson]({{ page.root }}/data/scotland_boundaries.geojson)
 > - [cairngorms_boundary.shp]({{ page.root }}/data/cairngorms_boundary.shp)
+> - [cairngorms_boundary.shx]({{ page.root }}/data/cairngorms_boundary.shx)
 >
 > Please download them (by clicking on the corresponding links) and move them to a directory called data within the 
 > directory you will run your Notebook from
