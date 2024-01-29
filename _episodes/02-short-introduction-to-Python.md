@@ -17,6 +17,10 @@ keypoints:
     - "Dictionaries are data structures that provide mappings between keys and values."
 ---
 
+> Hopefully, everything on this page should be familiar to everyone on this course! There's a chance some of the attendees may not have have done [the functions episode](https://edcarp.github.io/python-novice-esces/08-func/index.html) 
+>
+{: .callout}
+
 ## Interpreter
 
 Python is an interpreted language which can be used in two ways:
