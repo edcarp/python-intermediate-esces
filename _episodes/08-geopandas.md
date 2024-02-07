@@ -163,7 +163,7 @@ National Parks in Scotland, and we can plot it
 
 ~~~
 # Notice this is a different file format to the geojson file we used for the Scottish Council Boundaries data
-# The corresponding shp file (with the same filename) also needs to be in the same directory  
+# The corresponding `shx` file (with the same filename) also needs to be in the same directory  
 cairngorms =  gpd.read_file("data/cairngorms.shp")
 cairngorms.plot()
 ~~~
