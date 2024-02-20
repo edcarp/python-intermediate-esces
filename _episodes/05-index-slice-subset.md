@@ -294,8 +294,10 @@ It retains the original values for the first three rows.
 You can insert a column of data by specifying a column name that doesn't already exist
 and passing a list of the same length as the number of rows; e.g.
 
+~~~
 waves_df["new_column"] = range(0,2073)
-
+~~~
+{: .language-python }
 
 Okay, that's enough of that. Let's create a brand new clean dataframe from
 the original data CSV file.
