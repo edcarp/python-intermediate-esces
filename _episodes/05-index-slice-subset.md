@@ -626,8 +626,7 @@ As we saw earlier, we can run `isnull` on a particular column too. What does the
 
 ~~~
 # What does this do?
-empty_Temperatures = waves_df[pd.isnull(waves_df['Temperature'])]['Temperature']
-print(empty_Temperatures)
+waves_df[pd.isnull(waves_df['Temperature'])]['Temperature']
 ~~~
 {: .language-python}
 
