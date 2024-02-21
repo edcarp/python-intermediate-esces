@@ -28,7 +28,7 @@ also two additional files which contains information about the buoys:
 
 ~~~
 import pandas as pd
-waves = pd.read_csv("data/waves.csv",
+waves_df = pd.read_csv("data/waves.csv",
                          keep_default_na=False, na_values=[""])
 waves2020_df = pd.read_csv("data/waves_2020.csv",
                          keep_default_na=False, na_values=[""])
