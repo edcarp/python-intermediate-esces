@@ -28,7 +28,7 @@ also two additional files which contains information about the buoys:
 
 ~~~
 import pandas as pd
-waves = pd.read_csv("data/waves.csv",
+waves_df = pd.read_csv("data/waves.csv",
                          keep_default_na=False, na_values=[""])
 waves2020_df = pd.read_csv("data/waves_2020.csv",
                          keep_default_na=False, na_values=[""])
@@ -195,10 +195,9 @@ Index(['record_id', 'buoy_id', 'Name', 'Date', 'Tz', 'Peak Direction', 'Tpeak',
 ~~~
 {: .language-python}
 
-In our example, the join key is the column containing the two-letter species
-identifier, which is called `buoy_id`.
+In our example, the join key is the column containing the `buoy_id`.
 
-Now that we know the fields with the common species ID attributes in each
+Now that we know the fields with the common `buoy_id` attributes in each
 DataFrame, we are almost ready to join our data. However, since there are
 [different types of joins][join-types], we
 also need to decide which type of join makes sense for our analysis.
