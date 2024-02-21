@@ -584,7 +584,7 @@ and 5 is not greater than 5.
 
 To create a boolean mask:
 
-- Set the True / False criteria (e.g. `values > 5 = True`)
+- Set the True / False criteria (e.g. `values > 5`)
 - Python will then assess each value in the object to determine whether the
   value meets the criteria (True) or not (False).
 - Python creates an output object that is the same shape as the original
