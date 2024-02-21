@@ -642,15 +642,31 @@ asking Python to select rows that have a `NaN` value of Temperature.
 >   Verify the result by comparing the number of rows in the new DataFrame with
 >   the number of rows in the waves DataFrame where Site Type is No Go.
 >
-> 2. Create a new DataFrame that contains only observations from the Chesil Waverider of 
->  Hayling Island Waverider buoys, and where the wave height is less than 50 cm. 
+> 2. Create a new DataFrame that contains only observations from the Chesil Waverider or
+>  Hayling Island Waverider buoys, and where the wave height is less than 50 cm.
 >
 > 3. Create a new DataFrame that contains only observations that are of Quadrant
->  north or west and where Tpeak values are greater than 10. 
+>  north or west and where Tpeak values are greater than 10.
 >
 >> ## Solution
 >> ~~~
+>> # 1.
+>> waves_df[
+>>   ~waves_df["Operations"].isin(["crew", "survey"])
+>> ]
+>>
+>> # 2.
+>> waves_df[
+>>   waves_df.Name.isin(["Chesil Waverider", "Hayling Island Waverider"]) &
+>>   (waves_df['Wave Height'] < 0.5)
+>> ]
+>>
+>> # 3.
 >> waves_df[(waves_df["buoy_id"].isin([3,7])) & (waves_df["Wave Height"] < 0.5)]
+>> waves_df[
+>>   waves_df.Quadrant.isin(["north", "west"]) &
+>>   (waves_df.Tpeak > 10)
+>> ]
 >> ~~~
 >> {: .language-python}
 > {: .solution}
