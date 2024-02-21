@@ -54,7 +54,7 @@ and which is in the same format as our `waves_df` to see how this works.
 ~~~
 # Now read in first 8 lines of the waves 2020 data
 waves_sub = waves2020_df.head(8)
-# Grab the last 18 rows
+# Grab the last 8 rows
 waves_sub_last8 = waves2020_df.tail(8)
 # Reset the index values to the second dataframe
 waves_sub_last8 = waves_sub_last8.reset_index(drop=True)
