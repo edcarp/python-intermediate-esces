@@ -662,11 +662,13 @@ asking Python to select rows that have a `NaN` value of Temperature.
 >> ]
 >>
 >> # 3.
->> waves_df[(waves_df["buoy_id"].isin([3,7])) & (waves_df["Wave Height"] < 0.5)]
 >> waves_df[
 >>   waves_df.Quadrant.isin(["north", "west"]) &
 >>   (waves_df.Tpeak > 10)
 >> ]
+>>
+>> # Alternative for 3.
+>> waves_df[(waves_df["buoy_id"].isin([3,7])) & (waves_df["Wave Height"] < 0.5)]
 >> ~~~
 >> {: .language-python}
 > {: .solution}
