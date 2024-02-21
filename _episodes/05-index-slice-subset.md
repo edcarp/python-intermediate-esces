@@ -15,7 +15,7 @@ objectives:
     - "Query / select a subset of data using a set of criteria using the following operators:
        `==`, `!=`, `>`, `<`, `>=`, `<=`."
     - "Locate subsets of data using masks."
-    - "Describe BOOLEAN objects in Python and manipulate data using BOOLEANs."
+    - "Describe `bool` objects in Python and manipulate data using `bool`s."
 keypoints:
     - "In Python, portions of data can be accessed using indices, slices, column headings, and
        condition-based subsetting."
@@ -115,7 +115,7 @@ the related Python data type dictionary).
 > ## Reminder
 > The Python language and its modules (such as Pandas) define reserved
 > words that should not be used as identifiers when assigning objects
-> and variable names. Examples of reserved words in Python include Boolean values
+> and variable names. Examples of reserved words in Python include the `bool` values
 > `True` and `False`, operators `and`, `or`, and `not`, among others. The full list
 > of reserved words for Python version 3 is provided at
 > <https://docs.python.org/3/reference/lexical_analysis.html#identifiers>.
@@ -488,7 +488,7 @@ waves_df[(waves_df["Wave Height"] >= 3.0) & (waves_df["Wave Height"] < 4.0)]
 {: .language-python}
 
 > ## Different types of and
-> In Python, we can normally use the keyword `and` for the Boolean _and_ operator:
+> In Python, we can normally use the keyword `and` for the boolean _and_ operator:
 > ~~~
 > x = True
 > y = True
@@ -513,9 +513,9 @@ waves_df[(waves_df["Wave Height"] >= 3.0) & (waves_df["Wave Height"] < 4.0)]
 > ~~~
 > {: .output}
 >
-> _But_, in Pandas we need to use the `&` symbol instead. The `and` operator requires "Truth-values", but `Series` of Booleans
-> is considered "ambiguous", and trying to use `and` returns an error `Truth value of a Series is ambiguous.`
-{: .callout}  
+> _But_, in Pandas we need to use the `&` symbol instead. The `and` operator requires boolean values on both sides,
+> but the boolean value of a `Series` is considered ambiguous, and trying to use `and` returns an error.
+{: .callout}
 
 
 ### Python Syntax Cheat Sheet
@@ -562,9 +562,9 @@ Experiment with selecting various subsets of the "waves" data.
 
 A **mask** can be useful to locate where a particular subset of values exist or
 don't exist - for example,  NaN, or "Not a Number" values. To understand masks,
-we also need to understand `BOOLEAN` objects in Python.
+we also need to understand `bool` objects in Python.
 
-Boolean values include `True` or `False`. For example,
+Boolean values are either `True` or `False`. For example,
 
 ~~~
 # Set x to 5
@@ -631,8 +631,8 @@ print(empty_Temperatures)
 ~~~
 {: .language-python}
 
-Let's take a minute to look at the statement above. We are using the Boolean
-object `pd.isnull(waves_df['Temperature'])` as an index to `waves_df`. We are
+Let's take a minute to look at the statement above. We are using the `bool`
+array `pd.isnull(waves_df['Temperature'])` as an index to `waves_df`. We are
 asking Python to select rows that have a `NaN` value of Temperature.
 
 
