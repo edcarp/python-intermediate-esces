@@ -129,7 +129,7 @@ buoys_geo.to_crs(epsg="4326",inplace=True)
 In our case, the geospatial data are all individual points. However, geospatial data can also deal with polygons. Let's load in data about Scottish Local Authority Boundaries:
 
 ~~~
-scotland = gpd.read_file("data/scotland.geojson")
+scotland = gpd.read_file("data/scotland_boundaries.geojson")
 ~~~
 {: .language-python}
 
@@ -164,7 +164,7 @@ National Parks in Scotland, and we can plot it
 ~~~
 # Notice this is a different file format to the geojson file we used for the Scottish Council Boundaries data
 # The corresponding `shx` file (with the same filename) also needs to be in the same directory  
-cairngorms =  gpd.read_file("data/cairngorms.shp")
+cairngorms =  gpd.read_file("data/cairngorms_boundary.shp")
 cairngorms.plot()
 ~~~
 {: .language-python}
