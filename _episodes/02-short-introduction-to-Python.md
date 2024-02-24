@@ -367,6 +367,21 @@ a_list = [1, 2, 3]
 > 4. What information does the built-in function `len()` provide?
      Does it provide the same information on both tuples and lists?
      Does the `help()` function confirm this?
+>
+> > ## Solution
+> > 1\. The second value in a_list is replaced with 5.
+> >
+> > 2\. There is an error:
+> >   ~~~
+> >   TypeError: 'tuple' object does not support item assignment
+> >   ~~~~
+> >   {: .output}
+> >   As a tuple is immutable, it does not support item assignment. Elements in a list can be altered individually.
+> >
+> > 3\. `<class 'tuple'>`; The function tells you that the variable `a_tuple` is an object of the class *tuple*.
+> >
+> > 4\. `len()` tells us the length of an object. It works the same for both lists and tuples, providing us with the number of entries in each case.
+> {: .solution}
 {: .challenge}
 
 
@@ -444,6 +459,29 @@ for key in rev.keys():
 > 2. Reassign the value that corresponds to the key `second` so that it no longer
 >    reads "two" but instead `2`.
 > 3. Print the value of `rev` to the screen again to see if the value has changed.
+>
+> > ## Solution
+> > 1.
+> >
+> > ~~~
+> > print(rev)
+> > ~~~
+> > {: .language-python}
+> > ~~~
+> > {'first': 'one', 'second': 'two', 'third': 'three'}
+> > ~~~
+> > {: .output}
+> > 2 & 3:
+> > ~~~
+> > rev['second'] = 2
+> > print(rev)
+> > ~~~
+> > {: .language-python}
+> > ~~~
+> > {'first': 'one', 'second': 2, 'third': 'three'}
+> > ~~~
+> > {: .output}
+> {: .solution}
 {: .challenge}
 
 
