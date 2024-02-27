@@ -310,6 +310,54 @@ Let's look at the data using these.
 >
 > 3. `waves_df.head()` Also, what does `waves_df.head(15)` do?
 > 4. `waves_df.tail()`
+>
+> > ## Solution
+> > 1. 
+> > ~~~
+> > Index(['record_id', 'buoy_id', 'Name', 'Date', 'Tz', 'Peak Direction', 'Tpeak',
+> >    'Wave Height', 'Temperature', 'Spread', 'Operations', 'Seastate',
+> >    'Quadrant'],
+> >    dtype='object')
+> > ~~~
+> > {: .output}
+> >
+> > 2. 
+> > ~~~
+> > (2073, 13)
+> > ~~~
+> > {: .output}
+> >
+> > It is a _tuple_
+> >
+> > 3. 
+> > ~~~
+> >   record_id  buoy_id  ... Seastate Quadrant
+> > 0          1       14  ...    swell     west
+> > 1          2        7  ...    swell    south
+> > 2          3        5  ...  windsea     east
+> > 3          4        3  ...    swell    south
+> > 4          5       10  ...    swell     west
+> >
+> > [5 rows x 13 columns]
+> > ~~~
+> > {: .output}
+> >
+> > So, `waves_df.head()` returns the first 5 rows of the `waves_df` dataframe. (Your Jupyter Notebook might show all columns). `waves_df.head(15)` returns the first 15 rows; i.e. the _default_ value (recall the functions lesson) is 5, but we can change this via an argument to the function
+> > 4.
+> > ~~~
+> >       record_id  buoy_id              Name  ... Operations  Seastate  Quadrant
+> > 2068       2069       16  west of Hebrides  ...       crew     swell     north
+> > 2069       2070       16  west of Hebrides  ...       crew     swell     north
+> > 2070       2071       16  west of Hebrides  ...       crew     swell     north
+> > 2071       2072       16  west of Hebrides  ...       crew     swell     north
+> > 2072       2073       16  west of Hebrides  ...       crew     swell     north
+> >
+> > [5 rows x 13 columns]
+> > ~~~
+> > {: .output}
+> > 
+> > So, `waves_df.tail()` returns the final 5 rows of the dataframe. We can also control the output by adding an argument, like with `head()`
+> {: .solution}
 {: .challenge}
 
 
@@ -360,11 +408,38 @@ array(['SW Isles of Scilly WaveNet Site', 'Hayling Island Waverider',
 > ## Challenge - Statistics
 >
 > 1. Create a list of unique site IDs ("buoy_id") found in the waves data. Call it
->   `buoy_ids`. How many unique sites are there in the data? How many unique
+>   `buoy_ids`. How many unique
 >   buoys are in the data?
 >
 > 2. What is the difference between using `len(buoy_id)` and `waves_df['buoy_id'].nunique()`?
 >    in this case, the result is the same but when might be the difference be important?
+> 
+> > ## Solution
+> > 1. 
+> > ~~~
+> > buoy_ids = pd.unique(waves_df["buoy_id"])
+> > print(buoy_ids)
+> > ~~~
+> > {: .language-python}
+> >
+> > ~~~
+> > [14  7  5  3 10  9  2 11  6 16]
+> > ~~~
+> > {: .output}
+> > 
+> > We could count the number of elements of the list, or we might think about using either the `len()` or `nunique()` functions, and we get 10.
+> >
+> > We can see the difference between `len()` and `nunique()` if we create a DataFrame with a `None` value:
+> >
+> > ~~~
+> > length_test = pd.DataFrame([1,2,3,None])
+> > print(len(length_test))
+> > print(length_test.nunique())
+> > ~~~
+> > {: .language-python}
+> > 
+> > We can see that `len()` returns 4, while `nunique()` returns 3 - this is because `nunique()` ignore any `Null` value
+> {: .solution}
 {: .challenge}
 
 ## Groups in Pandas
@@ -464,7 +539,10 @@ is much larger than the wave heights classified as 'windsea'.
 >   - `grouped_data2.mean()`
 > 3. Summarize Temperature values for swell and windsea states in your data. 
 >
->> ## Solution to 3
+>> ## Solution
+>> 1. The most complete answer is `waves_df.groupby("Quadrant").count()["record_id"][["north", "west"]]`
+>> 2. It groups by 2nd column _within_ the results of the 1st column, and then calculates the mean (n.b. depending on your version of python, you might need `grouped_data2.mean(numeric_only=True)`)
+>> 3. 
 >> ~~~
 >> waves_df.groupby(['Seastate'])["Temperature"].describe()
 >> ~~~
