@@ -453,6 +453,41 @@ dtype('float64')
 >
 > Next try converting `Temperature` to an integer. What goes wrong here? What is Pandas telling you?
 > We will talk about some solutions to this in the section below.
+>> ## Solution 
+>> 
+>> Converting the `buoy` column to floats returns
+>> ~~~
+>> 0       14.0
+>> 1        7.0
+>> 2        5.0
+>> 3        3.0
+>> 4       10.0
+>>         ... 
+>> 2068    16.0
+>> 2069    16.0
+>> 2070    16.0
+>> 2071    16.0
+>> 2072    16.0
+>> Name: buoy_id, Length: 2073, dtype: float64 
+>> ~~~
+>> {: .output}
+>> So we can see that we can convert a whole column of _int_ values to floating point values. Converting floating point values to ints works in the same way.
+>> However, this only works _if_ all there's a value in
+>> every row. When we try this with the Temperature column:
+>> ~~~
+>> waves_df.Temperature.astype("int")
+>> ~~~
+>> {: .language-python}
+>>
+>> We get an error, with the pertinent line in the error (the last one) being:
+>>
+>> ~~~
+>> ValueError: Cannot convert NA to integer
+>> ~~~
+>> {: .output}
+>>
+>> This happens because some of the values in the Temperature column are None values, and the `astype` function can't convert this type of value.
+> {: .solution}
 {: .challenge}
 
 ## Missing Data Values - NaN
