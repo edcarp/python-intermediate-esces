@@ -173,6 +173,23 @@ a = [1, 2, 3, 4, 5]
 >    a[len(a)]
 >    ~~~
 >    {: .language-python }
+>> ## Solution
+>> 1. `a[0]`` returns 1, as Python starts with element 0 (this may be different from what
+>>     you have previously experience with other languages e.g. MATLAB and R)
+>> 2. `a[5]` raises an IndexError
+>> 3. The error is raised because the list a has no element with index 5: it has only five entries, indexed from 0 to 4.
+>> 4. `a[len(a)]` also raises an IndexError. `len(a)` returns 5, making `a[len(a)]` equivalent to `a[5]`.
+>>     To retreive the final element of a list, use the index -1, e.g.
+>> ~~~
+>> a[-5]
+>> ~~~
+>> {: .language-python}
+>>
+>> ~~~
+>> 5
+>> ~~~
+>> {: .output}
+> {: .solution}
 {: .challenge}
 
 
@@ -419,20 +436,57 @@ arrays)
 >
 > 1. What happens when you execute:
 >
->    - `waves_df[0:1]`
+>    - `waves_df[0:3]`
 >    - `waves_df[0]`
 >    - `waves_df[:4]`
 >    - `waves_df[:-1]`
 >
 > 2. What happens when you call:
 >
->    - `waves_df.iloc[0:1]`
+>    - `waves_df.iloc[0:3]`
 >    - `waves_df.iloc[0]`
 >    - `waves_df.iloc[:4, :]`
 >    - `waves_df.iloc[0:4, 1:4]`
 >    - `waves_df.loc[0:4, 1:4]`
 >
 > - How are the last two commands different?
+>> ## Solution
+>>
+>> 1.
+>>   - `waves_df[0:3]` returns the first three rows of the DataFrame:
+>> ~~~
+>>    record_id  buoy_id                             Name              Date   Tz  ...  Temperature  Spread  Operations  Seastate  Quadrant
+>> 0          1       14  SW Isles of Scilly WaveNet Site  17/04/2023 00:00  7.2  ...         10.8    26.0        crew     swell      west
+>> 1          2        7         Hayling Island Waverider  17/04/2023 00:00  4.0  ...         10.2    14.0        crew     swell     south
+>> 2          3        5      Firth of Forth WaveNet Site  17/04/2023 00:00  3.7  ...          7.8    28.0        crew   windsea      east
+>> [3 rows x 13 columns]
+>> ~~~
+>> {: .output}
+>> 
+>>   - `waves_df[0]` results in a ‘KeyError’, since direct indexing of a row is redundant this way - `iloc` should be used instead (`waves_df[0:1]` could be used to obtain only the first row using this notation)
+>>
+>>   - `waves_df[:4]` slices from the first row to the fourth:
+>>
+>> ~~~
+>>    record_id  buoy_id                             Name              Date   Tz  ...  Temperature  Spread  Operations  Seastate  Quadrant
+>> 0          1       14  SW Isles of Scilly WaveNet Site  17/04/2023 00:00  7.2  ...         10.8    26.0        crew     swell      west
+>> 1          2        7         Hayling Island Waverider  17/04/2023 00:00  4.0  ...         10.2    14.0        crew     swell     south
+>> 2          3        5      Firth of Forth WaveNet Site  17/04/2023 00:00  3.7  ...          7.8    28.0        crew   windsea      east
+>> 3          4        3                 Chesil Waverider  17/04/2023 00:00  5.5  ...         10.2    48.0        crew     swell     south
+>> ~~~
+>> {: .output}
+>>
+>>   - `waves_df[:-1]` provides everything except the final row of a DataFrame. You can use negative index numbers to count backwards from the last entry.
+>>
+>> 2. 
+>>   - `waves_df.iloc[0:1]` returns the first row
+>>   - `waves_df.iloc[0]` returns the first row as a named list
+>>   - `waves_df.iloc[:4, :]` returns all columns of the first four rows
+>>   - `waves_df.iloc[0:4, 1:4]` selects specified columns of the first four rows
+>>   - `waves_df.loc[0:4, 1:4]` results in a 'TypeError' - see below.
+>>
+>> 3. While iloc uses integers as indices and slices accordingly, loc works with labels. It is like accessing values from a dictionary, asking for the key names. Column names 1:4 do not exist, so the call to `loc` above results in an error. Check also the difference between `waves_df.loc[0:4]` and `waves_df.iloc[0:4]`.
+> {: .solution}
 {: .challenge}
 
 
@@ -533,9 +587,9 @@ Experiment with selecting various subsets of the "waves" data.
 > ## Challenge - Queries
 >
 > 1. Select a subset of rows in the `waves_df` DataFrame that contain data from
->   the year 2022 and that contain Temperature values less than or equal to 8. How
->   many rows did you end up with? You may want to create a new column containing the dates
->   formatted as DateType that we created earlier
+>   the year 2023 and that contain Temperature values less than or equal to 8. How
+>   many rows did you end up with? Tip #1: You can't access attributes of a DateTme objects stored in a Series directly!
+>   Tip #2: you may want to create a new column containing the dates formatted as DateType that we created earlier!
 >
 > 2. You can use the `isin` command in Python to query a DataFrame based upon a
 >   list of values as follows:
@@ -548,15 +602,107 @@ Experiment with selecting various subsets of the "waves" data.
 >   Use the `isin` function to find all plots that contain buoy ids 5 and 7
 >   in the "waves" DataFrame. How many records contain these values?
 >
-> 3. Experiment with other queries. Create a query that finds all rows with a
+> 3. Experiment with other queries. e.g. Create a query that finds all rows with a
 >   Tpeak greater than or equal to 10.
 >
 > 4. The `~` symbol in Python can be used to return the OPPOSITE of the
 >   selection that you specify in Python. It is equivalent to **is not in**.
 >   Write a query that selects all rows with Quadrant NOT equal to 'south' or 'east' in
 >   the "waves" data.
+>
+>> ## Solution
+>> 1. This is possible in one-line:
+>> ~~~
+>> waves_df[(pd.to_datetime(waves_df.Date, format="%d/%m/%Y %H:%M").dt.year == 2023) & (waves_df["Temperature"] <= 8)]
+>> ~~~
+>> {: .language-python}
+>>
+>> First, we convert the `Date` column to objects of type `Timestamp`, then use the `dt` _accessor object_ to get information about the dates. A `series` isn't a `Timestamp`, so we can't use the `Timestamp` attributes directly
+>> If we wanted to save just the Year in a new column, we could do:
+>> ~~~
+>> timestamps = pd.to_datetime(waves_df.Date, format="%d/%m/%Y %H:%M")
+>> years = timestamps.dt.year
+>> waves_df["Year'] = years
+>> waves_df[(waves_df.Year == 2023) & (waves_df.Temperature <=8)]
+>> ~~~
+>> {: .language-python}
+>>
+>> And then we can see there are 2 rows which match this condition (don't forget we can also use the `len` function)
+>>
+>> ~~~
+>>    record_id  buoy_id                         Name              Date   Tz  Peak Direction  ...  Temperature  Spread  Operations  Seastate Quadrant  Year
+>> 2          3        5  Firth of Forth WaveNet Site  17/04/2023 00:00  3.7           115.0  ...         7.80    28.0        crew   windsea     east  2023
+>> 9         10        5  Firth of Forth WaveNet Site  15/04/2023 00:00  3.2           124.0  ...         7.35    23.0        crew   windsea     east  2023
+>>
+>> [2 rows x 14 columns]
+>> ~~~
+>> {: .output}
+>>
+>> 2. 
+>> ~~~
+>> waves_df[waves_df['buoy_id'].isin([5,7])]
+>> ~~~
+>> {: .language-python}
+>>
+>> ~~~
+>>       record_id  buoy_id                         Name              Date   Tz  ...  Spread  Operations  Seastate  Quadrant  Year
+>> 1             2        7     Hayling Island Waverider  17/04/2023 00:00  4.0  ...    14.0        crew     swell     south  2023
+>> 2             3        5  Firth of Forth WaveNet Site  17/04/2023 00:00  3.7  ...    28.0        crew   windsea      east  2023
+>> 8             9        7     Hayling Island Waverider  15/04/2023 00:00  3.7  ...    31.0        crew   windsea      east  2023
+>> 9            10        5  Firth of Forth WaveNet Site  15/04/2023 00:00  3.2  ...    23.0        crew   windsea      east  2023
+>> 1071       1072        5  Firth of Forth WaveNet Site  16/02/2009 11:00  3.0  ...    30.0        crew   windsea      west  2009
+>> ...         ...      ...                          ...               ...  ...  ...     ...         ...       ...       ...   ...
+>> 1350       1351        5  Firth of Forth WaveNet Site  22/02/2009 06:30  2.6  ...    16.0        crew   windsea      west  2009
+>> 1351       1352        5  Firth of Forth WaveNet Site  22/02/2009 07:00  2.7  ...    16.0        crew   windsea      west  2009
+>> 1352       1353        5  Firth of Forth WaveNet Site  22/02/2009 07:30  2.7  ...    16.0        crew   windsea      west  2009
+>> 1353       1354        5  Firth of Forth WaveNet Site  22/02/2009 08:00  2.7  ...    12.0        crew   windsea      west  2009
+>> 1354       1355        5  Firth of Forth WaveNet Site  22/02/2009 08:30  2.8  ...    12.0        crew   windsea      west  2009
+>>
+>> [288 rows x 14 columns]
+>> ~~~
+>> {: .output}
+>>
+>> ~~~
+>> len(waves_df[waves_df['buoy_id'].isin([5,7])])
+>> ~~~
+>> {: .language-python}
+>>
+>> ~~~
+>> 5
+>> ~~~
+>> {: .output}
+>>
+>> 3. 
+>> ~~~
+>> waves_df[waves_df['Tpeak'] >= 10]
+>> ~~~
+>> {: .language-python}
+>>
+>> 4. 
+>> ~~~
+>> waves_df[~waves_df['Quadrant'].isin(['south','east'])]
+>> ~~~
+>> {: .language-python}
+>>
+>> ~~~
+>>      record_id  buoy_id                             Name              Date   Tz  ...  Spread  Operations  Seastate  Quadrant  Year
+>> 0             1       14  SW Isles of Scilly WaveNet Site  17/04/2023 00:00  7.2  ...    26.0        crew     swell      west  2023
+>> 4             5       10                          M6 Buoy  17/04/2023 00:00  7.6  ...    89.0       no go     swell      west  2023
+>> 5             6        9                           Lomond  17/04/2023 00:00  4.0  ...     NaN        crew     swell     north  2023
+>> 6             7        2                     Cardigan Bay  17/04/2023 00:00  5.9  ...    18.0        crew     swell      west  2023
+>> 7             8       14  SW Isles of Scilly WaveNet Site  15/04/2023 00:00  7.2  ...    18.0        crew     swell      west  2023
+>> ...         ...      ...                              ...               ...  ...  ...     ...         ...       ...       ...   ...
+>> 2068       2069       16                 west of Hebrides  18/10/2022 16:00  6.1  ...    28.0        crew     swell     north  2022
+>> 2069       2070       16                 west of Hebrides  18/10/2022 16:30  5.9  ...    34.0        crew     swell     north  2022
+>> 2070       2071       16                 west of Hebrides  18/10/2022 17:00  5.6  ...    34.0        crew     swell     north  2022
+>> 2071       2072       16                 west of Hebrides  18/10/2022 17:30  5.7  ...    31.0        crew     swell     north  2022
+>> 2072       2073       16                 west of Hebrides  18/10/2022 18:00  5.7  ...    34.0        crew     swell     north  2022
+>> 
+>> [1985 rows x 14 columns]
+>> ~~~
+>> {: .output}
+> {: .solution}
 {: .challenge}
-
 
 # Using masks to identify a specific condition
 
