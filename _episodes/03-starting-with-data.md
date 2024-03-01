@@ -418,7 +418,7 @@ array(['SW Isles of Scilly WaveNet Site', 'Hayling Island Waverider',
 >    in this case, the result is the same but when might be the difference be important?
 > 
 > > ## Solution
-> >
+> > 1.  
 > > ~~~
 > > buoy_ids = pd.unique(waves_df["buoy_id"])
 > > print(buoy_ids)
@@ -429,6 +429,8 @@ array(['SW Isles of Scilly WaveNet Site', 'Hayling Island Waverider',
 > > [14  7  5  3 10  9  2 11  6 16]
 > > ~~~
 > > {: .output}
+> > 
+> > 2.  
 > > 
 > > We could count the number of elements of the list, or we might think about using either the `len()` or `nunique()` functions, and we get 10.
 > >
@@ -545,7 +547,7 @@ is much larger than the wave heights classified as 'windsea'.
 >> ## Solution
 >> 1. The most complete answer is `waves_df.groupby("Quadrant").count()["record_id"][["north", "west"]]`
 >> 2. It groups by 2nd column _within_ the results of the 1st column, and then calculates the mean (n.b. depending on your version of python, you might need `grouped_data2.mean(numeric_only=True)`)
->> 3. 
+>> 3.  
 >> ~~~
 >> waves_df.groupby(['Seastate'])["Temperature"].describe()
 >> ~~~
