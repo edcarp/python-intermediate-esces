@@ -116,6 +116,24 @@ new_output = pd.read_csv('data/out.csv', keep_default_na=False, na_values=[""])
 > `waves_2020.csv`. Read the data into Python and combine the files to make one
 > new data frame. Output some descriptive statistics group by buoy_id.
 > Export your results as a CSV and make sure it reads back into Python properly.
+>
+>> ## Solution
+>> ~~~
+>> # read the files
+>> waves_df = pd.read_csv("waves.csv", keep_default_na=False, na_values=[""])
+>> waves2020_df = pd.read_csv("waves_2020.csv", keep_default_na=False, na_values=[""])
+>> # concatenate
+>> combined_data = pd.concat([waves_df, waves2020_df], axis=0)
+>> # group by buoy_id, and output some summary statistics
+>> combined_data.groupby("buoy_id").describe()
+>> # write to csv
+>> combined_data.to_csv("combined_wave_data.csv", index=False)
+>> # read in the csv
+>> cwd = pd.read_csv("combined_wave_data.csv", keep_default_na=False, na_values=[""])
+>> # check the results are the same
+>> cwd.groupby("buoy_id").describe()
+>> ~~~
+>> {: .language-python}
 {: .challenge}
 
 # Joining DataFrames
@@ -327,6 +345,39 @@ The pandas `merge` function supports two other join types:
 >
 > 1. Wave Height by Site Type
 > 2. Temperature by Seastate and by Country 
+>
+>> ## Solution
+>> ~~~
+>> # Merging the data frames
+>> merged_left = pd.merge(left=waves_df,right=buoys_df, how='left', on="buoy_id")
+>> # Group by Site Type, and calculate mean of Wave Height
+>> merged_left.groupby("Type")["Wave Height"].mean()
+>> # Group by Sea State and Country, and calculate mean of Temperature
+>> merged_left.groupby(["Seastate","Country"])["Temperature"].mean()
+>> ~~~
+>> {: .language-python}
+>>
+>> ~~~
+>> Type
+>> Directional                            3.489321
+>> Downward-looking wave radar            0.600000
+>> Unspecified wave measurement sensor    0.381098
+>> Name: Wave Height, dtype: float64
+>> ~~~
+>> {: .output}
+>>
+>> ~~~
+>> Seastate  Country 
+>> swell     England     17.324093
+>>           Scotland    10.935880
+>>           Wales       12.491667
+>> windsea   England      9.300000
+>>           Scotland     5.404502
+>>           Wales       12.771239
+>> Name: Temperature, dtype: float64
+>> ~~~
+>> {: .output}
+> {: .solution}
 {: .challenge}
  
 > ## Challenge - filter by availability
@@ -336,6 +387,28 @@ The pandas `merge` function supports two other join types:
 >    observations which are reusable for research.
 > 2. Again using `access.csv` file, use that data to summarize the number of data records from operational 
 >     buoys which are available in Coastal versus Ocean waters.
+>
+>> ## Solution
+>> 1.
+>> ~~~
+>> # Read the access file
+>> access_df = pd.read_csv("data/access.csv")
+>> # Merge the dataframes
+>> merged_access = pd.merge(left=waves_df,right=access, how='left', on="buoy_id")
+>> # find the number available for research
+>> merged_access.groupby("data availability").count()
+>> # or, this also gives the same answer:
+>> merged_access[merged_access["data availability"]=="research"]
+>> ~~~
+>> {: .language-python}
+>>
+>> 2.
+>> ~~~
+>> buoy_access = pd.merge(left=buoys_df, right=access, how="left", on="buoy_id")
+>> buoy_access[buoy_access["data availability"]=="operational"].groupby("Site Type")["buoy_id"].count()
+>> ~~~
+>> {: .language-python}
+> {: .solution}
 {: .challenge}
 
 {: .challenge}
