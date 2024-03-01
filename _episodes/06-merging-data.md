@@ -134,6 +134,7 @@ new_output = pd.read_csv('data/out.csv', keep_default_na=False, na_values=[""])
 >> cwd.groupby("buoy_id").describe()
 >> ~~~
 >> {: .language-python}
+> {: .solution}
 {: .challenge}
 
 # Joining DataFrames
