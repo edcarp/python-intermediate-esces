@@ -359,46 +359,6 @@ Note that the return type of `.unique` is a Numpy ndarray, even though the colum
 > {: .solution}
 {: .challenge}
 
-> ## Challenge - Pandas and matplotlib
-> Load the streamgage data set with Pandas, subset the week of the 2013 Front Range flood
-> (September 11 through 15) and create a hydrograph (line plot) of the discharge data using
-> Pandas, linking it to an empty maptlotlib `ax` object. Create a second axis that displays the
-> whole dataset. Adapt the title and axes' labels using matplotlib.
->
-> > ## Answers
-> >
-> > ~~~
-> > import pandas as pd
-> > import matplotlib.pyplot as plt
-> > 
-> > discharge = pd.read_csv("data/bouldercreek_09_2013.txt",
-> >                         skiprows=27, delimiter="\t",
-> >                         names=["agency", "site_id", "datetime",
-> >                                "timezone", "flow_rate", "discharge_cd"])
-> > discharge["datetime"] = pd.to_datetime(discharge["datetime"])
-> > flood = discharge[(discharge["datetime"] >= "2013-09-11") &
-> >                   (discharge["datetime"] <= "2013-09-15")]
-> >
-> > fig, ax = plt.subplots()
-> >
-> > flood.plot(x="datetime", y="flow_rate", ax=ax)
-> > ax.set_xlabel("")  # no label
-> > ax.set_ylabel("Discharge, cubic feet per second")
-> > ax.legend().set_visible(False)
-> > ax.set_title("Front Range flood event 2013")
-> > 
-> > ax2 = fig.add_axes([0.65, 0.575, 0.25, 0.3])
-> > # DataFrame.plot raises an error with an inset axis object,
-> > # so we use matplotlib's plot method instead
-> > ax2.plot("datetime", "flow_rate", data=discharge)
-> > plt.xticks(rotation=90)
-> > ~~~
-> > {: .language-python}
-> >
-> > ![Flood event plot](../fig/08_flood_event.png)
-> {: .solution}
-{: .challenge}
-
 ### Saving matplotlib figures
 
 Once satisfied with the resulting plot, you can save the plot with the `.savefig(*args)` method from matplotlib:
