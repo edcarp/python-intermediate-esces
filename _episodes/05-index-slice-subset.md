@@ -173,7 +173,9 @@ a = [1, 2, 3, 4, 5]
 >    a[len(a)]
 >    ~~~
 >    {: .language-python }
+>
 >> ## Solution
+>>
 >> 1. `a[0]`` returns 1, as Python starts with element 0 (this may be different from what
 >>     you have previously experience with other languages e.g. MATLAB and R)
 >> 2. `a[5]` raises an IndexError
@@ -189,6 +191,7 @@ a = [1, 2, 3, 4, 5]
 >> 5
 >> ~~~
 >> {: .output}
+>>
 > {: .solution}
 {: .challenge}
 
@@ -450,9 +453,10 @@ arrays)
 >    - `waves_df.loc[0:4, 1:4]`
 >
 > - How are the last two commands different?
+>
 >> ## Solution
 >>
->> 1.
+>> 
 >>   - `waves_df[0:3]` returns the first three rows of the DataFrame:
 >> ~~~
 >>    record_id  buoy_id                             Name              Date   Tz  ...  Temperature  Spread  Operations  Seastate  Quadrant
@@ -463,9 +467,9 @@ arrays)
 >> ~~~
 >> {: .output}
 >> 
->>   - `waves_df[0]` results in a ‘KeyError’, since direct indexing of a row is redundant this way - `iloc` should be used instead (`waves_df[0:1]` could be used to obtain only the first row using this notation)
+>>  `waves_df[0]` results in a ‘KeyError’, since direct indexing of a row is redundant this way - `iloc` should be used instead (`waves_df[0:1]` could be used to obtain only the first row using this notation)
 >>
->>   - `waves_df[:4]` slices from the first row to the fourth:
+>>  `waves_df[:4]` slices from the first row to the fourth:
 >>
 >> ~~~
 >>    record_id  buoy_id                             Name              Date   Tz  ...  Temperature  Spread  Operations  Seastate  Quadrant
@@ -476,16 +480,16 @@ arrays)
 >> ~~~
 >> {: .output}
 >>
->>   - `waves_df[:-1]` provides everything except the final row of a DataFrame. You can use negative index numbers to count backwards from the last entry.
+>>  `waves_df[:-1]` provides everything except the final row of a DataFrame. You can use negative index numbers to count backwards from the last entry.
 >>
->> 2. 
->>   - `waves_df.iloc[0:1]` returns the first row
->>   - `waves_df.iloc[0]` returns the first row as a named list
->>   - `waves_df.iloc[:4, :]` returns all columns of the first four rows
->>   - `waves_df.iloc[0:4, 1:4]` selects specified columns of the first four rows
->>   - `waves_df.loc[0:4, 1:4]` results in a 'TypeError' - see below.
 >>
->> 3. While iloc uses integers as indices and slices accordingly, loc works with labels. It is like accessing values from a dictionary, asking for the key names. Column names 1:4 do not exist, so the call to `loc` above results in an error. Check also the difference between `waves_df.loc[0:4]` and `waves_df.iloc[0:4]`.
+>>  `waves_df.iloc[0:1]` returns the first row
+>>  `waves_df.iloc[0]` returns the first row as a named list
+>>  `waves_df.iloc[:4, :]` returns all columns of the first four rows
+>>  `waves_df.iloc[0:4, 1:4]` selects specified columns of the first four rows
+>>  `waves_df.loc[0:4, 1:4]` results in a 'TypeError' - see below.
+>>
+>> While iloc uses integers as indices and slices accordingly, loc works with labels. It is like accessing values from a dictionary, asking for the key names. Column names 1:4 do not exist, so the call to `loc` above results in an error. Check also the difference between `waves_df.loc[0:4]` and `waves_df.iloc[0:4]`.
 > {: .solution}
 {: .challenge}
 
@@ -611,13 +615,14 @@ Experiment with selecting various subsets of the "waves" data.
 >   the "waves" data.
 >
 >> ## Solution
->> 1. This is possible in one-line:
+>> 
+>> This is possible in one-line:
 >> ~~~
 >> waves_df[(pd.to_datetime(waves_df.Date, format="%d/%m/%Y %H:%M").dt.year == 2023) & (waves_df["Temperature"] <= 8)]
 >> ~~~
 >> {: .language-python}
 >>
->> First, we convert the `Date` column to objects of type `Timestamp`, then use the `dt` _accessor object_ to get information about the dates. A `series` isn't a `Timestamp`, so we can't use the `Timestamp` attributes directly
+>> First, we convert the `Date` column to objects of type `Timestamp`, then use the `dt` _accessor object_ to get information about the dates. A `series` isn't a `Timestamp`, so we can't use the `Timestamp` attributes directly.
 >> If we wanted to save just the Year in a new column, we could do:
 >> ~~~
 >> timestamps = pd.to_datetime(waves_df.Date, format="%d/%m/%Y %H:%M")
@@ -638,7 +643,6 @@ Experiment with selecting various subsets of the "waves" data.
 >> ~~~
 >> {: .output}
 >>
->> 2. 
 >> ~~~
 >> waves_df[waves_df['buoy_id'].isin([5,7])]
 >> ~~~
@@ -672,13 +676,13 @@ Experiment with selecting various subsets of the "waves" data.
 >> ~~~
 >> {: .output}
 >>
->> 3. 
+>> 
 >> ~~~
 >> waves_df[waves_df['Tpeak'] >= 10]
 >> ~~~
 >> {: .language-python}
 >>
->> 4. 
+>> 
 >> ~~~
 >> waves_df[~waves_df['Quadrant'].isin(['south','east'])]
 >> ~~~
