@@ -312,7 +312,9 @@ Let's look at the data using these.
 > 4. `waves_df.tail()`
 >
 > > ## Solution
-> > 1. 
+> >
+> > 
+> >
 > > ~~~
 > > Index(['record_id', 'buoy_id', 'Name', 'Date', 'Tz', 'Peak Direction', 'Tpeak',
 > >    'Wave Height', 'Temperature', 'Spread', 'Operations', 'Seastate',
@@ -321,7 +323,8 @@ Let's look at the data using these.
 > > ~~~
 > > {: .output}
 > >
-> > 2. 
+> > 
+> >
 > > ~~~
 > > (2073, 13)
 > > ~~~
@@ -329,7 +332,8 @@ Let's look at the data using these.
 > >
 > > It is a _tuple_
 > >
-> > 3. 
+> > 
+> >
 > > ~~~
 > >   record_id  buoy_id  ... Seastate Quadrant
 > > 0          1       14  ...    swell     west
@@ -337,13 +341,12 @@ Let's look at the data using these.
 > > 2          3        5  ...  windsea     east
 > > 3          4        3  ...    swell    south
 > > 4          5       10  ...    swell     west
-> >
 > > [5 rows x 13 columns]
 > > ~~~
 > > {: .output}
 > >
 > > So, `waves_df.head()` returns the first 5 rows of the `waves_df` dataframe. (Your Jupyter Notebook might show all columns). `waves_df.head(15)` returns the first 15 rows; i.e. the _default_ value (recall the functions lesson) is 5, but we can change this via an argument to the function
-> > 4.
+> > 
 > > ~~~
 > >       record_id  buoy_id              Name  ... Operations  Seastate  Quadrant
 > > 2068       2069       16  west of Hebrides  ...       crew     swell     north
@@ -415,7 +418,7 @@ array(['SW Isles of Scilly WaveNet Site', 'Hayling Island Waverider',
 >    in this case, the result is the same but when might be the difference be important?
 > 
 > > ## Solution
-> > 1. 
+> >
 > > ~~~
 > > buoy_ids = pd.unique(waves_df["buoy_id"])
 > > print(buoy_ids)
