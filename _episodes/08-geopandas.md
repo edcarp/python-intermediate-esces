@@ -360,7 +360,7 @@ plt.savefig("b.png")
 >> # we additionally need this library for this example
 >> from matplotlib.offsetbox import AnchoredText
 >>
->> bounds = buoys_geo.total_bounds #minx,miny,maxx,maxy
+>> bounds = buoys_geo.total_bounds
 >>
 >> fig, ax = plt.subplots()
 >> ax.set_ylim([bounds[1]-0.5,bounds[3]+0.5])
@@ -382,6 +382,7 @@ plt.savefig("b.png")
                        )
 >> labels.patch.set_boxstyle("round,pad=0.,rounding_size=0.2")
 >> ax.add_artist(labels) 
+>> fig.tight_layout()
 >> ~~~
 >> {: .language-python}
 >>
