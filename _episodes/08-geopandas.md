@@ -163,18 +163,27 @@ National Parks in Scotland, and we can plot it
 
 ~~~
 # Notice this is a different file format to the geojson file we used for the Scottish Council Boundaries data
-# The corresponding `shx` file (with the same filename) also needs to be in the same directory  
+# This is one file which makes up the Shapefile data format. At a minimum, there needs to be corresponding `shx` and `dbf` files (with the same filenames) in the same directory, but `prj`, `sbx`, `sbn`, and `shp.xml` can store additional metadata 
 cairngorms =  gpd.read_file("data/cairngorms_boundary.shp")
 cairngorms.plot()
 ~~~
 {: .language-python}
 
 > ## Challenge: distances
-> This dataset contains the length of the boundary. Double check that it is correct
+> This dataset also contains the length of the boundary, and the area of the National Park. Print these in
+> km and square km, respectively
+>
+>> ## Solution
+>> ~~~
+>> cairngorms.length/1000
+>> cairngorms.area/1000000
+>> ~~~
+>> {: .language-python}
+> {: .solution}
 {: .challenge}
 
-One advantage of using geospatial data is seeing how things overlap. Geopandas contains a `overlap` method to
-find objects which have some (but not all) points in common. There is also a similar `intersects` method.
+One advantage of using geospatial data is seeing how things overlap. Geopandas contains an `overlap` method to
+find objects which have some (but not all) points in common. (There is also a similar `intersects` method.)
 
 The `overlap` method can compare a single obect with a Series of objects, so let's see which Scottish areas overlap with
 the Cairngorms National Park:
@@ -185,10 +194,34 @@ scotland.overlaps(cairngorms.iloc[0].geometry)
 {: .language-python}
 
 > ## Challenge: overlaps
-> 1. Subset the Scotland dataset to show only the rows which overlap with the Cairngorms
+> 1. Subset the Scotland dataset to show only the rows which overlap with the Cairngorms. Can you display only the names?
 > 2. Look in the Geopandas documentation (https://geopandas.org/en/stable/index.html) for
 >    the `disjoint` method. What do you think it will return when you run it in the way that we 
 >    ran `overlap`? Try it - did you get the expected result? Can you plot this?
+>
+>> ## Solution
+>> ~~~
+>> overlaps = scotland.overlaps(cairngorms.iloc[0].geometry)
+>> # get a Series of only the overlaps
+>> overlaps = overlaps.where(overlaps == True).dropna().index
+>> OR, more concisely
+>> overlaps = overlaps.index[overlaps]
+>> # use this to subset the Scotland dataframe
+>> scotland.loc[overlaps]
+>> # ...and get the names
+>> scotland.loc[overlaps].local_authority
+>> ~~~
+>>
+>> {: .language-python}
+>> ~~~
+>> disjoints = scotland.disjoint(cairngorms.iloc[0].geometry)
+>> # get a Series of only the disjoints
+>> disjoints = disjoints.index[disjoints]
+>> # use this to subset the Scotland dataframe
+>> disjoints = scotland.loc[disjoints]
+>> disjoints.plot()
+>> ~~~
+>> {: .language-python}
 {: .challenge}
 
 > ## Challenge: plotting
@@ -196,9 +229,9 @@ scotland.overlaps(cairngorms.iloc[0].geometry)
 > same way as any other figure. Can you plot the Scotland and Cairngorms GeoDataFrames on the same
 > axes, and customise the plot to highlight the Cairngorms data in some way?
 > > ## Solution
-> > import matplotlib.pyplot as plt
 > >
 > > ~~~
+> > import matplotlib.pyplot as plt
 > > figure, ax = plt.subplots()
 > > scotland.plot(ax=ax)
 > > cairngorms.plot(ax=ax, color="green")
@@ -211,6 +244,14 @@ Finally, Geopandas has a method to show geospatial data over an interactive map:
 
 ~~~
 cairngorms.explore(style_kwds={"fillColor":"lime"})
+~~~
+{: .language-python}
+
+We can even display the Cairngorms data directly over the Scotland plot, which validates that the result of our `intersect` command was correct
+
+~~~
+scotland_plot = scotland.explore()
+cairngorms.explore(map=scotland_plot, style_kwds={"fillColor":"lime"})
 ~~~
 {: .language-python}
 
@@ -262,15 +303,91 @@ plt.savefig("b.png")
 
 > ## Challenge - annotation
 > Earlier, we saw how to annotate figures. Can you annotate this map with the name of the buoy each dot represents?
+>
+>> ## Solution
+>>
+>> ~~~
+>> import matplotlib.pyplot as plt
+>> 
+>> fig, ax = plt.subplots()
+>> north_atlantic.plot(ax=ax)
+>> buoys_geo.plot(ax=ax, color="red")
+>> 
+>> for buoy in buoys_geo.iterfeatures():
+>>     ax.annotate(buoy["properties"]["Name"], xy=(buoy["properties"]["longitude"], buoy["properties"]["latitude"]))
+>> ~~~
+>> {: .language-python}
+>>
+>> The text is a little cramped! The next challenge will help fix this 
+> {: .solution}
 {: .challenge}
 
 > ## Challenge
 > The North Atlantic dataset is comprised of lots of individual areas, which our buoys are all in 1 corner of. Can you:
-> - use the buoy data to find the extent of the data we need to plot
-> - subset the North Atlantic GeoDataFrame to only include the areas that will include the buoy data
-> - plot the data
+> - list the areas in the North Atlantic GeoDataFrame that include the buoy data
+> - set the bounds of the plot appropriately
 > - if you have time, investigate how you might customise the plot
+>
+>> ## Solution
+>> 
+>> ~~~
+>> # the overlap function won't work, because it works on a 1-to-1 row-wise basis, whereas we 
+>> want to find all the points which overlap with any of the areas
+>> buoy_areas = north_atlantic.geometry.apply(lambda x: buoys_geo.within(x).any())
+>> north_atlantic[buoy_areas]
+>>
+>> # We can see that one of the areas is the "North Atlantic Ocean" - so this won't help fix the extent of the map!
+>> # We can use a different way to set the bounds 
+>>
+>> bounds = buoys_geo.total_bounds # The output of total_bounds is an array of minx,miny,maxx,maxy
+>>
+>> fig, ax = plt.subplots()
+>> ax.set_ylim([bounds[1]-0.5,bounds[3]+0.5])
+>> ax.set_xlim([bounds[0]-0.5,bounds[2]+0.5])
+>> north_atlantic.plot(ax=ax)
+>> 
+>> buoys_geo.plot(ax=ax, color="red")
+>> 
+>> for buoy in buoys_geo.iterfeatures():
+>>     ax.annotate(buoy["properties"]["Name"], xy=(buoy["properties"]["longitude"], buoy["properties"]["latitude"]))
+>> ~~~
+>> {: .language-python}
+>>
+>> We could still improve the labels
+>>
+>> ~~~
+>> # we additionally need this library for this example
+>> from matplotlib.offsetbox import AnchoredText
+>>
+>> bounds = buoys_geo.total_bounds #minx,miny,maxx,maxy
+>>
+>> fig, ax = plt.subplots()
+>> ax.set_ylim([bounds[1]-0.5,bounds[3]+0.5])
+>> ax.set_xlim([bounds[0]-0.5,bounds[2]+0.5])
+>> north_atlantic.plot(ax=ax)
+>>
+>> buoys_geo.plot(ax=ax, color="red")
+>>
+>> axis_labels = []
+>> 
+>> for buoy in buoys_geo.iterfeatures():
+>>     ax.annotate(int(buoy["id"])+1, xy=(buoy["properties"]["longitude"], buoy["properties"]["latitude"]))
+>>    axis_labels.append(f"{int(buoy['id'])+1}: {buoy['properties']['Name']}")
+>>
+>> labels = AnchoredText("\n".join(axis_labels),
+                       loc='lower left', prop=dict(size=8), frameon=True,
+                       bbox_to_anchor=(1., 0),
+                       bbox_transform=ax.transAxes
+                       )
+>> labels.patch.set_boxstyle("round,pad=0.,rounding_size=0.2")
+>> ax.add_artist(labels) 
+>> ~~~
+>> {: .language-python}
+>>
+>> ![Labelled buoy data](../fig/labelled_buoys.png)
+>>
+>> Hopefully this gives some insight into the power and control you have when using Matplotlib, and has given you some inspiration!
+> {: .solution}
 {: .challenge}
-
 
 {% include links.md %}
