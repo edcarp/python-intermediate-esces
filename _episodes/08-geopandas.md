@@ -222,6 +222,7 @@ scotland.overlaps(cairngorms.iloc[0].geometry)
 >> disjoints.plot()
 >> ~~~
 >> {: .language-python}
+> {: .solution}
 {: .challenge}
 
 > ## Challenge: plotting
