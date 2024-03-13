@@ -3,17 +3,10 @@ title: Setup
 ---
 
 > ## Data
-> We will be using some ocean wave data and some geospatial datasets for this lesson, specifically the following datasets:
-> - [waves.csv]({{ page.root }}/data/waves.csv)
-> - [waves_2020.csv]({{ page.root }}/data/waves_2020.csv)
-> - [buoy_data.csv]({{ page.root }}/data/buoy_data.csv)
-> - [access.csv]({{ page.root }}/data/access.csv)
-> - [north_atlantic.geojson]({{ page.root }}/data/north_atlantic.geojson)
-> - [scotland_boundaries.geojson]({{ page.root }}/data/scotland_boundaries.geojson)
-> - [cairngorms_boundary.shp]({{ page.root }}/data/cairngorms_boundary.shp)
-> - [cairngorms_boundary.shx]({{ page.root }}/data/cairngorms_boundary.shx)
+> We will be using some ocean wave data and some geospatial datasets for this lesson; please download:
+> - [data.zip]({{ page.root }}/data/data.zip)
 >
-> Please download them (by clicking on the corresponding links) and move them to a directory called data within the 
+> Please download and then unzip the file, and move the files to a directory called data within the 
 > directory you will run your Notebook from
 {: .prereq}
 
