@@ -307,13 +307,12 @@ Let's look at the data using these.
 > 2. `waves_df.shape` Take note of the output of `shape` - what format does it
 >    return the shape of the DataFrame in?
 >    HINT: [More on tuples here][python-datastructures]
->
 > 3. `waves_df.head()` Also, what does `waves_df.head(15)` do?
 > 4. `waves_df.tail()`
 >
 > > ## Solution
 > >
-> > 
+> > 1. 
 > >
 > > ~~~
 > > Index(['record_id', 'buoy_id', 'Name', 'Date', 'Tz', 'Peak Direction', 'Tpeak',
@@ -323,7 +322,7 @@ Let's look at the data using these.
 > > ~~~
 > > {: .output}
 > >
-> > 
+> > 2.
 > >
 > > ~~~
 > > (2073, 13)
@@ -332,7 +331,7 @@ Let's look at the data using these.
 > >
 > > It is a _tuple_
 > >
-> > 
+> > 3.
 > >
 > > ~~~
 > >   record_id  buoy_id  ... Seastate Quadrant
@@ -346,6 +345,8 @@ Let's look at the data using these.
 > > {: .output}
 > >
 > > So, `waves_df.head()` returns the first 5 rows of the `waves_df` dataframe. (Your Jupyter Notebook might show all columns). `waves_df.head(15)` returns the first 15 rows; i.e. the _default_ value (recall the functions lesson) is 5, but we can change this via an argument to the function
+> >
+> > 4.
 > > 
 > > ~~~
 > >       record_id  buoy_id              Name  ... Operations  Seastate  Quadrant
@@ -414,11 +415,13 @@ array(['SW Isles of Scilly WaveNet Site', 'Hayling Island Waverider',
 >   `buoy_ids`. How many unique
 >   buoys are in the data?
 >
-> 2. What is the difference between using `len(buoy_id)` and `waves_df['buoy_id'].nunique()`?
+> 2. What is the difference between using `len(buoy_ids)` and `waves_df['buoy_id'].nunique()`?
 >    in this case, the result is the same but when might be the difference be important?
 > 
 > > ## Solution
-> > 1.  
+> > 
+> > 1.
+> >
 > > ~~~
 > > buoy_ids = pd.unique(waves_df["buoy_id"])
 > > print(buoy_ids)
@@ -430,7 +433,7 @@ array(['SW Isles of Scilly WaveNet Site', 'Hayling Island Waverider',
 > > ~~~
 > > {: .output}
 > > 
-> > 2.  
+> > 2.
 > > 
 > > We could count the number of elements of the list, or we might think about using either the `len()` or `nunique()` functions, and we get 10.
 > >
@@ -513,7 +516,7 @@ numeric data (does this always make sense?)
 # Summary statistics for all numeric columns by Seastate
 grouped_data.describe()
 # Provide the mean for each numeric column by Seastate
-grouped_data.mean()
+grouped_data.mean(numeric_only=True)
 ~~~
 {: .language-python}
 
@@ -545,14 +548,17 @@ is much larger than the wave heights classified as 'windsea'.
 > 3. Summarize Temperature values for swell and windsea states in your data. 
 >
 >> ## Solution
->> 1. The most complete answer is `waves_df.groupby("Quadrant").count()["record_id"][["north", "west"]]`
+>> 1. The most complete answer is `waves_df.groupby("Quadrant").count()["record_id"][["north", "west"]]` - note that we could use any column that has a value in every row - but given that `record_id` is our index for the dataset it makes sense to use that 
 >> 2. It groups by 2nd column _within_ the results of the 1st column, and then calculates the mean (n.b. depending on your version of python, you might need `grouped_data2.mean(numeric_only=True)`)
 >> 3.  
+>> 
 >> ~~~
 >> waves_df.groupby(['Seastate'])["Temperature"].describe()
 >> ~~~
 >> {: .language-python}
+>>
 >> which produces the following:
+>>
 >> ~~~
 >>             count    mean         std         min     25%      50%      75%        max
 >> Seastate                                

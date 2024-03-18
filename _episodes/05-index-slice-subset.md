@@ -182,8 +182,9 @@ a = [1, 2, 3, 4, 5]
 >> 3. The error is raised because the list a has no element with index 5: it has only five entries, indexed from 0 to 4.
 >> 4. `a[len(a)]` also raises an IndexError. `len(a)` returns 5, making `a[len(a)]` equivalent to `a[5]`.
 >>     To retreive the final element of a list, use the index -1, e.g.
+>> 
 >> ~~~
->> a[-5]
+>> a[-1]
 >> ~~~
 >> {: .language-python}
 >>
@@ -336,6 +337,8 @@ using either label or integer-based indexing.
   they are interpreted as a *label*.
 - `iloc` is primarily *integer* based indexing
 
+Our dataset has **labels** for columns, but **indexes** for rows.
+
 To select a subset of rows **and** columns from our DataFrame, we can use the
 `iloc` method. For example, for the first 3 rows, we can select record_id, name, and date (columns 0, 2,
 and 3 when we start counting at 0), like this:
@@ -376,7 +379,8 @@ waves_df.loc[[0, 10, 35549], :]
 {: .language-python}
 
 **NOTE 1**: with our dataset, we are using integers even when using `loc` because our DataFrame index
-(which is the unnamed first column) is composed of integers - but Pandas converts these to strings
+(which is the unnamed first column) is composed of integers - but Pandas converts these to strings. If you had a column of
+strings that you wanted to index using labels, you need to convert that columun using the `set_index` function
 
 **NOTE 2**: Labels must be found in the DataFrame or you will get a `KeyError`.
 
@@ -412,18 +416,33 @@ gives the **output**
 Remember that Python indexing begins at 0. So, the index location [2, 6]
 selects the element that is 3 rows down and 7 columns over (Tpeak) in the DataFrame.
 
-It is worth noting that rows are selected when using `loc` with a single list of
-labels (or `iloc` with a single list of integers). However, unlike `loc` or `iloc`,
-indexing a data frame directly with labels will select columns (e.g. 
+It is worth noting that:
+
+ - using `loc` with a single list of labels (if the rows are labelled) returns rows
+ - using `iloc` with a single list of integers also returns rows
+
+ _but_
+
+-  indexing a data frame directly with labels will select columns (e.g. 
 `waves_df[['buoy_id', 'Name', 'Temperature']]`), while ranges of integers will
-select rows (e.g. waves_df[0:13]) - but passing a single integer will raise an error.
-Direct indexing of rows is redundant with using `iloc`, and will raise a `KeyError` if a single integer or list is used:
+select rows (e.g. waves_df[0:13])
+
+Passing a single integer when trying to index a dataframe will raise an error.
+
+Similarly, direct indexing of rows is redundant with using `loc`, and will raise a `KeyError` if a single integer or list is used:
 
 ~~~
 # produces an error - even though you might think it looks sensible
 waves_df.loc[1:10,1]
+
+# instead, use this:
+waves_df.loc[1:10, "buoy_id"]
+
+# or
+waves_df.iloc[1:10, 1]
 ~~~
 {: .language-python}
+
 
 
 the error will also occur if index labels are used without `loc` (or column labels used
@@ -456,8 +475,10 @@ arrays)
 >
 >> ## Solution
 >>
->> 
+>> 1.
+>>
 >>   - `waves_df[0:3]` returns the first three rows of the DataFrame:
+>>
 >> ~~~
 >>    record_id  buoy_id                             Name              Date   Tz  ...  Temperature  Spread  Operations  Seastate  Quadrant
 >> 0          1       14  SW Isles of Scilly WaveNet Site  17/04/2023 00:00  7.2  ...         10.8    26.0        crew     swell      west
@@ -482,6 +503,7 @@ arrays)
 >>
 >>  `waves_df[:-1]` provides everything except the final row of a DataFrame. You can use negative index numbers to count backwards from the last entry.
 >>
+>> 2.
 >>
 >>  `waves_df.iloc[0:1]` returns the first row
 >>  `waves_df.iloc[0]` returns the first row as a named list
@@ -489,7 +511,7 @@ arrays)
 >>  `waves_df.iloc[0:4, 1:4]` selects specified columns of the first four rows
 >>  `waves_df.loc[0:4, 1:4]` results in a 'TypeError' - see below.
 >>
->> While iloc uses integers as indices and slices accordingly, loc works with labels. It is like accessing values from a dictionary, asking for the key names. Column names 1:4 do not exist, so the call to `loc` above results in an error. Check also the difference between `waves_df.loc[0:4]` and `waves_df.iloc[0:4]`.
+>> While `iloc` uses integers as indices and slices accordingly, `loc` works with labels. It is like accessing values from a dictionary, asking for the key names. Column names 1:4 do not exist, so the call to `loc` above results in an error. Check also the difference between `waves_df.loc[0:4]` and `waves_df.iloc[0:4]`.
 > {: .solution}
 {: .challenge}
 
@@ -592,7 +614,7 @@ Experiment with selecting various subsets of the "waves" data.
 >
 > 1. Select a subset of rows in the `waves_df` DataFrame that contain data from
 >   the year 2023 and that contain Temperature values less than or equal to 8. How
->   many rows did you end up with? Tip #1: You can't access attributes of a DateTme objects stored in a Series directly!
+>   many rows did you end up with? Tip #1: You can't access attributes of a DateTime objects stored in a Series directly!
 >   Tip #2: you may want to create a new column containing the dates formatted as DateType that we created earlier!
 >
 > 2. You can use the `isin` command in Python to query a DataFrame based upon a
@@ -627,7 +649,7 @@ Experiment with selecting various subsets of the "waves" data.
 >> ~~~
 >> timestamps = pd.to_datetime(waves_df.Date, format="%d/%m/%Y %H:%M")
 >> years = timestamps.dt.year
->> waves_df["Year'] = years
+>> waves_df["Year"] = years
 >> waves_df[(waves_df.Year == 2023) & (waves_df.Temperature <=8)]
 >> ~~~
 >> {: .language-python}

@@ -211,8 +211,8 @@ scotland.overlaps(cairngorms.iloc[0].geometry)
 >> # ...and get the names
 >> scotland.loc[overlaps].local_authority
 >> ~~~
->>
 >> {: .language-python}
+>>
 >> ~~~
 >> disjoints = scotland.disjoint(cairngorms.iloc[0].geometry)
 >> # get a Series of only the disjoints

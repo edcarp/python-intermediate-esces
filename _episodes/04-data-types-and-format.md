@@ -162,7 +162,7 @@ dtype: object
 
 Note that some of the columns in our wave data are of type `int64`. This means
 that they are 64 bit integers. Others are floating point value
-which means they contains decimals. The `Name`, 'Operations',	'Seastate', 
+which means they contains decimals. The 'Name', 'Operations',	'Seastate', 
 and	'Quadrant' columns are objects which contain strings.
 
 ## Working With Integers and Floats
@@ -266,11 +266,11 @@ dates = pd.to_datetime(dates, format="%d/%m/%Y %H:%M")
 What does the value given to the `format` argument mean? Because there is no consistent way of specifying dates, Python has a set of codes to specify the elements. We use these codes to tell Python the format
 of the date we want to convert. The full list of codes is at https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes, but we're using:
 
-%d : Day of the month as a zero-padded decimal number.
-%m : Month as a zero-padded decimal number.
-%Y : Year with century as a decimal number.
-%H : Hour (24-hour clock) as a zero-padded decimal number.
-%M : Minute as a zero-padded decimal number.
+ - %d : Day of the month as a zero-padded decimal number.
+ - %m : Month as a zero-padded decimal number.
+ - %Y : Year with century as a decimal number.
+ - %H : Hour (24-hour clock) as a zero-padded decimal number.
+ - %M : Minute as a zero-padded decimal number.
 
 Let's take an individual value and see some of the things we can do with it
 
@@ -385,7 +385,7 @@ We can also find the time differences between two dates - Pandas (and Python) re
 automatically create a TimeDelta for us:
 
 ~~~
-date2 = dates.iloc[1]
+date2 = dates.iloc[15]
 time_diff = date2 - date1
 print(time_diff)
 print(type(time_diff))
@@ -421,6 +421,14 @@ pandas._libs.tslibs.timedeltas.Timedelta
 > > print(time_diff.seconds/60)
 > > ~~~
 > > {: .language-python}
+> >
+> > Note that the values in the `components` attribute aren't for the total delta, only for that proportion; e.g. a time delta of 1 day and 30 seconds would return
+> >
+> > ~~~
+> > Components(days=1, hours=0, minutes=0, seconds=30, milliseconds=0, microseconds=0, nanoseconds=0)
+> > ~~~
+> > {: .language-python}
+> >
 > {: .solution}
 {: .challenge}
 
