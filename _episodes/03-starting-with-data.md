@@ -520,7 +520,7 @@ grouped_data.mean(numeric_only=True)
 ~~~
 {: .language-python}
 
-`grouped_data.mean()` produces
+`grouped_data.mean(numeric_only=True)` produces
 
 ~~~
 record_id,buoy_id,...,Temperature,Spread
